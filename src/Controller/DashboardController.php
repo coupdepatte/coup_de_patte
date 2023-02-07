@@ -4,7 +4,10 @@ namespace App\Controller;
 
 use DateTime;
 use App\Entity\Animal;
+use App\Form\AnnonceType;
 use App\Repository\AnimalRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -19,7 +22,7 @@ class DashboardController extends AbstractController
         $annonces = $repoAnimal->findByIdUtilisateur( $utilisateurCo );
         return $this->render( 'dashboard/index.html.twig', [
             'annonces' => $annonces,
-            'pseudo' => $pseudo,
+
         ] );
 
     }
@@ -34,7 +37,7 @@ public function ajouterAnnoce( Request $request, UserInterface $utilisateurCo, E
 
 
         $animal = new Animal();
-        $form_animal = $this->createForm( ArticleType::class, $animal );
+        $form_animal = $this->createForm( AnnonceType::class, $animal );
 
         $form_animal->handleRequest( $request );
 

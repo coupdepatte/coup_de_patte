@@ -98,31 +98,31 @@
 
 					{% for message in app.flashes('success') %}
 						<div class="flash-notice">
-							{{ message | raw }}
+							
 						</div>
 					{% endfor %}
 				</div>
 
 				<div class="row">
 					<div class="col-lg-6 mx-auto">
-						{{form_start(form_article)}}
+					
 						<div class="mb-3">
 							<label for="categorie" class="form-label">Catégories</label>
-							{{form_row(form_article.idCategorie)}}
+						
 						</div>
 						<div class="mb-3">
 							<label for="titre" class="form-label">Titre</label>
-							{{form_row(form_article.titre)}}
+							
 						</div>
 						<div class="mb-3">
 							<label for="contenu" class="form-label">Contenu</label>
-							{{form_row(form_article.contenu )}}
+						
 						</div>
 						<div class="row">
 							<div class="col-sm-4 imgUp">
 								<div class="imagePreview"></div>
 								<label class="btn btn-primary">
-									Upload{{form_row(form_article.images)}}
+									
 								</label>
 
 							</div>
@@ -130,9 +130,9 @@
 							<i class="fa fa-plus imgAdd"></i>
 						</div>
 						<!-- row -->
+						{{form_start(form_animal)}}
 
-						{{form_row(form_article.save)}}
-						{{form_end(form_article)}}
+						{{form_end(form_animal)}}
 					</div>
 				</div>
 			</main>

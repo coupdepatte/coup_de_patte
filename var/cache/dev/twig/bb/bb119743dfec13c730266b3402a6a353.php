@@ -53,11 +53,10 @@ class __TwigTemplate_9232e2f5e3b6d4b1c15f1f95f40459ba extends Template
         $this->displayBlock('title', $context, $blocks);
         echo "</title>
         <link rel=\"icon\" href=\"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>\">
-        ";
-        // line 8
-        echo "        <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3\" crossorigin=\"anonymous\">
+        <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD\" crossorigin=\"anonymous\">
         ";
         // line 9
+        echo "        ";
         $this->displayBlock('stylesheets', $context, $blocks);
         // line 12
         echo "
@@ -73,7 +72,8 @@ class __TwigTemplate_9232e2f5e3b6d4b1c15f1f95f40459ba extends Template
         // line 18
         $this->displayBlock('javascripts', $context, $blocks);
         // line 21
-        echo "    </body>
+        echo "    </head>
+
 </html>
 ";
         
@@ -174,7 +174,7 @@ class __TwigTemplate_9232e2f5e3b6d4b1c15f1f95f40459ba extends Template
 
     public function getDebugInfo()
     {
-        return array (  158 => 19,  148 => 18,  130 => 16,  117 => 10,  107 => 9,  88 => 5,  76 => 21,  74 => 18,  71 => 17,  69 => 16,  63 => 12,  61 => 9,  58 => 8,  53 => 5,  47 => 1,);
+        return array (  158 => 19,  148 => 18,  130 => 16,  117 => 10,  107 => 9,  88 => 5,  75 => 21,  73 => 18,  70 => 17,  68 => 16,  62 => 12,  59 => 9,  53 => 5,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -185,8 +185,8 @@ class __TwigTemplate_9232e2f5e3b6d4b1c15f1f95f40459ba extends Template
         <meta charset=\"UTF-8\">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel=\"icon\" href=\"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>\">
+        <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD\" crossorigin=\"anonymous\">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3\" crossorigin=\"anonymous\">
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
@@ -199,8 +199,9 @@ class __TwigTemplate_9232e2f5e3b6d4b1c15f1f95f40459ba extends Template
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
-    </body>
+    </head>
+
 </html>
-", "base.html.twig", "C:\\Users\\leana\\Desktop\\coup_de_patte\\coup_de_patte\\coup_de_patte\\templates\\base.html.twig");
+", "base.html.twig", "C:\\Users\\33668\\Desktop\\coup_de_patte\\coup_de_patte\\templates\\base.html.twig");
     }
 }
