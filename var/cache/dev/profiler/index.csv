@@ -187,3 +187,6 @@ e70381,127.0.0.1,GET,http://127.0.0.1:8000/dashboard/asset/images/logo3.jpg,1675
 aefecd,127.0.0.1,GET,http://127.0.0.1:8000/dashboard/ajouter-article,1675782640,,200
 a252ac,127.0.0.1,GET,http://127.0.0.1:8000/dashboard/asset/images/logo3.jpg,1675782641,b06cc3,404
 b06cc3,127.0.0.1,GET,http://127.0.0.1:8000/dashboard/asset/images/logo3.jpg,1675782641,,404
+f66976,127.0.0.1,GET,http://127.0.0.1:8000/dashboard/ajouter-article,1675783523,,200
+efc852,127.0.0.1,GET,http://127.0.0.1:8000/dashboard/asset/images/logo3.jpg,1675783524,2868a9,404
+2868a9,127.0.0.1,GET,http://127.0.0.1:8000/dashboard/asset/images/logo3.jpg,1675783524,,404
