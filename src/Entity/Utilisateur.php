@@ -239,29 +239,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface, 
 
         return $this;
     }
-/**
- 
-      * @see PasswordAuthenticatedUserInterface
- 
-      */
- 
-      public function getPassword(): string
- 
-      {
-  
-          return $this->mdp;
-  
-      }
-  
-  
-      public function getPasswordHasherName(): ?string
-  
-      {
-  
-          return null;
-  
-      }
- 
+
        //--------- UserInterface
 
     /**
@@ -299,6 +277,21 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface, 
     {
     }
 
+    /**
+      * @see PasswordAuthenticatedUserInterface
+      */
+
+    public function getPassword(): string
+
+    {
+        return $this->mdpUtilisateur;
+    }
+
+    public function getPasswordHasherName(): ?string
+
+    {
+        return null;
+    }
 
 }
 
