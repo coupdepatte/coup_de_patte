@@ -60,19 +60,17 @@ class __TwigTemplate_9232e2f5e3b6d4b1c15f1f95f40459ba extends Template
         // line 9
         $this->displayBlock('stylesheets', $context, $blocks);
         // line 12
-        echo "
-        
-    </head>
+        echo "    </head>
     <body>
         ";
-        // line 16
+        // line 14
         $this->displayBlock('body', $context, $blocks);
-        // line 17
+        // line 15
         echo "        <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p\" crossorigin=\"anonymous\"></script>
         ";
-        // line 18
+        // line 16
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 21
+        // line 19
         echo "    </body>
 </html>
 ";
@@ -126,7 +124,7 @@ class __TwigTemplate_9232e2f5e3b6d4b1c15f1f95f40459ba extends Template
 
     }
 
-    // line 16
+    // line 14
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -144,7 +142,7 @@ class __TwigTemplate_9232e2f5e3b6d4b1c15f1f95f40459ba extends Template
 
     }
 
-    // line 18
+    // line 16
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -154,7 +152,7 @@ class __TwigTemplate_9232e2f5e3b6d4b1c15f1f95f40459ba extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 19
+        // line 17
         echo "            ";
         echo twig_escape_filter($this->env, $this->env->getFunction('encore_entry_script_tags')->getCallable()("app"), "html", null, true);
         echo "
@@ -174,7 +172,7 @@ class __TwigTemplate_9232e2f5e3b6d4b1c15f1f95f40459ba extends Template
 
     public function getDebugInfo()
     {
-        return array (  158 => 19,  148 => 18,  130 => 16,  117 => 10,  107 => 9,  88 => 5,  76 => 21,  74 => 18,  71 => 17,  69 => 16,  63 => 12,  61 => 9,  58 => 8,  53 => 5,  47 => 1,);
+        return array (  156 => 17,  146 => 16,  128 => 14,  115 => 10,  105 => 9,  86 => 5,  74 => 19,  72 => 16,  69 => 15,  67 => 14,  63 => 12,  61 => 9,  58 => 8,  53 => 5,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -190,8 +188,6 @@ class __TwigTemplate_9232e2f5e3b6d4b1c15f1f95f40459ba extends Template
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
-
-        
     </head>
     <body>
         {% block body %}{% endblock %}

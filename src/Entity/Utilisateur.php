@@ -282,6 +282,5 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface, 
         return null;
     }
 
-
 }
 

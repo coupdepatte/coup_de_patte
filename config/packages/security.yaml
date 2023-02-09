@@ -24,7 +24,7 @@ security:
                 failure_path: app_connection
 
             logout:
-                path: app_deconnexion
+                path: app_accueil
                 target: app_connection
 
             # activate different ways to authenticate
