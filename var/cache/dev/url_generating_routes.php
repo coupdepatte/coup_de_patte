@@ -21,6 +21,7 @@ return [
     'app_connection' => [[], ['_controller' => 'App\\Controller\\ConnectionController::index'], [], [['text', '/connection']], [], [], []],
     'app_contact' => [[], ['_controller' => 'App\\Controller\\ContactController::index'], [], [['text', '/contact']], [], [], []],
     'app_dashboard' => [[], ['_controller' => 'App\\Controller\\DashboardController::index'], [], [['text', '/dashboard']], [], [], []],
+    'app_dashboard_ajouter' => [[], ['_controller' => 'App\\Controller\\DashboardController::ajouterAnnoce'], [], [['text', '/dashboard/ajouter-article']], [], [], []],
     'app_inscription' => [[], ['_controller' => 'App\\Controller\\InscriptionController::index'], [], [['text', '/inscription']], [], [], []],
     'app_recherche' => [[], ['_controller' => 'App\\Controller\\RechercheController::index'], [], [['text', '/recherche']], [], [], []],
 ];

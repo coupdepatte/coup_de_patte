@@ -1,0 +1,196 @@
+{% extends 'base.html.twig' %}
+{% block title %}Hello DashboardController!
+{% endblock %}
+{% block stylesheets %}
+	<link href="{{asset('css/dashboard.css')}}" rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+{% endblock %}
+{% block body %}
+	<style>
+		body {
+			background-color: #f5f5f5;
+		}
+		.imagePreview {
+			width: 100%;
+			height: 180px;
+			background-position: center center;
+			background: url('http://cliquecities.com/assets/no-image-e3699ae23f866f6cbdf8ba2443ee5c4e.jpg');
+			background-color: #fff;
+			background-size: cover;
+			background-repeat: no-repeat;
+			display: inline-block;
+			box-shadow: 0 -3px 6px 2px rgba(0, 0, 0, 0.2);
+		}
+		.btn-primary {
+			display: block;
+			border-radius: 0;
+			box-shadow: 0 4px 6px 2px rgba(0, 0, 0, 0.2);
+			margin-top: -5px;
+			height: 50px;
+		}
+		.imgUp {
+			margin-bottom: 15px;
+		}
+		.del {
+			z-index: 5;
+			position: relative;
+			top: -88%;
+			right: -87%;
+			width: 30px;
+			height: 30px;
+			text-align: center;
+			line-height: 30px;
+			background-color: rgba(255, 255, 255, 0.6);
+			cursor: pointer;
+		}
+		.imgAdd {
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+			background-color: #4bd7ef;
+			color: #fff;
+			box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+			text-align: center;
+			line-height: 30px;
+			margin-top: 0;
+			cursor: pointer;
+			font-size: 15px;
+		}
+	</style>
+	<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+		<a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">Company name</a>
+		<button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
+		<div class="navbar-nav">
+			<div class="nav-item text-nowrap">
+				<a class="nav-link px-3" href="#">Sign out</a>
+			</div>
+		</div>
+	</header>
+	<div class="container-fluid">
+		<div class="row">
+			{% include 'commun/nav.html.twig' %}
+			<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+				<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+					<h1 class="h2">Dashboard</h1>
+					<div class="btn-toolbar mb-2 mb-md-0">
+						<div class="btn-group me-2">
+							<button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+							<button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+						</div>
+						<button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+							<span data-feather="calendar" class="align-text-bottom"></span>
+							This week
+						</button>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6 mx-auto">
+						<h3>Créez un article</h3>
+					</div>
+				</div>
+
+				<div class='row'>
+
+
+					{% for message in app.flashes('success') %}
+						<div class="flash-notice">
+							
+						</div>
+					{% endfor %}
+				</div>
+
+				<div class="row">
+					<div class="col-lg-6 mx-auto">
+					
+						<div class="mb-3">
+							<label for="categorie" class="form-label">Catégories</label>
+						
+						</div>
+						<div class="mb-3">
+							<label for="titre" class="form-label">Titre</label>
+							
+						</div>
+						<div class="mb-3">
+							<label for="contenu" class="form-label">Contenu</label>
+						
+						</div>
+						<div class="row">
+							<div class="col-sm-4 imgUp">
+								<div class="imagePreview"></div>
+								<label class="btn btn-primary">
+									
+								</label>
+
+							</div>
+							<!-- col-2 -->
+							<i class="fa fa-plus imgAdd"></i>
+						</div>
+						<!-- row -->
+						{{form_start(form_animal)}}
+
+						{{form_end(form_animal)}}
+					</div>
+				</div>
+			</main>
+		</div>
+	</div>
+
+
+{% endblock %}
+{% block javascripts %}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+	<script>
+		let compteur = 0;
+
+$(".imgAdd").click(function () {
+$(this).closest(".row").find('.imgAdd').before('<div class="col-sm-4 imgUp"><div class="imagePreview"></div><label class="btn btn-primary">Upload<input type="file" name="article[images][]" class="uploadFile img" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;"></label><i class="fa fa-times del"></i></div>');
+
+compteur++;
+console.log(compteur);
+if (compteur >= 2) {
+$(".imgAdd").removeClass("fa fa-plus imgAdd");
+
+}
+});
+$(document).on("click", "i.del", function () {
+compteur--;
+$(this).parent().remove();
+
+});
+$(function () {
+$(document).on("change", ".uploadFile", function () {
+var uploadFile = $(this);
+var files = !!this.files ? this.files : [];
+if (! files.length || !window.FileReader) 
+return;
+
+
+
+// no file selected, or no FileReader support
+
+if (/^image/.test(files[0].type)) { // only image file
+var reader = new FileReader(); // instance of the FileReader
+reader.readAsDataURL(files[0]); // read the local file
+
+reader.onloadend = function () {
+// set image data as background of div
+// alert(uploadFile.closest(".upimage").find('.imagePreview').length);
+uploadFile.closest(".imgUp").find('.imagePreview').css("background-image", "url(" + this.result + ")");
+}
+}
+
+});
+});
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
+	<script src="{{asset('js/dashboard.js')}}"></script>
+{% endblock %}

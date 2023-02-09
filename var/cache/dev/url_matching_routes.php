@@ -19,6 +19,7 @@ return [
         '/connection' => [[['_route' => 'app_connection', '_controller' => 'App\\Controller\\ConnectionController::index'], null, null, null, false, false, null]],
         '/contact' => [[['_route' => 'app_contact', '_controller' => 'App\\Controller\\ContactController::index'], null, null, null, false, false, null]],
         '/dashboard' => [[['_route' => 'app_dashboard', '_controller' => 'App\\Controller\\DashboardController::index'], null, null, null, false, false, null]],
+        '/dashboard/ajouter-article' => [[['_route' => 'app_dashboard_ajouter', '_controller' => 'App\\Controller\\DashboardController::ajouterAnnoce'], null, null, null, false, false, null]],
         '/inscription' => [[['_route' => 'app_inscription', '_controller' => 'App\\Controller\\InscriptionController::index'], null, null, null, false, false, null]],
         '/recherche' => [[['_route' => 'app_recherche', '_controller' => 'App\\Controller\\RechercheController::index'], null, null, null, false, false, null]],
     ],
