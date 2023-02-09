@@ -15,12 +15,14 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
  * @ORM\Table(name="utilisateur", indexes={@ORM\Index(name="utilisateur_lieu_FK", columns={"id_lieu"}), @ORM\Index(name="utilisateur_role0_FK", columns={"id_role"})})
  * @ORM\Entity(repositoryClass= "App\Repository\UtilisateurRepository")
  */
+
 #[UniqueEntity(
-    fields: ['loginUtilisateur'], 
-    errorPath: 'loginUtilisateur', 
-    message: 'Cet email semble déjà pris, merci de vous connecte!',
-)]
- class Utilisateur implements  PasswordAuthenticatedUserInterface, PasswordHasherAwareInterface
+    fields: ['login_utilisateur'],
+    errorPath: 'login_utilisateur',
+    message: 'Cet email semble déjà être utilisé, veuillez en choisir une autre.'
+    )]
+
+class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface, PasswordHasherAwareInterface
 {
     /**
      * @var int
@@ -260,5 +262,44 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
   
       }
  
+       //--------- UserInterface
+
+    /**
+     * The public representation of the user (e.g. a username, an email address, etc.)
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->loginUtilisateur;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {        
+        $roles[] = 'ROLE_USER';
+        return array_unique($roles);
+    }
+
+    /**
+     *
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
+    {
+        return null;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+    }
+
+
 
 }
+

@@ -15,4 +15,13 @@ class ConnectionController extends AbstractController
             'controller_name' => 'ConnectionController',
         ]);
     }
+
+
+    #[Route('/connection', name: 'app_deconnexion')]
+    public function deconnexion(): Response
+    {
+        return $this->render('connection/index.html.twig', [
+            'controller_name' => 'ConnectionController',
+        ]);
+    }
 }
