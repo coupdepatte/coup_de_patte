@@ -63,4 +63,10 @@ class UtilisateurRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+ public function ajouterUneVille($nomVille, $codeVille, $codeInsee, $idDepartement){
+    $requete = "INSERT INTO `lieu` (`id_lieu`, `nom_ville`, `code_ville`, `code_insee`, `id_departement`) VALUES (NULL, '$nomVille', '$codeVille', '$codeInsee', '$idDepartement')";
+    $action = $this->getEntityManager()->getConnection()->prepare($requete);
+    $action->execute();
+}
+    
 }
