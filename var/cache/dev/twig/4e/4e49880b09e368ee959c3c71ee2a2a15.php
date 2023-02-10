@@ -4987,6 +4987,6 @@ body.theme-dark #collector-content .sf-dump-ellipsis-path { max-width: 5em; }
 body.theme-dark #collector-content .sf-dump .trace li.selected {
     background: rgba(255, 255, 153, 0.5);
 }
-", "@WebProfiler/Profiler/profiler.css.twig", "C:\\Users\\helen\\Desktop\\coup de patte\\coup_de_patte\\coup_de_patte\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Profiler\\profiler.css.twig");
+", "@WebProfiler/Profiler/profiler.css.twig", "C:\\Users\\leana\\Desktop\\coup_de_patte\\coup_de_patte\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Profiler\\profiler.css.twig");
     }
 }

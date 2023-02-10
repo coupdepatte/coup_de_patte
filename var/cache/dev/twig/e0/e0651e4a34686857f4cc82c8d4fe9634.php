@@ -71,6 +71,6 @@ class __TwigTemplate_dc50ebfe553f39b9b099b1afef26fc47 extends Template
     <path d=\"M14 3v4a1 1 0 0 0 1 1h4\"></path>
     <path d=\"M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z\"></path>
 </svg>
-", "@WebProfiler/Icon/file.svg", "C:\\Users\\helen\\Desktop\\coup de patte\\coup_de_patte\\coup_de_patte\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Icon\\file.svg");
+", "@WebProfiler/Icon/file.svg", "C:\\Users\\leana\\Desktop\\coup_de_patte\\coup_de_patte\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Icon\\file.svg");
     }
 }

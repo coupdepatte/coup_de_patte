@@ -79,6 +79,6 @@ class __TwigTemplate_acd3c7da443e262aab6ed916b9da837e extends Template
     <circle cx=\"18.5\" cy=\"18.5\" r=\"1.5\"></circle>
     <circle cx=\"8.5\" cy=\"15.5\" r=\"4.5\"></circle>
 </svg>
-", "@WebProfiler/Icon/http-client.svg", "C:\\Users\\helen\\Desktop\\coup de patte\\coup_de_patte\\coup_de_patte\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Icon\\http-client.svg");
+", "@WebProfiler/Icon/http-client.svg", "C:\\Users\\leana\\Desktop\\coup_de_patte\\coup_de_patte\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Icon\\http-client.svg");
     }
 }

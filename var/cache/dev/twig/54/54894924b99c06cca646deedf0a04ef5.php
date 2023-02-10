@@ -1084,6 +1084,6 @@ class __TwigTemplate_17798a34be9c1273c59ba93b962fb0af extends Template
         {%- endif -%}
     {% endmacro %}
 {% endblock %}
-", "@WebProfiler/Collector/mailer.html.twig", "C:\\Users\\helen\\Desktop\\coup de patte\\coup_de_patte\\coup_de_patte\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Collector\\mailer.html.twig");
+", "@WebProfiler/Collector/mailer.html.twig", "C:\\Users\\leana\\Desktop\\coup_de_patte\\coup_de_patte\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Collector\\mailer.html.twig");
     }
 }

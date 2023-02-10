@@ -3,7 +3,9 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\PasswordHasher\Hasher\PasswordHasherAwareInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
@@ -55,7 +57,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface, 
     /**
      * @var string
      *
-     * @ORM\Column(name="login_utilisateur", type="string", length=25, nullable=false)
+     * @ORM\Column(name="login_utilisateur", type="string", length=100, nullable=false)
      */
     private $loginUtilisateur;
 
@@ -64,6 +66,12 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface, 
      *
      * @ORM\Column(name="mdp_utilisateur", type="string", length=500, nullable=false)
      */
+    #[Assert\Length(
+        min: 8,
+        max: 14,
+        minMessage: 'mot de passe trop court',
+        maxMessage:'mot de passe trop long ',
+    )]
     private $mdpUtilisateur;
 
     /**
@@ -270,18 +278,20 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface, 
     }
 
     /**
-     * @see PasswordAuthenticatedUserInterface
-     */
+      * @see PasswordAuthenticatedUserInterface
+      */
+
     public function getPassword(): string
+
     {
         return $this->mdpUtilisateur;
     }
 
     public function getPasswordHasherName(): ?string
+
     {
         return null;
     }
-
 
 }
 

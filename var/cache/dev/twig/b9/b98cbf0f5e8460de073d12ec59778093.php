@@ -69,6 +69,6 @@ class __TwigTemplate_2ff092300f71033137d5178c92435095 extends Template
     <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>
     <path d=\"M5 12l5 5l10 -10\"></path>
 </svg>
-", "@WebProfiler/Icon/yes.svg", "C:\\Users\\helen\\Desktop\\coup de patte\\coup_de_patte\\coup_de_patte\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Icon\\yes.svg");
+", "@WebProfiler/Icon/yes.svg", "C:\\Users\\leana\\Desktop\\coup_de_patte\\coup_de_patte\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Icon\\yes.svg");
     }
 }

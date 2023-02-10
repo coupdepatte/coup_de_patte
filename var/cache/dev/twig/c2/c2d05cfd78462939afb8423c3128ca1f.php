@@ -1413,6 +1413,6 @@ div.sf-toolbar  .sf-toolbar-block .sf-toolbar-info-piece.sf-toolbar-info-php-ext
         display: none !important;
     }
 }
-", "@WebProfiler/Profiler/toolbar.css.twig", "C:\\Users\\helen\\Desktop\\coup de patte\\coup_de_patte\\coup_de_patte\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Profiler\\toolbar.css.twig");
+", "@WebProfiler/Profiler/toolbar.css.twig", "C:\\Users\\leana\\Desktop\\coup_de_patte\\coup_de_patte\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Profiler\\toolbar.css.twig");
     }
 }
