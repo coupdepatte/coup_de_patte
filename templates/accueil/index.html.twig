@@ -1,34 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AccueilController!{% endblock %}
+{% block stylesheets %}
+	<style></style>
+{% endblock %}
+
+{% block title %}Hello CommunController!
+{% endblock %}
 
 {% block body %}
 
-{%include 'commun/nav.html.twig'%}
+	{%include 'commun/nav.html.twig'%}
 
 
-
-{% block stylesheets %}
-	<style>
-  
-
-    </style>
-		{% endblock %}
-<main>
-{%include 'commun/menu.html.twig'%}
-  <section class="py-5 text-center container">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Coup de Patte le site qui vous trouvera un ami pour la vie!</h1>
-        <p class="lead text-muted">Avec coup de patte, adopter un animal aupres de particulier ou acheter un amimal chez de nos eleveurs referencés .</p>
-        <p>
-          <a href="#" class="btn btn-info my-2">Déposer une annonce</a>
-          <a href="#" class="btn btn-info my-2">Rechercher un animal</a>
-        </p>
-      </div>
-    </div>
-  </section>
- 		<div class="album py-5 bg-light">
+	{% block stylesheets %}
+		<style></style>
+	{% endblock %}
+	<main>
+		{%include 'commun/menu.html.twig'%}
+		<section class="py-5 text-center container">
+			<div class="row py-lg-5">
+				<div class="col-lg-6 col-md-8 mx-auto">
+					<h1 class="fw-light">Coup de Patte le site qui vous trouvera un ami pour la vie!</h1>
+					<p class="lead text-muted">Avec coup de patte, adopter un animal aupres de particulier ou acheter un amimal chez de nos eleveurs referencés .</p>
+					<p>
+						<a href="#" class="btn btn-info my-2">Déposer une annonce</a>
+						<a href="#" class="btn btn-info my-2">Rechercher un animal</a>
+					</p>
+				</div>
+			</div>
+		</section>
+		<div class="album py-5 bg-light">
 			<div class="container">
 				<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 					{% for animal in animaux %}
@@ -44,20 +45,22 @@
 									<div class="card-body">
 										<p class="card-text">{{ animal.texteAnimal|slice(0, 50)|raw}}</p>
 										Age de l'animal:
-										{{ animal.ageAnimal}} ans
+										{{ animal.ageAnimal}}
+										ans
 										<div class="d-flex justify-content-between align-items-center">
 											<div class="btn-group">
 												<a type="button" class="btn btn-sm btn-outline-secondary" href="article/{{animal.idAnimal}}">
 													En savoir plus...</a>
 											</div>
-											<small class="text-muted">{{ animal.prixAnimal}} euros</small>
+											<small class="text-muted">{{ animal.prixAnimal}}
+												euros</small>
 										</div>
 									</div>
-									<div class="card-footer">
-										{# {% for categorie in animal.idCategorie %}
-											Catégorie:
-											{{ categorie.nomCategorie}}
-										{% endfor %} #}
+									<div
+										class="card-footer">{# {% for categorie in animal.idCategorie %}
+																						Catégorie:
+																						{{ categorie.nomCategorie}}
+																					{% endfor %} #}
 									</div>
 								</div>
 							</div>
@@ -67,26 +70,22 @@
 			</div>
 		</main>
 
-{%include 'commun/footer.html.twig'%}
+		{%include 'commun/footer.html.twig'%}
 
 
+		{% block javascripts %}
+			<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+			<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
+			<script src="{{asset('js/dashboard.js')}}"></script>
 
-{% block javascripts %}
-	<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
-	<script src="{{asset('js/dashboard.js')}}"></script>
-
-{% endblock %}
-
+		{% endblock %}
 
 
+	{% endblock %}
 
+	{% block javascripts %}
+		<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
+		<script src="{{asset('js/dashboard.js')}}"></script>
 
-
-
-
-
-
-
-
-{% endblock %}
+	{% endblock %}

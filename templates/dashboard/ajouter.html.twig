@@ -1,0 +1,344 @@
+{% extends 'base.html.twig' %}
+{% block title %}Hello DashboardController!
+{% endblock %}
+{% block stylesheets %}
+	<link href="{{asset('css/dashboard.css')}}" rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/zangdar@1.0.25/dist/zangdar.min.js"></script>
+
+{% endblock %}
+{% block body %}
+	<style>
+		body {
+			background-color: #f5f5f5;
+		}
+		.imagePreview {
+			width: 100%;
+			height: 180px;
+			background-position: center center;
+			background: url('http://cliquecities.com/assets/no-image-e3699ae23f866f6cbdf8ba2443ee5c4e.jpg');
+			background-color: #fff;
+			background-size: cover;
+			background-repeat: no-repeat;
+			display: inline-block;
+			box-shadow: 0 -3px 6px 2px rgba(0, 0, 0, 0.2);
+		}
+		.btn-primary {
+			display: block;
+			border-radius: 0;
+			box-shadow: 0 4px 6px 2px rgba(0, 0, 0, 0.2);
+			margin-top: -5px;
+			height: 50px;
+		}
+		.imgUp {
+			margin-bottom: 15px;
+		}
+		.del {
+			z-index: 5;
+			position: relative;
+			top: -88%;
+			right: -87%;
+			width: 30px;
+			height: 30px;
+			text-align: center;
+			line-height: 30px;
+			background-color: rgba(255, 255, 255, 0.6);
+			cursor: pointer;
+		}
+		.imgAdd {
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+			background-color: #4bd7ef;
+			color: #fff;
+			box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+			text-align: center;
+			line-height: 30px;
+			margin-top: 0;
+			cursor: pointer;
+			font-size: 15px;
+		}
+
+		.zandgar__wizard {
+			display: block;
+			height: 100%;
+			position: relative;
+		}
+
+		.zandgar__wizard .zandgar__step {
+			display: none;
+		}
+		.zandgar__wizard .zandgar__step.zandgar__step__active {
+			display: block;
+		}
+	</style>
+
+	<div class="container-fluid">
+		<div class="row">
+			{% include 'commun/nav.html.twig' %}
+
+			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+				<h1 class="h2">Créez une annonce</h1>
+			</div>
+
+			<div class="container-fluid">
+				<div class="row mx-auto">
+					<div class=" col-lg-6 align-self-center mx-auto">
+						<div class="m-3 m-lg-5">
+
+							<div class="text-center mt-4 mb-3">
+								<h1 class="h3">Créer une annonce</h1>
+								<p class="lead">
+									Veuillez entrer les information de l'animal à ajouter.
+								</p>
+							</div>
+
+							<ul id="steps-native" class="nav nav-pills justify-content-center"></ul>
+
+							<form id="wizard" class="my-2 py-2">
+								<section data-step="1. Account">
+									<div class="row">
+										<div class="col ">
+											<div class="mb-3">
+												{{form_start(form_animal)}}
+												<label class="form-label" for="nom">Nom de l'animal.</label>
+												{{form_row(form_animal.nomAnimal)}}
+											</div>
+											<div class="mb-3">
+												<label class="form-label" for="race">Choisissez la race.</label>
+												{{form_row(form_animal.idRace)}}
+											</div>
+											<div id="statut" class="mb-3">
+												<label  class="form-label" for="statut">L'animal est il a vendre ou a donner ?</label>
+												{{form_row(form_animal.idStatut)}}
+											</div>
+											<div id="prix" class="mb-3">
+												<label class="form-label" for="prix">Entrez le prix de l'animal.</label>
+												{{form_row(form_animal.prixAnimal)}}
+											</div>
+										</div>
+										<div class="col">
+											<div class="mb-3">
+												<label class="form-label" for="LOF">Votre animal est il certifié LOF ?</label>
+												{{form_row(form_animal.lofAnimal)}}
+											</div>
+											<div class="mb-3">
+												<label class="form-label" for="sexe">Entrez le sexe de l'animal.</label>
+												{{form_row(form_animal.isFeminin)}}
+											</div>
+											<div class="mb-3">
+												<label class="form-label" for="sexe">l'animal est il vacciné ?</label>
+												{{form_row(form_animal.isVaccine)}}
+											</div>
+											<div class="mb-3">
+												<label class="form-label" for="sexe">L'animal est il identifié ?</label>
+												{{form_row(form_animal.isIdentifie)}}
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-12 text-right">
+												<button class="btn btn-primary" data-next>Next</button>
+											</div>
+										</div>
+									</div>
+								</section>
+
+								<section data-step="2. Profile">
+									<div class="row">
+										<div class="col">
+											<div class="mb-3">
+												<label class="form-label" for="first-name">Veuillez entrer la couleur de l'animal.</label>
+												{{form_row(form_animal.idCouleur)}}
+											</div>
+
+											<div class="mb-3">
+												<label class="form-label" for="last-name">Quel type de poil à l'animal ?</label>
+												{{form_row(form_animal.idTypepoils)}}
+											</div>
+										</div>
+										<div class="col">
+											<div class="mb-3">
+												<label class="form-label" for="last-name">Quel est la taille de l'animal ?</label>
+												{{form_row(form_animal.idTaille)}}
+											</div>
+
+											<div class="mb-3">
+												<label class="form-label" for="last-name">Quel est le poid de l'animal ?</label>
+												{{form_row(form_animal.poidAnimal)}}
+											</div>
+										</div>
+									</div>
+									<div class="mb-3">
+										<label class="form-label" for="last-name">Quel âge à l'animal ?</label>
+										{{form_row(form_animal.ageAnimal)}}
+									</div>
+
+									<div class="mb-3">
+										<label class="form-label" for="last-name">Veuillez entrer une description pour l'animal.</label>
+										{{form_row(form_animal.texteAnimal)}}
+									</div>
+
+									<div class="row">
+										<div class="col-6 text-left">
+											<button class="btn btn-outline-primary" data-prev>Previous</button>
+										</div>
+										<div class="col-6 text-right">
+											<button class="btn btn-primary" data-next>Next</button>
+										</div>
+									</div>
+								</section>
+
+								<section data-step="3. Social">
+									<div class="row">
+										<div class="col-sm-4 imgUp">
+											<div class="imagePreview"></div>
+											<label class="btn btn-primary">
+												Upload{{form_row(form_animal.images)}}
+											</label>
+										</div>
+										<!-- col-2 -->
+										<i class="fa fa-plus imgAdd"></i>
+									</div>
+									<div class="row">
+										<div class="col-6 text-left">
+											<button class="btn btn-outline-primary" data-prev>Previous</button>
+										</div>
+										<div class="col-6 text-right">
+											{{form_row(form_animal.save)}}
+										</div>
+									</div>
+								</section>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			{% for message in app.flashes('success') %}
+				<div class="flash-notice"></div>
+
+				<div class="col-sm-4 imgUp">
+					<div class="imagePreview"></div>
+					<label class="btn btn-primary"></label>
+				</div>
+			{% endfor %}
+			{{form_end(form_animal)}}
+
+		</div>
+	</div>
+{% endblock %}
+{% block javascripts %}
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+	<script>
+		let compteur = 0;
+
+$(".imgAdd").click(function () {
+$(this).closest(".row").find('.imgAdd').before('<div class="col-sm-4 imgUp"><div class="imagePreview"></div><label class="btn btn-primary">Upload<input type="file" name="article[images][]" class="uploadFile img" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;"></label><i class="fa fa-times del"></i></div>');
+
+compteur++;
+console.log(compteur);
+if (compteur >= 2) {
+$(".imgAdd").removeClass("fa fa-plus imgAdd");
+
+}
+});
+$(document).on("click", "i.del", function () {
+compteur--;
+$(this).parent().remove();
+
+});
+$(function () {
+$(document).on("change", ".uploadFile", function () {
+var uploadFile = $(this);
+var files = !!this.files ? this.files : [];
+if (! files.length || !window.FileReader) 
+return;
+
+
+
+// no file selected, or no FileReader support
+
+if (/^image/.test(files[0].type)) { // only image file
+var reader = new FileReader(); // instance of the FileReader
+reader.readAsDataURL(files[0]); // read the local file
+
+reader.onloadend = function () {
+// set image data as background of div
+// alert(uploadFile.closest(".upimage").find('.imagePreview').length);
+uploadFile.closest(".imgUp").find('.imagePreview').css("background-image", "url(" + this.result + ")");
+}
+}
+
+});
+});
+	</script>
+	<script>
+		function buildStepsBreadcrumb(wizard, element, steps) {
+const $steps = document.getElementById(element)
+$steps.innerHTML = ''
+for (let label in steps) {
+if (steps.hasOwnProperty(label)) {
+const $li = document.createElement('li')
+const $a = document.createElement('a')
+$li.classList.add('nav-item')
+$a.classList.add('nav-link')
+if (steps[label].active) {
+$a.classList.add('active')
+}
+$a.setAttribute('href', '#')
+$a.innerText = label
+$a.addEventListener('click', e => {
+e.preventDefault()
+wizard.revealStep(label)
+})
+$li.appendChild($a)
+$steps.appendChild($li)
+}
+}
+}
+
+function onStepChange(wizard, selector) {
+const steps = wizard.getBreadcrumb()
+buildStepsBreadcrumb(wizard, selector, steps)
+}
+
+const wizard = new window.Zangdar('#wizard', {
+onStepChange: () => {
+onStepChange(wizard, 'steps-native')
+},
+onSubmit(e) {
+e.preventDefault()
+console.log(e.target.elements)
+return false
+}
+})
+
+onStepChange(wizard, 'steps-native')
+	</script>
+
+
+	{# L'ajax pour faire apparaitre le prix #}
+	<script>
+		$("#annonce_idStatut").change(function () {
+if ($(this).val() == "2") {
+$('#prix').show();
+$('#annonce_prixAnimal').attr('required', '');
+$('#annonce_prixAnimal').attr('data-error', 'This field is required.');
+} else {
+$('#prix').hide();
+$('#annonce_prixAnimal').removeAttr('required');
+$('#annonce_prixAnimal').removeAttr('data-error');
+}
+});
+$("#annonce_idStatut").trigger("change");
+
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
+	<script src="{{asset('js/dashboard.js')}}"></script>
+{% endblock %}

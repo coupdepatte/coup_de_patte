@@ -63,4 +63,14 @@ class DepartementRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+public function findOneByidDepartement($value): int
+{
+           return $this->createQueryBuilder('d')
+               ->andWhere('d.idDepartement = :val')
+               ->setParameter('val', $value)
+               ->getQuery()
+               ->getOneOrNullResult()
+           ;
+       }
+
 }

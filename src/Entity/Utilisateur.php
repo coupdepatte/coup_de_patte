@@ -3,6 +3,11 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\PasswordHasher\Hasher\PasswordHasherAwareInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 /**
  * Utilisateur
@@ -10,7 +15,14 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="utilisateur", indexes={@ORM\Index(name="utilisateur_lieu_FK", columns={"id_lieu"}), @ORM\Index(name="utilisateur_role0_FK", columns={"id_role"})})
  * @ORM\Entity(repositoryClass= "App\Repository\UtilisateurRepository")
  */
-class Utilisateur
+
+#[UniqueEntity(
+    fields: ['login_utilisateur'],
+    errorPath: 'login_utilisateur',
+    message: 'Cet email semble déjà être utilisé, veuillez en choisir une autre.'
+    )]
+
+class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface, PasswordHasherAwareInterface
 {
     /**
      * @var int
@@ -45,7 +57,7 @@ class Utilisateur
     /**
      * @var string
      *
-     * @ORM\Column(name="login_utilisateur", type="string", length=25, nullable=false)
+     * @ORM\Column(name="login_utilisateur", type="string", length=100, nullable=false)
      */
     private $loginUtilisateur;
 
@@ -54,6 +66,12 @@ class Utilisateur
      *
      * @ORM\Column(name="mdp_utilisateur", type="string", length=500, nullable=false)
      */
+    #[Assert\Length(
+        min: 8,
+        max: 14,
+        minMessage: 'mot de passe trop court',
+        maxMessage:'mot de passe trop long ',
+    )]
     private $mdpUtilisateur;
 
     /**
@@ -222,5 +240,58 @@ class Utilisateur
         return $this;
     }
 
+       //--------- UserInterface
+
+    /**
+     * The public representation of the user (e.g. a username, an email address, etc.)
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->loginUtilisateur;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {        
+        $roles[] = 'ROLE_USER';
+        return array_unique($roles);
+    }
+
+    /**
+     *
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
+    {
+        return null;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+    }
+
+    /**
+      * @see PasswordAuthenticatedUserInterface
+      */
+
+    public function getPassword(): string
+
+    {
+        return $this->mdpUtilisateur;
+    }
+
+    public function getPasswordHasherName(): ?string
+
+    {
+        return null;
+    }
 
 }
+

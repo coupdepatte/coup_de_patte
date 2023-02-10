@@ -24,4 +24,11 @@ class AccueilController extends AbstractController
             'animaux'=> $animaux,
         ]);
     }
+    
+    public function logout(): Response
+    {
+        return $this->render('accueil/index.html.twig', [
+            'controller_name' => 'AccueilController'
+        ]);
+    }
 }

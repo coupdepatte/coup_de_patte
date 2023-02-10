@@ -1,20 +1,53 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Hello DashboardController!{% endblock %}
-
+{% block title %}Hello DashboardController!
+{% endblock %}
+{% block stylesheets %}
+	<link href="{{asset('css/dashboard.css')}}" rel="stylesheet">
+{% endblock %}
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/helen/Desktop/coup de patte/coup_de_patte/coup_de_patte/src/Controller/DashboardController.php'|file_link(0) }}">src/Controller/DashboardController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/helen/Desktop/coup de patte/coup_de_patte/coup_de_patte/templates/dashboard/index.html.twig'|file_link(0) }}">templates/dashboard/index.html.twig</a></code></li>
-    </ul>
-</div>
+
+	<div class="container-fluid">
+		<div class="row">
+				{% include 'commun/nav.html.twig' %}
+
+			<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+				<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+					<h1 class="h2">Bienvenue
+					</h1>
+					<div class="btn-toolbar mb-2 mb-md-0">
+
+					</div>
+				</div>
+
+
+			</main>
+		</div>
+	</div>
+	<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+		<div class="position-sticky pt-3 sidebar-sticky">
+			<ul class="nav flex-column">
+				<li class="nav-item">
+					<a class="nav-link active" aria-current="page" href="{{path('app_dashboard')}}">
+						<span data-feather="home" class="align-text-bottom"></span>
+						Mes annonces
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link " href="{{path('app_dashboard_ajouter')}}">
+						<span data-feather="file" class="align-text-bottom"></span>
+						Ajouter un article
+					</a>
+				</li>
+            </ul>
+
+		
+		</div>
+	</nav>
+{% endblock %}
+{% block javascripts %}
+	<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
+	<script src="{{asset('js/dashboard.js')}}"></script>
 {% endblock %}

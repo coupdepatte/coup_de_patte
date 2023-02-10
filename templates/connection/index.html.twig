@@ -1,20 +1,39 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ConnectionController!{% endblock %}
+{% block title %}Espace de connexion{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<main class="container text-center">
+    <h2 class="my-3">Espace de connexion</h2>
+    <div class="col my-5 d-flex">
+        <form class="text-center" method="post" action="{{path('app_connection')}}" id="form">
+            <div class="row p-5">
+            {% if error %}
+                <div class="w-75 mx-auto alert alert-warning">Le couple email/mot de passe n'est pas valide.</div>
+            {% endif %}
+                <div class="m-3 text-start">
+                    <label for="floatingInput">Veuillez saisir votre adresse mail :</label>
+                    <input type="email" name="_username" class="form-control my-3" id="email" placeholder="adresse@exemple.com">
+                </div>
+                <div class="m-3 text-start">
+                    <label for="floatingPassword">Veuillez saisir votre mot de passe :</label>
+                    <input type="password" name="_password" class="form-control my-3" id="" placeholder="mot de passe">
+                </div>
+                <input type="hidden" name="_target_path" value="{{path('app_dashboard')}}">
+                <input type="hidden" name="_csrf_token" value="{{csrf_token('authenticate')}}">
+                <div class="mt-5 d-flex justify-content-center">
+                    <button class="btn btn-dark mx-auto" style="max-width: 150px;" type="submit" id="liveAlertBtn">se connecter</button>
+                    <button class="btn btn-dark mx-auto" style="max-width: 150px;" type="button"><a href="{{path('app_inscription')}}" class="text-decoration-none text-white">s'inscrire</a></button>
+                </div>
+            </div>
+        </form>
+        <div>
+            <img src="https://fourleggedguru.com/wp-content/uploads/2015/02/3752857682_680bcb97a3_o.jpg" class="float-right m-auto h-75" style="box-shadow: 10px 10px 20px 10px #bcbcbc;"></img>
+        </div>
+    </div>
+</main>
+{% endblock %}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+{% block javascripts %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/helen/Desktop/coup de patte/coup_de_patte/coup_de_patte/src/Controller/ConnectionController.php'|file_link(0) }}">src/Controller/ConnectionController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/helen/Desktop/coup de patte/coup_de_patte/coup_de_patte/templates/connection/index.html.twig'|file_link(0) }}">templates/connection/index.html.twig</a></code></li>
-    </ul>
-</div>
 {% endblock %}
