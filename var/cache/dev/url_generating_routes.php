@@ -19,6 +19,7 @@ return [
     'app_accueil' => [[], ['_controller' => 'App\\Controller\\AccueilController::index'], [], [['text', '/']], [], [], []],
     'app_commun' => [[], ['_controller' => 'App\\Controller\\CommunController::index'], [], [['text', '/commun']], [], [], []],
     'app_connection' => [[], ['_controller' => 'App\\Controller\\ConnectionController::index'], [], [['text', '/connection']], [], [], []],
+    'app_deconnexion' => [[], ['_controller' => 'App\\Controller\\ConnectionController::logout'], [], [['text', '/deconnexion']], [], [], []],
     'app_contact' => [[], ['_controller' => 'App\\Controller\\ContactController::index'], [], [['text', '/contact']], [], [], []],
     'app_dashboard' => [[], ['_controller' => 'App\\Controller\\DashboardController::index'], [], [['text', '/dashboard']], [], [], []],
     'app_dashboard_ajouter' => [[], ['_controller' => 'App\\Controller\\DashboardController::ajouterAnnoce'], [], [['text', '/dashboard/ajouter-article']], [], [], []],

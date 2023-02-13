@@ -43,11 +43,7 @@ public function ajouterAnnoce( Request $request, UserInterface $utilisateurCo, E
 
         if ( $form_animal->isSubmitted() && $form_animal->isValid() ) {
             $animal->setIdUtilisateur( $utilisateurCo );
-            $animal->setDateCreation( new DateTime() );
 
-            $slugify = new Slugify();
-            $slug = $slugify->slugify( $animal->getTitre() );
-            $animal->setSlug( $slug );
 
             $images = $form_animal->get( 'images' )->getData();
 

@@ -3,14 +3,14 @@
 {% block title %}Espace de connexion{% endblock %}
 
 {% block body %}
-{% if error %}
-<div>{{ error.messageKey|trans(error.messageData, 'errorAuth') }}</div>
-{% endif %}
 <main class="container text-center">
     <h2 class="my-3">Espace de connexion</h2>
     <div class="col my-5 d-flex">
         <form class="text-center" method="post" action="{{path('app_connection')}}" id="form">
             <div class="row p-5">
+            {% if error %}
+                <div class="w-75 mx-auto alert alert-warning">Le couple email/mot de passe n'est pas valide.</div>
+            {% endif %}
                 <div class="m-3 text-start">
                     <label for="floatingInput">Veuillez saisir votre adresse mail :</label>
                     <input type="email" name="_username" class="form-control my-3" id="email" placeholder="adresse@exemple.com">

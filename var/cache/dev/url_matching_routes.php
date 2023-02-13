@@ -17,6 +17,7 @@ return [
         '/' => [[['_route' => 'app_accueil', '_controller' => 'App\\Controller\\AccueilController::index'], null, null, null, false, false, null]],
         '/commun' => [[['_route' => 'app_commun', '_controller' => 'App\\Controller\\CommunController::index'], null, null, null, false, false, null]],
         '/connection' => [[['_route' => 'app_connection', '_controller' => 'App\\Controller\\ConnectionController::index'], null, null, null, false, false, null]],
+        '/deconnexion' => [[['_route' => 'app_deconnexion', '_controller' => 'App\\Controller\\ConnectionController::logout'], null, null, null, false, false, null]],
         '/contact' => [[['_route' => 'app_contact', '_controller' => 'App\\Controller\\ContactController::index'], null, null, null, false, false, null]],
         '/dashboard' => [[['_route' => 'app_dashboard', '_controller' => 'App\\Controller\\DashboardController::index'], null, null, null, false, false, null]],
         '/dashboard/ajouter-article' => [[['_route' => 'app_dashboard_ajouter', '_controller' => 'App\\Controller\\DashboardController::ajouterAnnoce'], null, null, null, false, false, null]],

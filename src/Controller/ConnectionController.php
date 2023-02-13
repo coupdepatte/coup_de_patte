@@ -18,9 +18,6 @@ class ConnectionController extends AbstractController
 
          // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
-
-
-        $this->addFlash('errorAuth', 'Le couple email/mot de passe n\'est pas valide');
         
         return $this->render('connection/index.html.twig', [
             'controller_name' => 'ConnectionController',
@@ -29,4 +26,13 @@ class ConnectionController extends AbstractController
         ]);
     }
 
+    #[Route('/deconnexion', name: 'app_deconnexion')]
+    public function logout(): Response
+    {
+        return $this->render('accueil/index.html.twig', [
+            'controller_name' => 'AccueilController'
+        ]);
+    }
+
+    
 }
