@@ -79,10 +79,11 @@ public function ajouterAnnoce( Request $request, UserInterface $utilisateurCo, E
 
             //dd( $article );
         }
-
+        
         return $this->render( 'dashboard/ajouter.html.twig', [
 
             'form_animal' => $form_animal->createView(),
+            
             ] );
 
         }

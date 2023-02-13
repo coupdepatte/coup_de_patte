@@ -7,10 +7,11 @@
 {% endblock %}
 
 {% block body %}
+{% include 'commun/nav.html.twig' %}
 <main>
     <div class="container">
         <div class="py-5 text-center">
-            <img class="d-block mx-auto mb-4" src="https://getbootstrap.com//docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+            <img class="d-block mx-auto mb-4" src="{{asset('images/png-clipart-paw-dog-printing-paws-animals-monochrome.png')}}" alt="" width="72" height="57">
             <h2>Formulaire d'inscription</h2>
             <p class="lead">Veuillez remplir tout les champs affin de procéder à votre inscription sur le Site!</p>
         </div>
@@ -115,6 +116,8 @@
         </div>
     </div>
 </main>
+{% include 'commun/footer.html.twig' %}
+
 {% endblock %}
 {% block javascripts %}
 <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>

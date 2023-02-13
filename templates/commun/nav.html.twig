@@ -2,33 +2,33 @@
 	<div class="px-3 py-2 bg-info text-white">
 		<div class="container">
 			<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-				<img class="mb-3" src="{{asset('images/logo-cp.png')}}" alt="logo3.jpg" width="200">
+				<img class="mb-3" src="{{asset('images/logo-cp.png')}}" alt="logo3.jpg" width="120">
 				<a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
 					<svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
 				</a>
 
 				<ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
 					<li>
-						<a href="#" class="nav-link text-secondary">
+						<a href='/' class="nav-link text-secondary">
 							<svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#home"/></svg>
 							Accueil
 						</a>
 					</li>
 					<li>
-						<a href="#" class="nav-link text-white">
+						<a class="nav-link text-white"{{active_dashboard|default("")}}'  href="{{path('app_dashboard')}}" '>
 							<svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#speedometer2"/></svg>
 							Mon compte
 						</a>
 					</li>
 
 					<li>
-						<a href="#" class="nav-link text-white">
+						<a href="https://www.zooplus.fr/?mkt_source=242867&gclid=CjwKCAiA3KefBhByEiwAi2LDHLbwFOzrtbS8RNNnMiTDiIlkYe-eYTFxg9lrUPfy5MjqhOj6yUl7txoCodwQAvD_BwE" class="nav-link text-white">
 							<svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#grid"/></svg>
 							Site Partenaire
 						</a>
 					</li>
 					<li>
-						<a href="#" class="nav-link text-white">
+						<a class="nav-link text-white"{{active_contact|default("")}}'  href="{{path('app_contact')}}" '>
 							<svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"/></svg>
 							Nous Contacter
 						</a>
@@ -44,8 +44,8 @@
 			</form>
 
 			<div class="text-end">
-				<button type="button" class="btn btn-info text-dark me-2">S'identifier</button>
-				<button type="button" class="btn btn-danger">Inscription</button>
+				<a type="button" class="btn btn-success" {{active_connection|default("")}}' aria-current="page" href="{{path('app_connection')}}" '>S'identifier</a>
+				<a type="button" class="btn btn-danger"  {{active_inscription|default("")}}' aria-current="page" href="{{path('app_inscription')}}" '>Inscription</a>
 			</div>
 		</div>
 	</div>
