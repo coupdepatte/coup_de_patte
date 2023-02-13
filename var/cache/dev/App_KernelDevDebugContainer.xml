@@ -350,6 +350,13 @@
         <argument type="service" id=".service_locator.CshazM0.App\Controller\AccueilController"/>
       </call>
     </service>
+    <service id="App\Controller\AnnonceController" class="App\Controller\AnnonceController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.CshazM0.App\Controller\AnnonceController"/>
+      </call>
+    </service>
     <service id="App\Controller\CommunController" class="App\Controller\CommunController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -6371,6 +6378,9 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\AccueilController" class="App\Controller\AccueilController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\AccueilController" class="App\Controller\AccueilController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\AccueilController" class="App\Controller\AccueilController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\AnnonceController" class="App\Controller\AnnonceController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\AnnonceController" class="App\Controller\AnnonceController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\AnnonceController" class="App\Controller\AnnonceController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\CommunController" class="App\Controller\CommunController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\CommunController" class="App\Controller\CommunController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\CommunController" class="App\Controller\CommunController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -6760,6 +6770,12 @@
         <argument key="loader" type="service_closure" id=".errored..service_locator.y4_Zrx..Symfony\Component\Config\Loader\LoaderInterface"/>
       </argument>
     </service>
+    <service id=".service_locator.m15bVQs" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="repoAnimal" type="service_closure" id="App\Repository\AnimalRepository"/>
+      </argument>
+    </service>
     <service id=".service_locator.rSTd.nA" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -6791,9 +6807,10 @@
         <argument key="repoUtilisateur" type="service_closure" id="App\Repository\UtilisateurRepository"/>
       </argument>
     </service>
-    <service id=".service_locator.Ym1jWkR" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.x6WyafC" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Controller\AccueilController::index" type="service_closure" id=".service_locator.m15bVQs"/>
         <argument key="App\Controller\ConnectionController::index" type="service_closure" id=".service_locator.rSTd.nA"/>
         <argument key="App\Controller\DashboardController::ajouterAnnoce" type="service_closure" id=".service_locator.QE5.RQW"/>
         <argument key="App\Controller\DashboardController::index" type="service_closure" id=".service_locator.XNTT45G"/>
@@ -6802,6 +6819,7 @@
         <argument key="App\Kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.y4_Zrx."/>
         <argument key="kernel::loadRoutes" type="service_closure" id=".service_locator.y4_Zrx."/>
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.y4_Zrx."/>
+        <argument key="App\Controller\AccueilController:index" type="service_closure" id=".service_locator.m15bVQs"/>
         <argument key="App\Controller\ConnectionController:index" type="service_closure" id=".service_locator.rSTd.nA"/>
         <argument key="App\Controller\DashboardController:ajouterAnnoce" type="service_closure" id=".service_locator.QE5.RQW"/>
         <argument key="App\Controller\DashboardController:index" type="service_closure" id=".service_locator.XNTT45G"/>
@@ -7367,6 +7385,12 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.CshazM0" method="withContext"/>
     </service>
+    <service id=".service_locator.CshazM0.App\Controller\AnnonceController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\AnnonceController"/>
+      <argument>App\Controller\AnnonceController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.CshazM0" method="withContext"/>
+    </service>
     <service id=".service_locator.CshazM0.App\Controller\CommunController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\CommunController"/>
       <argument>App\Controller\CommunController</argument>
@@ -7680,12 +7704,12 @@
     <service id="debug.argument_resolver.request.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\RequestValueResolver"/>
     <service id="debug.argument_resolver.session.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\SessionValueResolver"/>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.Ym1jWkR"/>
+      <argument type="service" id=".service_locator.x6WyafC"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.Ym1jWkR"/>
+      <argument type="service" id=".service_locator.x6WyafC"/>
     </service>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
       <argument type="iterator">
@@ -8652,7 +8676,7 @@
     <service id="sensio_framework_extra.security.expression_language" alias="sensio_framework_extra.security.expression_language.default"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.7nzbL4K" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.Ym1jWkR"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.x6WyafC"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -8675,7 +8699,7 @@
     <service id=".service_locator.o.uf2zi" alias=".service_locator.7nzbL4K"/>
     <service id=".service_locator.3rofHBZ" alias=".service_locator.QE5.RQW"/>
     <service id=".service_locator.zFydv6e" alias=".service_locator.8bzD65X"/>
-    <service id=".service_locator.IpKSg.l" alias=".service_locator.Ym1jWkR"/>
+    <service id=".service_locator.B3dScUA" alias=".service_locator.x6WyafC"/>
     <service id=".service_locator.9XMoc9I" alias=".service_locator.kzegaci"/>
     <service id=".service_locator.V4Tnn4T" alias=".service_locator.ZeCo_XP"/>
     <service id=".service_locator.XW18Svm" alias=".service_locator.TcKhdzh"/>
@@ -8726,6 +8750,7 @@
     <service id="messenger.bus.default" alias="debug.traced.messenger.bus.default"/>
     <service id="doctrine.orm.default_metadata_driver" alias=".doctrine.orm.default_metadata_driver"/>
     <service id=".service_locator.gFlme_s" alias=".service_locator.y4_Zrx."/>
+    <service id=".service_locator.mmX7d9z" alias=".service_locator.m15bVQs"/>
     <service id=".service_locator.7NIAq8D" alias=".service_locator.rSTd.nA"/>
     <service id=".service_locator.rgaOG_F" alias=".service_locator.XNTT45G"/>
     <service id=".service_locator.3uBhhAB" alias=".service_locator.QE5.RQW"/>

@@ -1482,3 +1482,16 @@ b9080b,127.0.0.1,GET,http://127.0.0.1:8000/dashboard/asset/images/logo3.jpg,1676
 ecb03e,127.0.0.1,GET,http://127.0.0.1:8000/dashboard/asset/images/logo3.jpg,1676275268,,404
 4d1360,127.0.0.1,GET,http://127.0.0.1:8000/favicon.ico,1676275687,470e21,404
 470e21,127.0.0.1,GET,http://127.0.0.1:8000/favicon.ico,1676275688,,404
+777a7a,127.0.0.1,GET,http://127.0.0.1:8000/dashboard/ajouter-article,1676277521,,302
+36ef49,127.0.0.1,GET,http://127.0.0.1:8000/connection,1676277522,,200
+ef1287,127.0.0.1,POST,http://127.0.0.1:8000/connection,1676277527,,302
+3ef608,127.0.0.1,GET,http://127.0.0.1:8000/dashboard,1676277529,,200
+699d91,127.0.0.1,GET,http://127.0.0.1:8000/js/dashboard.js,1676277530,fbbcc4,404
+fbbcc4,127.0.0.1,GET,http://127.0.0.1:8000/js/dashboard.js,1676277530,,404
+2a4cef,127.0.0.1,GET,http://127.0.0.1:8000/dashboard/ajouter-article,1676277533,,200
+d572cf,127.0.0.1,GET,http://127.0.0.1:8000/js/dashboard.js,1676277534,b89207,404
+b89207,127.0.0.1,GET,http://127.0.0.1:8000/js/dashboard.js,1676277534,,404
+55e1c0,127.0.0.1,POST,http://127.0.0.1:8000/dashboard/ajouter-article,1676277557,,302
+ebfe2e,127.0.0.1,GET,http://127.0.0.1:8000/dashboard/ajouter-article,1676277558,,200
+80905c,127.0.0.1,GET,http://127.0.0.1:8000/js/dashboard.js,1676277558,c3979e,404
+c3979e,127.0.0.1,GET,http://127.0.0.1:8000/js/dashboard.js,1676277558,,404

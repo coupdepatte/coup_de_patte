@@ -15,6 +15,7 @@ return [
         '/_profiler/xdebug' => [[['_route' => '_profiler_xdebug', '_controller' => 'web_profiler.controller.profiler::xdebugAction'], null, null, null, false, false, null]],
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
         '/' => [[['_route' => 'app_accueil', '_controller' => 'App\\Controller\\AccueilController::index'], null, null, null, false, false, null]],
+        '/annonce' => [[['_route' => 'app_annonce', '_controller' => 'App\\Controller\\AnnonceController::index'], null, null, null, false, false, null]],
         '/commun' => [[['_route' => 'app_commun', '_controller' => 'App\\Controller\\CommunController::index'], null, null, null, false, false, null]],
         '/connection' => [[['_route' => 'app_connection', '_controller' => 'App\\Controller\\ConnectionController::index'], null, null, null, false, false, null]],
         '/deconnexion' => [[['_route' => 'app_deconnexion', '_controller' => 'App\\Controller\\ConnectionController::logout'], null, null, null, false, false, null]],
