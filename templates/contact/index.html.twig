@@ -1,20 +1,165 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ContactController!{% endblock %}
+{% block title %}Coup De Patte - Contact{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+<link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/checkout/">
+
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+{%include 'commun/nav.html.twig'%}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/helen/Desktop/coup de patte/coup_de_patte/coup_de_patte/src/Controller/ContactController.php'|file_link(0) }}">src/Controller/ContactController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/helen/Desktop/coup de patte/coup_de_patte/coup_de_patte/templates/contact/index.html.twig'|file_link(0) }}">templates/contact/index.html.twig</a></code></li>
-    </ul>
+<div class="container bg-light">
+    <main>
+        <div class="py-5 text-center">
+            <img class="d-block mx-auto mb-4" src="{{asset('images/png-clipart-paw-dog-printing-paws-animals-monochrome.png')}}" alt="" width="72" height="57">
+            <h2>Nous Contacter</h2>
+            <p class="lead">Pour toute demande concernant le site, nos annonces, où les eleveurs présents sur le site vous pouvez nous contacter via le formulaire suivant:</p>
+        </div>
+        <div class="row g-5">
+            <div class="col-md-7 col-lg-8 mx-auto">
+                
+                    <div class="row g-3">
+                    {{form_start(form_contact)}}
+                        <div class="col-sm-6">
+                        <label for="firstName" class="form-label">Nom</label>
+                        {{form_row(form_contact.nom)}}
+                            <div class="invalid-feedback">
+                            Un nom valide est demandé
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                        <label for="lastName" class="form-label">Prénom</label>
+                        {{form_row(form_contact.prenom)}}
+                            <div class="invalid-feedback">
+                            Un prénom valide est demandé
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="username" class="form-label">Pseudo</label>
+                                
+                                {{form_row(form_contact.pseudo)}}
+                                    <div class="invalid-feedback">
+                                    Un pseudo valide est demandé
+                                    </div>
+                                
+                        </div>
+                        <div class="col-12">
+                        <label for="email" class="form-label">Email </label>
+                        {{form_row(form_contact.email)}}
+                            <div class="invalid-feedback">
+                            Une addresse email valide est demandée
+                            </div>
+                        </div>
+                        <div class="col-12">
+                        <label for="address" class="form-label">Addresse<span class="text-muted">(Optional)</span></label>
+                        {{form_row(form_contact.adresse)}}
+                            <div class="invalid-feedback">
+                            Une addresse valide est demandée
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                        <label for="country" class="form-label">Code Postal</label>
+                        {{form_row(form_contact.codepostal)}}
+                            <div class="invalid-feedback">
+                            Selectionnez un code postal valide.
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                        <label for="state" class="form-label">Ville</label>
+                        {{form_row(form_contact.ville)}}
+                            <div class="invalid-feedback">
+                            choisisez une ville valide.
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                        <label for="zip" class="form-label">Departement</label>
+                        {{form_row(form_contact.departement)}}
+                        </select>
+                            <div class="invalid-feedback">
+                            choisisez un département.
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="my-4">
+                    <h4 class="mb-3">Commentaire</h4>
+                    <div class="col-12">
+                        {{form_row(form_contact.commentaire)}}
+                    </div>
+            <hr class="my-4">
+            {{form_row(form_contact.save)}}
+        {{form_end(form_contact)}}
+      </div>
+    </div>
+  </main>
 </div>
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
+<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js" integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.0/dist/sweetalert2.all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
+<script>
+$("#contact_adresse").autocomplete({
+    source: function (request, response) {
+        $.ajax({
+            url: "https://api-adresse.data.gouv.fr/search/?q="+$("input[name='contact[codepostal]']").val(),
+            data: { q: request.term },
+            dataType: "json",
+            success: function (data) {
+                var cities = [];
+                var postcodes = [];
+                var citycodes = [];
+                response($.map(data.features, function (item) {
+                    return { label: item.properties.name + " - " + item.properties.postcode + " - " + item.properties.city,
+                        city: item.properties.city,
+                        postcode: item.properties.postcode,
+                        value: item.properties.name,
+                        };
+                    
+                }));
+            }
+        });
+    },
+     // On remplit aussi le CP et ville
+     select: function(event, ui) {
+
+        $('#contact_ville').val(ui.item.city);
+        $('#contact_codepostal').val(ui.item.postcode);
+        
+    },
+});
+
+            $("#contact_nomLieu").autocomplete({
+    source: function (request, response) {
+        $.ajax({
+            url: "https://api-adresse.data.gouv.fr/search/?q="+$("input[name='contact[codepostal]']").val(),
+            data: { q: request.term },
+            dataType: "json",
+            success: function (data) {
+                var postcodes = [];
+                response($.map(data.features, function (item) {
+                    // Ici on est obligé d'ajouter les CP dans un array pour ne pas avoir plusieurs fois le même
+                    if ($.inArray(item.properties.postcode, postcodes) == -1) {
+                        postcodes.push(item.properties.postcode);
+                        return { label: item.properties.postcode + " - " + item.properties.city, 
+                                city: item.properties.city,
+                                value: item.properties.postcode,
+                        };
+                    }
+                }));
+            }
+        });
+    },
+    
+});
+</script>
+
 {% endblock %}

@@ -2,10 +2,10 @@
 {% block title %}Hello DashboardController!
 {% endblock %}
 {% block stylesheets %}
-	<link href="{{asset('css/dashboard.css')}}" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/zangdar@1.0.25/dist/zangdar.min.js"></script>
-
+	<link href="{{asset('css/dashboard.css')}}" rel="stylesheet">
 {% endblock %}
 {% block body %}
 	<style>
@@ -76,11 +76,24 @@
 	<div class="container-fluid">
 		<div class="row">
 			{% include 'commun/nav.html.twig' %}
-
-			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-				<h1 class="h2">Créez une annonce</h1>
-			</div>
-
+	<div class="container-fluid">
+		<div class="row">
+			<main class="col-md  px-md-4">
+				<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+					<h1 class="h2">Créez une annonce
+					</h1>
+					<a class="nav-link " href="{{path('app_dashboard_ajouter')}}">
+						<span data-feather="file" class="align-text-bottom"></span>
+						Ajouter un article
+					</a>
+					<a class="nav-link active mx-2" aria-current="page" href="{{path('app_dashboard')}}">
+						<span data-feather="home" class="align-text-bottom"></span>
+						Mes annonces
+					</a>
+				</div>
+			</main>
+		</div>
+	</div>
 			<div class="container-fluid">
 				<div class="row mx-auto">
 					<div class=" col-lg-6 align-self-center mx-auto">
@@ -95,120 +108,119 @@
 
 							<ul id="steps-native" class="nav nav-pills justify-content-center"></ul>
 
-							<form id="wizard" class="my-2 py-2">
-								<section data-step="1. Account">
+							{{form_start(form_animal,{'attr' : { 'class': 'my-2 py-2','id': 'wizard'   }})}}
+							<section data-step="1. Account">
+								<div class="row">
+									<div class="col ">
+										<div class="mb-3">
+											<label class="form-label" for="nom">Nom de l'animal.</label>
+											{{form_row(form_animal.nomAnimal)}}
+										</div>
+										<div class="mb-3">
+											<label class="form-label" for="race">Choisissez la race.</label>
+											{{form_row(form_animal.idRace)}}
+										</div>
+										<div id="statut" class="mb-3">
+											<label class="form-label" for="statut">L'animal est il a vendre ou a donner ?</label>
+											{{form_row(form_animal.idStatut)}}
+										</div>
+										<div id="prix" class="mb-3">
+											<label class="form-label" for="prix">Entrez le prix de l'animal.</label>
+											{{form_row(form_animal.prixAnimal)}}
+										</div>
+									</div>
+									<div class="col">
+										<div class="mb-3">
+											<label class="form-label" for="LOF">Votre animal est il certifié LOF ?</label>
+											{{form_row(form_animal.lofAnimal)}}
+										</div>
+										<div class="mb-3">
+											<label class="form-label" for="sexe">Entrez le sexe de l'animal.</label>
+											{{form_row(form_animal.isFeminin)}}
+										</div>
+										<div class="mb-3">
+											<label class="form-label" for="sexe">l'animal est il vacciné ?</label>
+											{{form_row(form_animal.isVaccine)}}
+										</div>
+										<div class="mb-3">
+											<label class="form-label" for="sexe">L'animal est il identifié ?</label>
+											{{form_row(form_animal.isIdentifie)}}
+										</div>
+									</div>
 									<div class="row">
-										<div class="col ">
-											<div class="mb-3">
-												{{form_start(form_animal)}}
-												<label class="form-label" for="nom">Nom de l'animal.</label>
-												{{form_row(form_animal.nomAnimal)}}
-											</div>
-											<div class="mb-3">
-												<label class="form-label" for="race">Choisissez la race.</label>
-												{{form_row(form_animal.idRace)}}
-											</div>
-											<div id="statut" class="mb-3">
-												<label  class="form-label" for="statut">L'animal est il a vendre ou a donner ?</label>
-												{{form_row(form_animal.idStatut)}}
-											</div>
-											<div id="prix" class="mb-3">
-												<label class="form-label" for="prix">Entrez le prix de l'animal.</label>
-												{{form_row(form_animal.prixAnimal)}}
-											</div>
-										</div>
-										<div class="col">
-											<div class="mb-3">
-												<label class="form-label" for="LOF">Votre animal est il certifié LOF ?</label>
-												{{form_row(form_animal.lofAnimal)}}
-											</div>
-											<div class="mb-3">
-												<label class="form-label" for="sexe">Entrez le sexe de l'animal.</label>
-												{{form_row(form_animal.isFeminin)}}
-											</div>
-											<div class="mb-3">
-												<label class="form-label" for="sexe">l'animal est il vacciné ?</label>
-												{{form_row(form_animal.isVaccine)}}
-											</div>
-											<div class="mb-3">
-												<label class="form-label" for="sexe">L'animal est il identifié ?</label>
-												{{form_row(form_animal.isIdentifie)}}
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-12 text-right">
-												<button class="btn btn-primary" data-next>Next</button>
-											</div>
-										</div>
-									</div>
-								</section>
-
-								<section data-step="2. Profile">
-									<div class="row">
-										<div class="col">
-											<div class="mb-3">
-												<label class="form-label" for="first-name">Veuillez entrer la couleur de l'animal.</label>
-												{{form_row(form_animal.idCouleur)}}
-											</div>
-
-											<div class="mb-3">
-												<label class="form-label" for="last-name">Quel type de poil à l'animal ?</label>
-												{{form_row(form_animal.idTypepoils)}}
-											</div>
-										</div>
-										<div class="col">
-											<div class="mb-3">
-												<label class="form-label" for="last-name">Quel est la taille de l'animal ?</label>
-												{{form_row(form_animal.idTaille)}}
-											</div>
-
-											<div class="mb-3">
-												<label class="form-label" for="last-name">Quel est le poid de l'animal ?</label>
-												{{form_row(form_animal.poidAnimal)}}
-											</div>
-										</div>
-									</div>
-									<div class="mb-3">
-										<label class="form-label" for="last-name">Quel âge à l'animal ?</label>
-										{{form_row(form_animal.ageAnimal)}}
-									</div>
-
-									<div class="mb-3">
-										<label class="form-label" for="last-name">Veuillez entrer une description pour l'animal.</label>
-										{{form_row(form_animal.texteAnimal)}}
-									</div>
-
-									<div class="row">
-										<div class="col-6 text-left">
-											<button class="btn btn-outline-primary" data-prev>Previous</button>
-										</div>
-										<div class="col-6 text-right">
+										<div class="col-12 text-right">
 											<button class="btn btn-primary" data-next>Next</button>
 										</div>
 									</div>
-								</section>
+								</div>
+							</section>
 
-								<section data-step="3. Social">
-									<div class="row">
-										<div class="col-sm-4 imgUp">
-											<div class="imagePreview"></div>
-											<label class="btn btn-primary">
-												Upload{{form_row(form_animal.images)}}
-											</label>
+							<section data-step="2. Profile">
+								<div class="row">
+									<div class="col">
+										<div class="mb-3">
+											<label class="form-label" for="first-name">Veuillez entrer la couleur de l'animal.</label>
+											{{form_row(form_animal.idCouleur)}}
 										</div>
-										<!-- col-2 -->
-										<i class="fa fa-plus imgAdd"></i>
-									</div>
-									<div class="row">
-										<div class="col-6 text-left">
-											<button class="btn btn-outline-primary" data-prev>Previous</button>
-										</div>
-										<div class="col-6 text-right">
-											{{form_row(form_animal.save)}}
+
+										<div class="mb-3">
+											<label class="form-label" for="last-name">Quel type de poil à l'animal ?</label>
+											{{form_row(form_animal.idTypepoils)}}
 										</div>
 									</div>
-								</section>
-							</form>
+									<div class="col">
+										<div class="mb-3">
+											<label class="form-label" for="last-name">Quel est la taille de l'animal ?</label>
+											{{form_row(form_animal.idTaille)}}
+										</div>
+
+										<div class="mb-3">
+											<label class="form-label" for="last-name">Quel est le poid de l'animal ?</label>
+											{{form_row(form_animal.poidAnimal)}}
+										</div>
+									</div>
+								</div>
+								<div class="mb-3">
+									<label class="form-label" for="last-name">Quel âge à l'animal ?</label>
+									{{form_row(form_animal.ageAnimal)}}
+								</div>
+
+								<div class="mb-3">
+									<label class="form-label" for="last-name">Veuillez entrer une description pour l'animal.</label>
+									{{form_row(form_animal.texteAnimal)}}
+								</div>
+
+								<div class="row">
+									<div class="col-6 text-left">
+										<button class="btn btn-outline-primary" data-prev>Previous</button>
+									</div>
+									<div class="col-6 text-right">
+										<button class="btn btn-primary" data-next>Next</button>
+									</div>
+								</div>
+							</section>
+
+							<section data-step="3. Social">
+								<div class="row">
+									<div class="col-sm-4 imgUp">
+										<div class="imagePreview"></div>
+										<label class="btn btn-primary">
+											Upload{{form_row(form_animal.images)}}
+										</label>
+									</div>
+									<!-- col-2 -->
+									<i class="fa fa-plus imgAdd"></i>
+								</div>
+								<div class="row">
+									<div class="col-6 text-left">
+										<button class="btn btn-outline-primary" data-prev>Previous</button>
+									</div>
+									<div class="col-6 text-right">
+										{{form_row(form_animal.save)}}
+									</div>
+								</div>
+							</section>
+							{{form_end(form_animal)}}
 						</div>
 					</div>
 				</div>
@@ -217,25 +229,20 @@
 			{% for message in app.flashes('success') %}
 				<div class="flash-notice"></div>
 
-				<div class="col-sm-4 imgUp">
-					<div class="imagePreview"></div>
-					<label class="btn btn-primary"></label>
-				</div>
-			{% endfor %}
-			{{form_end(form_animal)}}
+			</div>
+		{% endfor %}
 
-		</div>
+
 	</div>
-{% endblock %}
-{% block javascripts %}
+</div>{% endblock %}{% block javascripts %}
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-
-	<script>
-		let compteur = 0;
+{# pour faire le style du img upload #}
+<script>
+	let compteur = 0;
 
 $(".imgAdd").click(function () {
 $(this).closest(".row").find('.imgAdd').before('<div class="col-sm-4 imgUp"><div class="imagePreview"></div><label class="btn btn-primary">Upload<input type="file" name="article[images][]" class="uploadFile img" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;"></label><i class="fa fa-times del"></i></div>');
@@ -276,9 +283,12 @@ uploadFile.closest(".imgUp").find('.imagePreview').css("background-image", "url(
 
 });
 });
-	</script>
-	<script>
-		function buildStepsBreadcrumb(wizard, element, steps) {
+</script>
+
+{# Pour faire le wizard form #}
+
+<script>
+	function buildStepsBreadcrumb(wizard, element, steps) {
 const $steps = document.getElementById(element)
 $steps.innerHTML = ''
 for (let label in steps) {
@@ -310,21 +320,17 @@ buildStepsBreadcrumb(wizard, selector, steps)
 const wizard = new window.Zangdar('#wizard', {
 onStepChange: () => {
 onStepChange(wizard, 'steps-native')
-},
-onSubmit(e) {
-e.preventDefault()
-console.log(e.target.elements)
-return false
 }
+
 })
 
 onStepChange(wizard, 'steps-native')
-	</script>
+</script>
 
 
-	{# L'ajax pour faire apparaitre le prix #}
-	<script>
-		$("#annonce_idStatut").change(function () {
+{# L'ajax pour faire apparaitre le prix #}
+<script>
+	$("#annonce_idStatut").change(function () {
 if ($(this).val() == "2") {
 $('#prix').show();
 $('#annonce_prixAnimal').attr('required', '');
@@ -336,9 +342,7 @@ $('#annonce_prixAnimal').removeAttr('data-error');
 }
 });
 $("#annonce_idStatut").trigger("change");
-
-	</script>
-	<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
-	<script src="{{asset('js/dashboard.js')}}"></script>
-{% endblock %}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
+<script src="{{asset('js/dashboard.js')}}"></script>{% endblock %}

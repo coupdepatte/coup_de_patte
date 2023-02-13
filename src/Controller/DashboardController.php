@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use DateTime;
+use App\Entity\Image;
 use App\Entity\Animal;
 use App\Form\AnnonceType;
 use App\Repository\AnimalRepository;
@@ -19,10 +20,10 @@ class DashboardController extends AbstractController
 
     public function index( AnimalRepository $repoAnimal, UserInterface $utilisateurCo ): Response
  {
-        $annonces = $repoAnimal->findByIdUtilisateur( $utilisateurCo );
+        $animals = $repoAnimal->findByIdUtilisateur( $utilisateurCo );
         $active_dashboard= 'active';
         return $this->render( 'dashboard/index.html.twig', [
-            'annonces' => $annonces,
+            'animals' => $animals,
             'active_dashboard' => $active_dashboard,
 
         ] );
@@ -43,7 +44,7 @@ public function ajouterAnnoce( Request $request, UserInterface $utilisateurCo, E
 
         $form_animal->handleRequest( $request );
 
-        if ( $form_animal->isSubmitted() && $form_animal->isValid() ) {
+        if( $form_animal->isSubmitted() && $form_animal->isValid() ) {
             $animal->setIdUtilisateur( $utilisateurCo );
 
 
@@ -60,9 +61,9 @@ public function ajouterAnnoce( Request $request, UserInterface $utilisateurCo, E
                 );
 
                 // On crée l'image dans la base de données
-                $img = new Images();
-                $img->setNomImage($fichier);
-                $img->setIdArticle($animal);
+                $img = new Image();
+                $img->setImage($fichier);
+                $img->setIdAnimal($animal);
                 $manager->persist( $img );
             }
         
@@ -72,7 +73,7 @@ public function ajouterAnnoce( Request $request, UserInterface $utilisateurCo, E
                             <script>Swal.fire({
                             position: 'center' ,
                             icon: 'success' ,
-                            title: 'Article ajouté' ,
+                            title: 'Annonce ajouté' ,
                             showConfirmButotn: false,
                             timer:1500})</script>");
             

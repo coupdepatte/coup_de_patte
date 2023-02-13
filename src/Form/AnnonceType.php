@@ -95,6 +95,7 @@ class AnnonceType extends AbstractType
                 'label' => false
                 // 'expanded' => true,
             ])
+            
             ->add('idTaille', EntityType::class, [
                 'class' => Taille::class,
                 'choice_label' => 'nomTaille',
@@ -103,16 +104,16 @@ class AnnonceType extends AbstractType
                 'label' => false
                 // 'expanded' => true,
             ])
+
             ->add('images', FileType::class,[
                 'label' => false,
                 'multiple' => true,
                 'mapped' => false,
                 'required' => false,
                 'attr' => ['class' => 'uploadFile img','style'=>"width: 0px;height: 0px;overflow: hidden;"],
-
             ])
-            ->add('save', SubmitType::class, ['label' => 'Créer', 'attr'=>['class'=>'btn btn-primary']])
 
+            ->add('save', SubmitType::class, ['label' => 'Créer', 'attr'=>['class'=>'btn btn-primary']])
         ;
     }
 

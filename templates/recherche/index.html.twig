@@ -1,20 +1,175 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello RechercheController!{% endblock %}
+{% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+    <link href="{{asset('css/recherche.css')}}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}Coup de patte - Filtre recherche {% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/helen/Desktop/coup de patte/coup_de_patte/coup_de_patte/src/Controller/RechercheController.php'|file_link(0) }}">src/Controller/RechercheController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/helen/Desktop/coup de patte/coup_de_patte/coup_de_patte/templates/recherche/index.html.twig'|file_link(0) }}">templates/recherche/index.html.twig</a></code></li>
-    </ul>
+{% include '/commun/nav.html.twig' %}
+<div class="container" data-bs-spy="scroll" data-bs-target="#navbar-scrollSearch">
+    <div class="row text-center my-3">
+        <h1>Formulaire de recherche</h1>
+        <p>Veuillez remplir le formulaire de recherche pour que nous puissons vous diriger vers des annonces pertinentes.</p>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <nav id="navbar-scrollSearch" class="h-100 flex-column align-items-stretch position-fixed">
+                <nav class="nav nav-pills flex-column">
+                    <a class="nav-link" href="#general">Général</a>
+                    <nav class="nav nav-pills flex-column">
+                        <a class="nav-link ms-3 my-1" href="#typeAnimal">Chien ou chat ?</a>
+                        <a class="nav-link ms-3 my-1" href="#race">race</a>
+                        <a class="nav-link ms-3 my-1" href="#age">Age</a>
+                        <a class="nav-link ms-3 my-1" href="#sexe">Sexe</a>
+                    </nav>
+                    <a class="nav-link" href="#gabarit">Gabarit</a>
+                    <nav class="nav nav-pills flex-column">
+                        <a class="nav-link ms-3 my-1" href="#poids">Poids</a>
+                        <a class="nav-link ms-3 my-1" href="#taille">Taille</a>
+                    </nav>
+                    <a class="nav-link" href="#robe">Robe</a>
+                    <nav class="nav nav-pills flex-column">
+                        <a class="nav-link ms-3 my-1" href="#couleur">Couleur</a>
+                        <a class="nav-link ms-3 my-1" href="#typepoils">Type poils</a>
+                    </nav>
+                </nav>
+            </nav>
+        </div>
+        <div class="col-lg-8 border-start">
+                <form method="post" action="{{path('app_recherche')}}">
+                    <div class="row" id="general">
+                        <h3 class="text-center fst-italic text-uppercase">Général</h3>
+                        <div class="col-lg-3 list-group list-group-checkable d-grid gap-2 border-0 w-100" id="typeAnimal">
+                            <h5>Choisir le type d'animal</h5>
+                            {% for typeAnimal in typesAnimal %}
+                                <input class="list-group-item-check pe-none" type="radio" name="listTypeAnimal" id="{{typeAnimal.nomType}}" value="{{typeAnimal.idTypeanimal}}">
+                                <label class="list-group-item rounded-3 py-3" for="{{typeAnimal.nomType}}">{{typeAnimal.nomType|capitalize}}</label>
+                            {% endfor %}
+                        </div>
+                        <div class="col-lg-3 list-group list-group-checkable d-grid gap-2 border-0 w-100" id="race">
+                            <h5>Choisir la race</h5>
+                            {% for race in races %}
+                                <input class="list-group-item-check pe-none" type="radio" name="listRace" id="{{race.nomRace}}" value="{{race.idRace}}">
+                                <label class="list-group-item rounded-3 py-3" for="{{race.nomRace}}">{{race.nomRace|capitalize}}</label>
+                            {% endfor %}
+                            <input class="list-group-item-check pe-none" type="radio" name="listRace" id="neutreRace" value="raceNeutreValue">
+                            <label class="list-group-item rounded-3 py-3" for="neutreRace">Tous</label>
+                            
+                        </div>
+                        <div class="col-lg-3 list-group list-group-checkable d-grid gap-2 border-0 w-100" id="age">
+                            <h5>Choisir la tranche d'âge</h5>
+                            <input class="list-group-item-check pe-none" type="radio" name="listAge" id="junior" value="juniorValue">
+                            <label class="list-group-item rounded-3 py-3" for="junior">
+                            Junior
+                            <span class="d-block small opacity-50">De 2 mois à 2 ans</span>
+                            </label>
+                        
+                            <input class="list-group-item-check pe-none" type="radio" name="listAge" id="adulte" value="adulteValue">
+                            <label class="list-group-item rounded-3 py-3" for="adulte">
+                            Adulte
+                            <span class="d-block small opacity-50">De 2 ans à 8 ans</span>
+                            </label>
+                            <input class="list-group-item-check pe-none" type="radio" name="listAge" id="senior" value="seniorValue">
+                            <label class="list-group-item rounded-3 py-3" for="senior">
+                            Senior
+                            <span class="d-block small opacity-50">Après 8 ans</span>
+                            </label>
+                            <input class="list-group-item-check pe-none" type="radio" name="listAge" id="neutreAge" value="ageNeutreValue">
+                            <label class="list-group-item rounded-3 py-3" for="neutreAge">Tous</label>
+                        </div>
+                        <div class="col-lg-3 list-group list-group-checkable d-grid gap-2 border-0 w-100" id="sexe">
+                            <h5>Choisir le sexe</h5>
+                            <input class="list-group-item-check pe-none" type="radio" name="listSexe" id="femelle" value="femelleValue">
+                            <label class="list-group-item rounded-3 py-3" for="femelle">Femelle</label>
+                            <input class="list-group-item-check pe-none" type="radio" name="listSexe" id="male" value="maleValue">
+                            <label class="list-group-item rounded-3 py-3" for="male">Male</label>
+                            <input class="list-group-item-check pe-none" type="radio" name="listSexe" id="neutreSexe" value="sexeNeutreValue">
+                            <label class="list-group-item rounded-3 py-3" for="neutreSexe">Tous</label>
+                        </div>
+                    </div>
+                    <div class="row" id="gabarit">
+                        <h3 class="text-center fst-italic text-uppercase">Gabarit</h3>
+                        <div class="col-lg-2 list-group list-group-checkable d-grid gap-2 border-0 w-75" id="poids">
+                            <h5>Choisir l'intervalle de poids</h5>
+                            <input class="list-group-item-check pe-none" type="radio" name="listPoids" id="mince" value="minceValue">
+                            <label class="list-group-item rounded-3 py-3" for="mince">
+                            Mince
+                            <span class="d-block small opacity-50">Pour les chiens : jusqu'à 15kgs - pour les chats : jusqu'à 2kgs</span>
+                            </label>
+                            <input class="list-group-item-check pe-none" type="radio" name="listPoids" id="normal" value="normalValue">
+                            <label class="list-group-item rounded-3 py-3" for="normal">
+                            Normal
+                            <span class="d-block small opacity-50">Pour les chiens : jusqu'à 30kgs - pour les chats : jusqu'à 4kgs</span>
+                            </label>
+                            <input class="list-group-item-check pe-none" type="radio" name="listPoids" id="gros" value="grosValue">
+                            <label class="list-group-item rounded-3 py-3" for="gros">
+                            Gros
+                            <span class="d-block small opacity-50">Pour les chiens : plus de 30kgs - pour les chats : plus de 4kgs</span>
+                            </label>
+                            <input class="list-group-item-check pe-none" type="radio" name="listPoids" id="neutrePoids" value="poidsNeutreValue">
+                            <label class="list-group-item rounded-3 py-3" for="neutrePoids">Tous</label>
+                        </div>
+                        
+                        <div class="col-lg-2 list-group list-group-checkable d-grid gap-2 border-0 w-75" id="taille">
+                            <h5>Choisir l'intervalle de taille (au garrot)</h5>
+                            {% for taille in tailles %}
+                            <input class="list-group-item-check pe-none" type="radio" name="listTaille" id="{{ taille.idTaille }}" value="{{ taille.nomTaille }}">
+                            <label class="list-group-item rounded-3 py-3" for="{{ taille.idTaille }}">
+                            {{ taille.nomTaille|capitalize }}
+                            </label>
+                            {% endfor %}
+                            {# <span class="d-block small opacity-50">Pour les chiens : jusqu'à 30cm - pour les chats : jusqu'à 10cm</span>
+                            
+                            <input class="list-group-item-check pe-none" type="radio" name="listTaille" id="moyen" value="moyenValue">
+                            <label class="list-group-item rounded-3 py-3" for="moyen">
+                            Moyen
+                            <span class="d-block small opacity-50">Pour les chiens : jusqu'à 50cm - pour les chats : jusqu'à 20cm</span>
+                            </label>
+                            <input class="list-group-item-check pe-none" type="radio" name="listTaille" id="grand" value="grandValue">
+                            <label class="list-group-item rounded-3 py-3" for="grand">
+                            Grand
+                            <span class="d-block small opacity-50">Pour les chiens : plus de 50cm - pour les chats : plus de 20cm</span>
+                            </label> #}
+                            <input class="list-group-item-check pe-none" type="radio" name="listTaille" id="neutreTaille" value="tailleNeutreValue" >
+                            <label class="list-group-item rounded-3 py-3" for="neutreTaille">Tous</label>
+                        </div>
+                    </div>
+                    <div class="row" id="robe">
+                        <h3 class="text-center fst-italic text-uppercase">Robe</h3>
+                        <div class="col-lg-3 list-group list-group-checkable d-grid gap-2 border-0 w-75" id="couleur">
+                            <h5>Choisir la couleur de robe</h5>
+                            {% for couleur in couleurs %}
+                                <input class="list-group-item-check pe-none" type="radio" name="listCouleur" id="{{ couleur.nomCouleur }}" value="{{ couleur.idCouleur }}">
+                                <label class="list-group-item rounded-3 py-3" for="{{ couleur.nomCouleur }}">{{ couleur.nomCouleur|capitalize }}</label>
+                            {% endfor %}
+                                <input class="list-group-item-check pe-none" type="radio" name="listCouleur" id="neutreListCouleur" value="neutreCouleurValue">
+                                <label class="list-group-item rounded-3 py-3" for="neutreListCouleur">Tous</label>
+                        </div>
+                        <div class="col-lg-3 list-group list-group-checkable d-grid gap-2 border-0 w-75" id="typepoils">
+                            <h5>Choisir le type de poils</h5>
+                            {% for typepoils in typespoils %}
+                            <input class="list-group-item-check pe-none" type="radio" name="listTypepoils" id="{{ typepoils.nomTypepoils }}" value="{{ typepoils.idTypepoils }}">
+                            <label class="list-group-item rounded-3 py-3" for="{{ typepoils.nomTypepoils }}">{{ typepoils.nomTypepoils|capitalize }}</label>
+                            {% endfor %}
+                            <input class="list-group-item-check pe-none" type="radio" name="listTypepoils" id="neutreListTypepoils" value="neutreTypepoilsValue" >
+                            <label class="list-group-item rounded-3 py-3" for="eutreListTypepoils">Tous</label>
+                        </div>
+                    </div>
+                    <div id="statut">
+                        <h3 class="text-center fst-italic text-uppercase">Statut</h3>
+                        <div class="col-lg-3 list-group list-group-checkable d-grid gap-2 border-0 w-75" id="lof">
+                            <h5>Vous souhaitez un animal LOF :</h5>
+                            
+                        </div>
+                    </div>
+                </form>
+            </div>
+    </div>
 </div>
+{% endblock %}
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
 {% endblock %}
