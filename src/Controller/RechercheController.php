@@ -3,11 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Race;
+use App\Entity\Statut;
 use App\Entity\Taille;
 use App\Entity\Couleur;
 use App\Entity\Typepoils;
 use App\Entity\Typeanimal;
 use App\Repository\RaceRepository;
+use App\Repository\StatutRepository;
 use App\Repository\TailleRepository;
 use App\Repository\CouleurRepository;
 use App\Repository\TypepoilsRepository;
@@ -19,7 +21,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class RechercheController extends AbstractController
 {
     #[Route('/recherche', name: 'app_recherche')]
-    public function index(RaceRepository $repoRace, TypeanimalRepository $repoTypeAnimal, TailleRepository $repoTaille, CouleurRepository $repoCouleur, TypepoilsRepository $repoPoils): Response
+    public function index(RaceRepository $repoRace, TypeanimalRepository $repoTypeAnimal, TailleRepository $repoTaille, CouleurRepository $repoCouleur, TypepoilsRepository $repoPoils, StatutRepository $repoStatut): Response
     {
 
         $races = new Race();
@@ -37,6 +39,9 @@ class RechercheController extends AbstractController
         $typespoils = new Typepoils();
         $typespoils = $repoPoils->findAll();
 
+        $statuts = new Statut();
+        $statuts = $repoStatut->findAll();
+
         return $this->render('recherche/index.html.twig', [
             'controller_name' => 'RechercheController',
             'races' => $races,
@@ -44,6 +49,7 @@ class RechercheController extends AbstractController
             'tailles' => $tailles,
             'couleurs' => $couleurs,
             'typespoils' => $typespoils,
+            'statuts' => $statuts,
         ]);
     }
 }

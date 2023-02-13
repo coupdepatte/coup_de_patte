@@ -1,44 +1,72 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-    {{ encore_entry_link_tags('app') }}
     <link href="{{asset('css/recherche.css')}}" rel="stylesheet">
+    {{ encore_entry_link_tags('app') }}
 {% endblock %}
 
 {% block title %}Coup de patte - Filtre recherche {% endblock %}
 
 {% block body %}
 {% include '/commun/nav.html.twig' %}
-<div class="container" data-bs-spy="scroll" data-bs-target="#navbar-scrollSearch">
+<div class="container">
+    <div class="col mx-3">
+        <nav id="navbar-scrollSearch" class="h-100 flex-column align-items-stretch position-fixed">
+            <nav class="nav nav-pills flex-column">
+                <a class="nav-link" href="#general">Général</a>
+                <nav class="nav nav-pills flex-column">
+                    <a class="nav-link ms-3" href="#typeAnimal">Chien ou chat ?</a>
+                    <a class="nav-link ms-3" href="#race">race</a>
+                    <a class="nav-link ms-3" href="#age">Age</a>
+                    <a class="nav-link ms-3" href="#sexe">Sexe</a>
+                    <a class="nav-link ms-3" href="#lof">LOF</a>
+                </nav>
+                <a class="nav-link" href="#gabarit">Gabarit</a>
+                <nav class="nav nav-pills flex-column">
+                    <a class="nav-link ms-3" href="#poids">Poids</a>
+                    <a class="nav-link ms-3" href="#taille">Taille</a>
+                </nav>
+                <a class="nav-link" href="#robe">Robe</a>
+                <nav class="nav nav-pills flex-column">
+                    <a class="nav-link ms-3" href="#couleur">Couleur</a>
+                    <a class="nav-link ms-3" href="#typepoils">Type poils</a>
+                </nav>
+                <a class="nav-link" href="#compensation">Compensation</a>
+                <nav class="nav nav-pills flex-column">
+                    <a class="nav-link ms-3" href="#vente">Vente/Don</a>
+            </nav>
+        </nav>
+    </div>
     <div class="row text-center my-3">
         <h1>Formulaire de recherche</h1>
         <p>Veuillez remplir le formulaire de recherche pour que nous puissons vous diriger vers des annonces pertinentes.</p>
-    </div>
-    <div class="row">
-        <div class="col-lg-3">
+    
+        {# <div class="col-lg-3">
             <nav id="navbar-scrollSearch" class="h-100 flex-column align-items-stretch position-fixed">
                 <nav class="nav nav-pills flex-column">
                     <a class="nav-link" href="#general">Général</a>
                     <nav class="nav nav-pills flex-column">
-                        <a class="nav-link ms-3 my-1" href="#typeAnimal">Chien ou chat ?</a>
-                        <a class="nav-link ms-3 my-1" href="#race">race</a>
-                        <a class="nav-link ms-3 my-1" href="#age">Age</a>
-                        <a class="nav-link ms-3 my-1" href="#sexe">Sexe</a>
+                        <a class="nav-link ms-3" href="#typeAnimal">Chien ou chat ?</a>
+                        <a class="nav-link ms-3" href="#race">race</a>
+                        <a class="nav-link ms-3" href="#age">Age</a>
+                        <a class="nav-link ms-3" href="#sexe">Sexe</a>
+                        <a class="nav-link ms-3" href="#lof">LOF</a>
                     </nav>
                     <a class="nav-link" href="#gabarit">Gabarit</a>
                     <nav class="nav nav-pills flex-column">
-                        <a class="nav-link ms-3 my-1" href="#poids">Poids</a>
-                        <a class="nav-link ms-3 my-1" href="#taille">Taille</a>
+                        <a class="nav-link ms-3" href="#poids">Poids</a>
+                        <a class="nav-link ms-3" href="#taille">Taille</a>
                     </nav>
                     <a class="nav-link" href="#robe">Robe</a>
                     <nav class="nav nav-pills flex-column">
-                        <a class="nav-link ms-3 my-1" href="#couleur">Couleur</a>
-                        <a class="nav-link ms-3 my-1" href="#typepoils">Type poils</a>
+                        <a class="nav-link ms-3" href="#couleur">Couleur</a>
+                        <a class="nav-link ms-3" href="#typepoils">Type poils</a>
                     </nav>
                 </nav>
             </nav>
-        </div>
-        <div class="col-lg-8 border-start">
+        </div> #}
+        <div class="col-lg-8 mx-auto">
+            <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-smooth-scroll="true" class="scrollspy-example-2" tabindex="0">
                 <form method="post" action="{{path('app_recherche')}}">
                     <div class="row" id="general">
                         <h3 class="text-center fst-italic text-uppercase">Général</h3>
@@ -88,6 +116,15 @@
                             <label class="list-group-item rounded-3 py-3" for="male">Male</label>
                             <input class="list-group-item-check pe-none" type="radio" name="listSexe" id="neutreSexe" value="sexeNeutreValue">
                             <label class="list-group-item rounded-3 py-3" for="neutreSexe">Tous</label>
+                        </div>
+                        <div class="col-lg-3 list-group list-group-checkable d-grid gap-2 border-0 w-75" id="lof">
+                            <h5>Vous souhaitez un animal LOF :</h5>
+                                <input class="list-group-item-check pe-none" type="radio" name="listLof" id="lof" value="lofValue">
+                                <label class="list-group-item rounded-3 py-3" for="lof">Oui</label>
+                                <input class="list-group-item-check pe-none" type="radio" name="listLof" id="nonLof" value="nonLofValue">
+                                <label class="list-group-item rounded-3 py-3" for="nonLof">Non</label>
+                                <input class="list-group-item-check pe-none" type="radio" name="listLof" id="neutreLof" value="neutreLofValue">
+                                <label class="list-group-item rounded-3 py-3" for="neutreLof">Tous</label>
                         </div>
                     </div>
                     <div class="row" id="gabarit">
@@ -154,22 +191,68 @@
                             <input class="list-group-item-check pe-none" type="radio" name="listTypepoils" id="{{ typepoils.nomTypepoils }}" value="{{ typepoils.idTypepoils }}">
                             <label class="list-group-item rounded-3 py-3" for="{{ typepoils.nomTypepoils }}">{{ typepoils.nomTypepoils|capitalize }}</label>
                             {% endfor %}
-                            <input class="list-group-item-check pe-none" type="radio" name="listTypepoils" id="neutreListTypepoils" value="neutreTypepoilsValue" >
+                            <input class="list-group-item-check pe-none" type="radio" name="listTypepoils" id="neutreListTypepoils" value="neutreTypepoilsValue">
                             <label class="list-group-item rounded-3 py-3" for="eutreListTypepoils">Tous</label>
                         </div>
                     </div>
-                    <div id="statut">
-                        <h3 class="text-center fst-italic text-uppercase">Statut</h3>
-                        <div class="col-lg-3 list-group list-group-checkable d-grid gap-2 border-0 w-75" id="lof">
-                            <h5>Vous souhaitez un animal LOF :</h5>
-                            
+                    <div class="row" id="compensation">
+                        <h3 class="text-center fst-italic text-uppercase">Compensation</h3>
+                        <div class="col-lg-3 list-group list-group-checkable d-grid gap-2 border-0 w-75" id="vente">
+                            <h5>Souhaitez-vous un animal à donner ou à vendre ?</h5>
+                            {% for statut in statuts %}
+                            <input class="list-group-item-check pe-none" type="radio" name="listVente" id="{{ statut.nomStatut }}" value="{{ statut.idStatut }}">
+                            <label class="list-group-item rounded-3 py-3" for="{{ statut.nomStatut }}">{{ statut.nomStatut|capitalize }}</label>
+                            {% endfor %}
+                            <label for="maxPrice" class="form-label">Prix maximum</label>
+                            <input type="range" class="form-range" min="1" max="3000" id="maxPrice">
                         </div>
                     </div>
                 </form>
             </div>
+        </div>
     </div>
 </div>
 {% endblock %}
 {% block javascripts %}
     {{ encore_entry_script_tags('app') }}
+    <script>
+    var select = document.getElementById('input-select');
+for ( var i = 200; i <= 1000; i++ ){
+var option = document.createElement("option");
+    option.text = i;
+    option.value = i;
+    select.appendChild(option);
+}
+var html5Slider = document.getElementById('html5');
+noUiSlider.create(html5Slider, {
+ start: [ 500, 800 ],
+ connect: true,
+ range: {
+    'min': 200,
+    'max': 1000
+ }
+});
+
+var inputNumber = document.getElementById('input-number');
+
+html5Slider.noUiSlider.on('update', function( values, handle ) {
+
+var value = values[handle];
+
+if ( handle ) {
+    inputNumber.value = value;
+} else {
+    select.value = Math.round(value);
+}
+});
+
+select.addEventListener('change', function(){
+    html5Slider.noUiSlider.set([this.value, null]);
+});
+
+inputNumber.addEventListener('change', function(){
+    html5Slider.noUiSlider.set([null, this.value]);
+});
+
+    </script>
 {% endblock %}
