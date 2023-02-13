@@ -5,46 +5,50 @@
 	<link href="{{asset('css/dashboard.css')}}" rel="stylesheet">
 {% endblock %}
 {% block body %}
-
-
+	{% include 'commun/nav.html.twig' %}
 
 	<div class="container-fluid">
 		<div class="row">
-				{% include 'commun/nav.html.twig' %}
-
-			<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+			<main class="col-md  px-md-4">
 				<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 					<h1 class="h2">Bienvenue
 					</h1>
-					<div class="btn-toolbar mb-2 mb-md-0">
-
-					</div>
-				</div>
-
-
-			</main>
-		</div>
-	</div>
-	<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-		<div class="position-sticky pt-3 sidebar-sticky">
-			<ul class="nav flex-column">
-				<li class="nav-item">
-					<a class="nav-link active" aria-current="page" href="{{path('app_dashboard')}}">
-						<span data-feather="home" class="align-text-bottom"></span>
-						Mes annonces
-					</a>
-				</li>
-				<li class="nav-item">
 					<a class="nav-link " href="{{path('app_dashboard_ajouter')}}">
 						<span data-feather="file" class="align-text-bottom"></span>
 						Ajouter un article
 					</a>
-				</li>
-            </ul>
-
-		
+					<a class="nav-link active mx-2" aria-current="page" href="{{path('app_dashboard')}}">
+						<span data-feather="home" class="align-text-bottom"></span>
+						Mes annonces
+					</a>
+				</div>
+			</main>
 		</div>
-	</nav>
+	</div>
+
+	<div class="row mx-1">
+		{% for animal in animals %}
+
+			<div class="col-lg-4">
+				<div class="card shadow-sm">
+					<div class="card-header text-center">
+						{{ animal.nomAnimal }}<br>
+					</div>
+					<div class="card-body">
+						<p class="card-text">
+							{{animal.texteAnimal | slice(0, 50) |raw}}...</p>
+						<div class="d-flex justify-content-between align-items-center">
+							<div class="btn-group">
+								<a type="button" class="btn btn-sm btn-outline-secondary">View</a>
+							</div>
+						</div>
+					</div>
+					<div class="card-footer text-muted"></div>
+				</div>
+			</div>
+		{% endfor %}
+		
+	</div>
 {% endblock %}
 {% block javascripts %}
 	<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>

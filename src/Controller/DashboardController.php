@@ -20,9 +20,9 @@ class DashboardController extends AbstractController
 
     public function index( AnimalRepository $repoAnimal, UserInterface $utilisateurCo ): Response
  {
-        $annonces = $repoAnimal->findByIdUtilisateur( $utilisateurCo );
+        $animals = $repoAnimal->findByIdUtilisateur( $utilisateurCo );
         return $this->render( 'dashboard/index.html.twig', [
-            'annonces' => $annonces,
+            'animals' => $animals,
 
         ] );
 
