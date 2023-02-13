@@ -10,12 +10,12 @@
 
 {% block body %}
 
-{%include 'commun/nav.html.twig'%}
+{% include 'commun/nav.html.twig' %}
 
 <div class="container bg-light">
     <main>
         <div class="py-5 text-center">
-            <img class="d-block mx-auto mb-4" src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+            <img class="d-block mx-auto mb-4" src="{{asset('images/png-clipart-paw-dog-printing-paws-animals-monochrome.png')}}" alt="" width="72" height="57">
             <h2>Nous Contacter</h2>
             <p class="lead">Pour toute demande concernant le site, nos annonces, où les eleveurs présents sur le site vous pouvez nous contacter via le formulaire suivant:</p>
         </div>
@@ -96,6 +96,8 @@
     </div>
   </main>
 </div>
+{% include 'commun/footer.html.twig' %}
+
 {% block javascripts %}
     {{ encore_entry_script_tags('app') }}
 {% endblock %}

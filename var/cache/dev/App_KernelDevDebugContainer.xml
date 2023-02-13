@@ -6795,6 +6795,7 @@
       </argument>
     </service>
     <service id=".service_locator.uKtDpqx" class="Symfony\Component\DependencyInjection\ServiceLocator">
+<<<<<<< HEAD
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="bus" type="service_closure" id="debug.traced.messenger.bus.default"/>
@@ -6802,10 +6803,20 @@
       </argument>
     </service>
     <service id=".service_locator.XNTT45G" class="Symfony\Component\DependencyInjection\ServiceLocator">
+=======
+>>>>>>> 3164a2238435584cf1253f0899ab6eb13ad31a56
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="bus" type="service_closure" id="debug.traced.messenger.bus.default"/>
+        <argument key="mailer" type="service_closure" id="mailer.mailer"/>
+      </argument>
+    </service>
+    <service id=".service_locator.G0lsWqQ" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="imageRepo" type="service_closure" id="App\Repository\ImageRepository"/>
         <argument key="repoAnimal" type="service_closure" id="App\Repository\AnimalRepository"/>
-        <argument key="utilisateurCo" type="service_closure" id=".errored..service_locator.XNTT45G.Symfony\Component\Security\Core\User\UserInterface"/>
+        <argument key="utilisateurCo" type="service_closure" id=".errored..service_locator.G0lsWqQ.Symfony\Component\Security\Core\User\UserInterface"/>
       </argument>
     </service>
     <service id=".service_locator.QE5.RQW" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -6826,7 +6837,11 @@
         <argument key="repoUtilisateur" type="service_closure" id="App\Repository\UtilisateurRepository"/>
       </argument>
     </service>
+<<<<<<< HEAD
     <service id=".service_locator.o0ci5VU" class="Symfony\Component\DependencyInjection\ServiceLocator">
+=======
+    <service id=".service_locator.8RbEcK3" class="Symfony\Component\DependencyInjection\ServiceLocator">
+>>>>>>> 3164a2238435584cf1253f0899ab6eb13ad31a56
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="repoCouleur" type="service_closure" id="App\Repository\CouleurRepository"/>
@@ -6837,14 +6852,18 @@
         <argument key="repoTypeAnimal" type="service_closure" id="App\Repository\TypeanimalRepository"/>
       </argument>
     </service>
+<<<<<<< HEAD
     <service id=".service_locator.4EUEYNQ" class="Symfony\Component\DependencyInjection\ServiceLocator">
+=======
+    <service id=".service_locator.JIQh7HY" class="Symfony\Component\DependencyInjection\ServiceLocator">
+>>>>>>> 3164a2238435584cf1253f0899ab6eb13ad31a56
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\AccueilController::index" type="service_closure" id=".service_locator.m15bVQs"/>
         <argument key="App\Controller\ConnectionController::index" type="service_closure" id=".service_locator.rSTd.nA"/>
         <argument key="App\Controller\ContactController::index" type="service_closure" id=".service_locator.uKtDpqx"/>
         <argument key="App\Controller\DashboardController::ajouterAnnoce" type="service_closure" id=".service_locator.QE5.RQW"/>
-        <argument key="App\Controller\DashboardController::index" type="service_closure" id=".service_locator.XNTT45G"/>
+        <argument key="App\Controller\DashboardController::index" type="service_closure" id=".service_locator.G0lsWqQ"/>
         <argument key="App\Controller\InscriptionController::index" type="service_closure" id=".service_locator.8bzD65X"/>
         <argument key="App\Controller\RechercheController::index" type="service_closure" id=".service_locator.o0ci5VU"/>
         <argument key="App\Kernel::loadRoutes" type="service_closure" id=".service_locator.y4_Zrx."/>
@@ -6855,7 +6874,7 @@
         <argument key="App\Controller\ConnectionController:index" type="service_closure" id=".service_locator.rSTd.nA"/>
         <argument key="App\Controller\ContactController:index" type="service_closure" id=".service_locator.uKtDpqx"/>
         <argument key="App\Controller\DashboardController:ajouterAnnoce" type="service_closure" id=".service_locator.QE5.RQW"/>
-        <argument key="App\Controller\DashboardController:index" type="service_closure" id=".service_locator.XNTT45G"/>
+        <argument key="App\Controller\DashboardController:index" type="service_closure" id=".service_locator.G0lsWqQ"/>
         <argument key="App\Controller\InscriptionController:index" type="service_closure" id=".service_locator.8bzD65X"/>
         <argument key="App\Controller\RechercheController:index" type="service_closure" id=".service_locator.o0ci5VU"/>
         <argument key="kernel:loadRoutes" type="service_closure" id=".service_locator.y4_Zrx."/>
@@ -7739,12 +7758,20 @@
     <service id="debug.argument_resolver.request.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\RequestValueResolver"/>
     <service id="debug.argument_resolver.session.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\SessionValueResolver"/>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
+<<<<<<< HEAD
       <argument type="service" id=".service_locator.4EUEYNQ"/>
+=======
+      <argument type="service" id=".service_locator.JIQh7HY"/>
+>>>>>>> 3164a2238435584cf1253f0899ab6eb13ad31a56
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
+<<<<<<< HEAD
       <argument type="service" id=".service_locator.4EUEYNQ"/>
+=======
+      <argument type="service" id=".service_locator.JIQh7HY"/>
+>>>>>>> 3164a2238435584cf1253f0899ab6eb13ad31a56
     </service>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
       <argument type="iterator">
@@ -7764,7 +7791,7 @@
       </call>
     </service>
     <service id=".errored..service_locator.y4_Zrx..Symfony\Component\Config\Loader\LoaderInterface" class="Symfony\Component\Config\Loader\LoaderInterface"/>
-    <service id=".errored..service_locator.XNTT45G.Symfony\Component\Security\Core\User\UserInterface" class="Symfony\Component\Security\Core\User\UserInterface"/>
+    <service id=".errored..service_locator.G0lsWqQ.Symfony\Component\Security\Core\User\UserInterface" class="Symfony\Component\Security\Core\User\UserInterface"/>
     <service id=".errored..service_locator.QE5.RQW.Symfony\Component\Security\Core\User\UserInterface" class="Symfony\Component\Security\Core\User\UserInterface"/>
     <service id=".console.command.about.lazy" class="Symfony\Component\Console\Command\LazyCommand">
       <argument>about</argument>
@@ -8711,7 +8738,11 @@
     <service id="sensio_framework_extra.security.expression_language" alias="sensio_framework_extra.security.expression_language.default"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.7nzbL4K" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
+<<<<<<< HEAD
     <service id="argument_resolver.controller_locator" alias=".service_locator.4EUEYNQ"/>
+=======
+    <service id="argument_resolver.controller_locator" alias=".service_locator.JIQh7HY"/>
+>>>>>>> 3164a2238435584cf1253f0899ab6eb13ad31a56
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -8735,8 +8766,13 @@
     <service id=".service_locator.VkxlgAp" alias=".service_locator.uKtDpqx"/>
     <service id=".service_locator.3rofHBZ" alias=".service_locator.QE5.RQW"/>
     <service id=".service_locator.zFydv6e" alias=".service_locator.8bzD65X"/>
+<<<<<<< HEAD
     <service id=".service_locator.rCdy.qq" alias=".service_locator.o0ci5VU"/>
     <service id=".service_locator.nw4_yTh" alias=".service_locator.4EUEYNQ"/>
+=======
+    <service id=".service_locator.fD0uiOw" alias=".service_locator.8RbEcK3"/>
+    <service id=".service_locator.CzRqA1n" alias=".service_locator.JIQh7HY"/>
+>>>>>>> 3164a2238435584cf1253f0899ab6eb13ad31a56
     <service id=".service_locator.9XMoc9I" alias=".service_locator.kzegaci"/>
     <service id=".service_locator.E1nq9KU" alias=".service_locator.4asdeVO"/>
     <service id=".service_locator.XW18Svm" alias=".service_locator.TcKhdzh"/>
@@ -8790,7 +8826,11 @@
     <service id=".service_locator.mmX7d9z" alias=".service_locator.m15bVQs"/>
     <service id=".service_locator.7NIAq8D" alias=".service_locator.rSTd.nA"/>
     <service id=".service_locator.kjyfHLL" alias=".service_locator.uKtDpqx"/>
+<<<<<<< HEAD
     <service id=".service_locator.rgaOG_F" alias=".service_locator.XNTT45G"/>
+=======
+    <service id=".service_locator.xg47EJV" alias=".service_locator.G0lsWqQ"/>
+>>>>>>> 3164a2238435584cf1253f0899ab6eb13ad31a56
     <service id=".service_locator.3uBhhAB" alias=".service_locator.QE5.RQW"/>
     <service id=".service_locator.ewDjpzC" alias=".service_locator.8bzD65X"/>
     <service id=".service_locator.X3E1sfg" alias=".service_locator.o0ci5VU"/>

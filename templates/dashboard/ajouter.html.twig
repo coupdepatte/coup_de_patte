@@ -76,11 +76,24 @@
 	<div class="container-fluid">
 		<div class="row">
 			{% include 'commun/nav.html.twig' %}
-
-			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-				<h1 class="h2">Créez une annonce</h1>
-			</div>
-
+	<div class="container-fluid">
+		<div class="row">
+			<main class="col-md  px-md-4">
+				<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+					<h1 class="h2">Créez une annonce
+					</h1>
+					<a class="nav-link " href="{{path('app_dashboard_ajouter')}}">
+						<span data-feather="file" class="align-text-bottom"></span>
+						Ajouter un article
+					</a>
+					<a class="nav-link active mx-2" aria-current="page" href="{{path('app_dashboard')}}">
+						<span data-feather="home" class="align-text-bottom"></span>
+						Mes annonces
+					</a>
+				</div>
+			</main>
+		</div>
+	</div>
 			<div class="container-fluid">
 				<div class="row mx-auto">
 					<div class=" col-lg-6 align-self-center mx-auto">

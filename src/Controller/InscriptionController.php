@@ -50,9 +50,11 @@ class InscriptionController extends AbstractController
             })</script>");
             return $this->redirectToRoute('app_connection');
         }
+        $active_inscription= 'active';
         return $this->render('inscription/index.html.twig', [
             'controller_name' => 'InscriptionController',
             'form_inscription' => $form_inscription->createView(),
+            'active_inscription' => $active_inscription,
         ]);
     }
 }
