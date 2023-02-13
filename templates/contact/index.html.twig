@@ -10,7 +10,7 @@
 
 {% block body %}
 
-{%include 'commun/nav.html.twig'%}
+{% include 'commun/nav.html.twig' %}
 
 <div class="container bg-light">
     <main>
@@ -96,6 +96,8 @@
     </div>
   </main>
 </div>
+{% include 'commun/footer.html.twig' %}
+
 {% block javascripts %}
     {{ encore_entry_script_tags('app') }}
 {% endblock %}
