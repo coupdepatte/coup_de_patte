@@ -2,9 +2,10 @@
 {% block title %}Hello DashboardController!
 {% endblock %}
 {% block stylesheets %}
-	<link href="{{asset('css/dashboard.css')}}" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
+	<script src="https://cdn.jsdelivr.net/npm/zangdar@1.0.25/dist/zangdar.min.js"></script>
+	<link href="{{asset('css/dashboard.css')}}" rel="stylesheet">
 {% endblock %}
 {% block body %}
 	<style>
@@ -57,98 +58,178 @@
 			cursor: pointer;
 			font-size: 15px;
 		}
+
+		.zandgar__wizard {
+			display: block;
+			height: 100%;
+			position: relative;
+		}
+
+		.zandgar__wizard .zandgar__step {
+			display: none;
+		}
+		.zandgar__wizard .zandgar__step.zandgar__step__active {
+			display: block;
+		}
 	</style>
-	<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-		<a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">Company name</a>
-		<button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
-		<div class="navbar-nav">
-			<div class="nav-item text-nowrap">
-				<a class="nav-link px-3" href="#">Sign out</a>
-			</div>
-		</div>
-	</header>
+
 	<div class="container-fluid">
 		<div class="row">
 			{% include 'commun/nav.html.twig' %}
-			<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-				<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-					<h1 class="h2">Dashboard</h1>
-					<div class="btn-toolbar mb-2 mb-md-0">
-						<div class="btn-group me-2">
-							<button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-							<button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
-						</div>
-						<button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-							<span data-feather="calendar" class="align-text-bottom"></span>
-							This week
-						</button>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-lg-6 mx-auto">
-						<h3>Créez un article</h3>
-					</div>
-				</div>
 
-				<div class='row'>
+			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+				<h1 class="h2">Créez une annonce</h1>
+			</div>
 
+			<div class="container-fluid">
+				<div class="row mx-auto">
+					<div class=" col-lg-6 align-self-center mx-auto">
+						<div class="m-3 m-lg-5">
 
-					{% for message in app.flashes('success') %}
-						<div class="flash-notice">
-							
-						</div>
-					{% endfor %}
-				</div>
-
-				<div class="row">
-					<div class="col-lg-6 mx-auto">
-					
-						<div class="mb-3">
-							<label for="categorie" class="form-label">Catégories</label>
-						
-						</div>
-						<div class="mb-3">
-							<label for="titre" class="form-label">Titre</label>
-							
-						</div>
-						<div class="mb-3">
-							<label for="contenu" class="form-label">Contenu</label>
-						
-						</div>
-						<div class="row">
-							<div class="col-sm-4 imgUp">
-								<div class="imagePreview"></div>
-								<label class="btn btn-primary">
-									
-								</label>
-
+							<div class="text-center mt-4 mb-3">
+								<h1 class="h3">Créer une annonce</h1>
+								<p class="lead">
+									Veuillez entrer les information de l'animal à ajouter.
+								</p>
 							</div>
-							<!-- col-2 -->
-							<i class="fa fa-plus imgAdd"></i>
-						</div>
-						<!-- row -->
-						{{form_start(form_animal)}}
 
-						{{form_end(form_animal)}}
+							<ul id="steps-native" class="nav nav-pills justify-content-center"></ul>
+
+							{{form_start(form_animal,{'attr' : { 'class': 'my-2 py-2','id': 'wizard'   }})}}
+							<section data-step="1. Account">
+								<div class="row">
+									<div class="col ">
+										<div class="mb-3">
+											<label class="form-label" for="nom">Nom de l'animal.</label>
+											{{form_row(form_animal.nomAnimal)}}
+										</div>
+										<div class="mb-3">
+											<label class="form-label" for="race">Choisissez la race.</label>
+											{{form_row(form_animal.idRace)}}
+										</div>
+										<div id="statut" class="mb-3">
+											<label class="form-label" for="statut">L'animal est il a vendre ou a donner ?</label>
+											{{form_row(form_animal.idStatut)}}
+										</div>
+										<div id="prix" class="mb-3">
+											<label class="form-label" for="prix">Entrez le prix de l'animal.</label>
+											{{form_row(form_animal.prixAnimal)}}
+										</div>
+									</div>
+									<div class="col">
+										<div class="mb-3">
+											<label class="form-label" for="LOF">Votre animal est il certifié LOF ?</label>
+											{{form_row(form_animal.lofAnimal)}}
+										</div>
+										<div class="mb-3">
+											<label class="form-label" for="sexe">Entrez le sexe de l'animal.</label>
+											{{form_row(form_animal.isFeminin)}}
+										</div>
+										<div class="mb-3">
+											<label class="form-label" for="sexe">l'animal est il vacciné ?</label>
+											{{form_row(form_animal.isVaccine)}}
+										</div>
+										<div class="mb-3">
+											<label class="form-label" for="sexe">L'animal est il identifié ?</label>
+											{{form_row(form_animal.isIdentifie)}}
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-12 text-right">
+											<button class="btn btn-primary" data-next>Next</button>
+										</div>
+									</div>
+								</div>
+							</section>
+
+							<section data-step="2. Profile">
+								<div class="row">
+									<div class="col">
+										<div class="mb-3">
+											<label class="form-label" for="first-name">Veuillez entrer la couleur de l'animal.</label>
+											{{form_row(form_animal.idCouleur)}}
+										</div>
+
+										<div class="mb-3">
+											<label class="form-label" for="last-name">Quel type de poil à l'animal ?</label>
+											{{form_row(form_animal.idTypepoils)}}
+										</div>
+									</div>
+									<div class="col">
+										<div class="mb-3">
+											<label class="form-label" for="last-name">Quel est la taille de l'animal ?</label>
+											{{form_row(form_animal.idTaille)}}
+										</div>
+
+										<div class="mb-3">
+											<label class="form-label" for="last-name">Quel est le poid de l'animal ?</label>
+											{{form_row(form_animal.poidAnimal)}}
+										</div>
+									</div>
+								</div>
+								<div class="mb-3">
+									<label class="form-label" for="last-name">Quel âge à l'animal ?</label>
+									{{form_row(form_animal.ageAnimal)}}
+								</div>
+
+								<div class="mb-3">
+									<label class="form-label" for="last-name">Veuillez entrer une description pour l'animal.</label>
+									{{form_row(form_animal.texteAnimal)}}
+								</div>
+
+								<div class="row">
+									<div class="col-6 text-left">
+										<button class="btn btn-outline-primary" data-prev>Previous</button>
+									</div>
+									<div class="col-6 text-right">
+										<button class="btn btn-primary" data-next>Next</button>
+									</div>
+								</div>
+							</section>
+
+							<section data-step="3. Social">
+								<div class="row">
+									<div class="col-sm-4 imgUp">
+										<div class="imagePreview"></div>
+										<label class="btn btn-primary">
+											Upload{{form_row(form_animal.images)}}
+										</label>
+									</div>
+									<!-- col-2 -->
+									<i class="fa fa-plus imgAdd"></i>
+								</div>
+								<div class="row">
+									<div class="col-6 text-left">
+										<button class="btn btn-outline-primary" data-prev>Previous</button>
+									</div>
+									<div class="col-6 text-right">
+										{{form_row(form_animal.save)}}
+									</div>
+								</div>
+							</section>
+							{{form_end(form_animal)}}
+						</div>
 					</div>
 				</div>
-			</main>
-		</div>
+			</div>
+
+			{% for message in app.flashes('success') %}
+				<div class="flash-notice"></div>
+
+			</div>
+		{% endfor %}
+
+
 	</div>
+</div>{% endblock %}{% block javascripts %}
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-{% endblock %}
-{% block javascripts %}
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-
-	<script>
-		let compteur = 0;
+{# pour faire le style du img upload #}
+<script>
+	let compteur = 0;
 
 $(".imgAdd").click(function () {
 $(this).closest(".row").find('.imgAdd').before('<div class="col-sm-4 imgUp"><div class="imagePreview"></div><label class="btn btn-primary">Upload<input type="file" name="article[images][]" class="uploadFile img" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;"></label><i class="fa fa-times del"></i></div>');
@@ -189,8 +270,66 @@ uploadFile.closest(".imgUp").find('.imagePreview').css("background-image", "url(
 
 });
 });
-	</script>
-	<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
-	<script src="{{asset('js/dashboard.js')}}"></script>
-{% endblock %}
+</script>
+
+{# Pour faire le wizard form #}
+
+<script>
+	function buildStepsBreadcrumb(wizard, element, steps) {
+const $steps = document.getElementById(element)
+$steps.innerHTML = ''
+for (let label in steps) {
+if (steps.hasOwnProperty(label)) {
+const $li = document.createElement('li')
+const $a = document.createElement('a')
+$li.classList.add('nav-item')
+$a.classList.add('nav-link')
+if (steps[label].active) {
+$a.classList.add('active')
+}
+$a.setAttribute('href', '#')
+$a.innerText = label
+$a.addEventListener('click', e => {
+e.preventDefault()
+wizard.revealStep(label)
+})
+$li.appendChild($a)
+$steps.appendChild($li)
+}
+}
+}
+
+function onStepChange(wizard, selector) {
+const steps = wizard.getBreadcrumb()
+buildStepsBreadcrumb(wizard, selector, steps)
+}
+
+const wizard = new window.Zangdar('#wizard', {
+onStepChange: () => {
+onStepChange(wizard, 'steps-native')
+}
+
+})
+
+onStepChange(wizard, 'steps-native')
+</script>
+
+
+{# L'ajax pour faire apparaitre le prix #}
+<script>
+	$("#annonce_idStatut").change(function () {
+if ($(this).val() == "2") {
+$('#prix').show();
+$('#annonce_prixAnimal').attr('required', '');
+$('#annonce_prixAnimal').attr('data-error', 'This field is required.');
+} else {
+$('#prix').hide();
+$('#annonce_prixAnimal').removeAttr('required');
+$('#annonce_prixAnimal').removeAttr('data-error');
+}
+});
+$("#annonce_idStatut").trigger("change");
+</script>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
+<script src="{{asset('js/dashboard.js')}}"></script>{% endblock %}

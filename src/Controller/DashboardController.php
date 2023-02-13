@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use DateTime;
+use App\Entity\Image;
 use App\Entity\Animal;
 use App\Form\AnnonceType;
 use App\Repository\AnimalRepository;
@@ -41,13 +42,9 @@ public function ajouterAnnoce( Request $request, UserInterface $utilisateurCo, E
 
         $form_animal->handleRequest( $request );
 
-        if ( $form_animal->isSubmitted() && $form_animal->isValid() ) {
+        if( $form_animal->isSubmitted() && $form_animal->isValid() ) {
             $animal->setIdUtilisateur( $utilisateurCo );
-            $animal->setDateCreation( new DateTime() );
 
-            $slugify = new Slugify();
-            $slug = $slugify->slugify( $animal->getTitre() );
-            $animal->setSlug( $slug );
 
             $images = $form_animal->get( 'images' )->getData();
 
@@ -62,9 +59,9 @@ public function ajouterAnnoce( Request $request, UserInterface $utilisateurCo, E
                 );
 
                 // On crée l'image dans la base de données
-                $img = new Images();
-                $img->setNomImage($fichier);
-                $img->setIdArticle($animal);
+                $img = new Image();
+                $img->setImage($fichier);
+                $img->setIdAnimal($animal);
                 $manager->persist( $img );
             }
         
@@ -74,7 +71,7 @@ public function ajouterAnnoce( Request $request, UserInterface $utilisateurCo, E
                             <script>Swal.fire({
                             position: 'center' ,
                             icon: 'success' ,
-                            title: 'Article ajouté' ,
+                            title: 'Annonce ajouté' ,
                             showConfirmButotn: false,
                             timer:1500})</script>");
             

@@ -17,6 +17,7 @@ return [
     '_profiler_exception' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::body'], [], [['text', '/exception'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], [], []],
     '_profiler_exception_css' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::stylesheet'], [], [['text', '/exception.css'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], [], []],
     'app_accueil' => [[], ['_controller' => 'App\\Controller\\AccueilController::index'], [], [['text', '/']], [], [], []],
+    'app_annonce' => [[], ['_controller' => 'App\\Controller\\AnnonceController::index'], [], [['text', '/annonce']], [], [], []],
     'app_commun' => [[], ['_controller' => 'App\\Controller\\CommunController::index'], [], [['text', '/commun']], [], [], []],
     'app_connection' => [[], ['_controller' => 'App\\Controller\\ConnectionController::index'], [], [['text', '/connection']], [], [], []],
     'app_deconnexion' => [[], ['_controller' => 'App\\Controller\\ConnectionController::logout'], [], [['text', '/deconnexion']], [], [], []],
