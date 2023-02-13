@@ -20,8 +20,10 @@ class DashboardController extends AbstractController
     public function index( AnimalRepository $repoAnimal, UserInterface $utilisateurCo ): Response
  {
         $annonces = $repoAnimal->findByIdUtilisateur( $utilisateurCo );
+        $active_dashboard= 'active';
         return $this->render( 'dashboard/index.html.twig', [
             'annonces' => $annonces,
+            'active_dashboard' => $active_dashboard,
 
         ] );
 
@@ -78,10 +80,11 @@ public function ajouterAnnoce( Request $request, UserInterface $utilisateurCo, E
 
             //dd( $article );
         }
-
+        
         return $this->render( 'dashboard/ajouter.html.twig', [
 
             'form_animal' => $form_animal->createView(),
+            
             ] );
 
         }
