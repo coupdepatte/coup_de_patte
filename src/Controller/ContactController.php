@@ -44,9 +44,8 @@ class ContactController extends AbstractController
             // error message or try to resend the message
         }
         return $this->redirectToRoute('app_accueil');
-        
     }
-    $active_contact= 'active';
+        $active_contact= 'active';
         return $this->render('contact/index.html.twig', [
             'controller_name' => 'ContactController',
             'form_contact' => $form_contact->createView(),

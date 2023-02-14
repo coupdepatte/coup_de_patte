@@ -6,6 +6,7 @@ use DateTime;
 use App\Entity\Image;
 use App\Entity\Animal;
 use App\Form\AnnonceType;
+use App\Repository\ImageRepository;
 use App\Repository\AnimalRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,26 +19,23 @@ class DashboardController extends AbstractController
  {
     #[ Route( '/dashboard', name: 'app_dashboard' ) ]
 
-    public function index( AnimalRepository $repoAnimal, UserInterface $utilisateurCo ): Response
+    public function index(ImageRepository $imageRepo, AnimalRepository $repoAnimal, UserInterface $utilisateurCo ): Response
  {
         $animals = $repoAnimal->findByIdUtilisateur( $utilisateurCo );
-        $active_dashboard= 'active';
+        //dd($animals);
+        $images = $imageRepo->findByIdAnimal($animals);
+        //dd($images);
         return $this->render( 'dashboard/index.html.twig', [
             'animals' => $animals,
-            'active_dashboard' => $active_dashboard,
+            'images' => $images,
 
         ] );
 
     }
 
-
-
 #[ Route( '/dashboard/ajouter-article', name: 'app_dashboard_ajouter' ) ]
 
 public function ajouterAnnoce( Request $request, UserInterface $utilisateurCo, EntityManagerInterface $manager ): Response{
-
-
-
 
         $animal = new Animal();
         $form_animal = $this->createForm( AnnonceType::class, $animal );
