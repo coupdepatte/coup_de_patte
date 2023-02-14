@@ -1,16 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block stylesheets %}
-
-{% endblock %}
+{% block stylesheets %}{% endblock %}
 
 {% block title %}Hello CommunController!
 {% endblock %}
 
 {% block body %}
 
-	{%include 'commun/nav.html.twig'%}
-
+{%include 'commun/nav.html.twig'%}
 
 
 	<main>
@@ -30,41 +27,43 @@
 		<div class="album py-5 bg-light">
 			<div class="container">
 				<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-					{% for animal in animaux %}
-						{% for image in images %}
-							<div class="col">
-								<div class="card shadow-sm">
-									<img src="{{image.image}}" class=" card-img-top" width="100%" height="225">
-									
-									<div class="card-header">
-										{{animal.nomAnimal}}
 
-										<hr>
-										<div class="card-body">
-											<p class="card-text">{{ animal.texteAnimal|slice(0, 50)|raw}}</p>
-											Age de l'animal:
-											{{animal.ageAnimal}}
-											ans
-											<div class="d-flex justify-content-between align-items-center">
-												<div class="btn-group">
-													<a type="button" class="btn btn-sm btn-outline-secondary" href="article/{{animal.idAnimal}}">
-														En savoir plus...</a>
-												</div>
-												<small class="text-muted">{{animal.prixAnimal}}
-													euros</small>
+					{% for img in images %}
+						<div class="col">
+							<div class="card shadow-sm">
+								{% if 'http' in img.image %}
+									<img src="{{img.image}}" class=" card-img-top" max-width="100%" height="225">
+								{% else %}
+									<img src="uploads/{{img.image}}" class=" card-img-top" max-width="100%" height="225">
+								{% endif %}
+								<div class="card-header">
+									{{img.idAnimal.nomAnimal}}
+
+									<hr>
+									<div class="card-body">
+										<p class="card-text">{{ img.idAnimal.texteAnimal|slice(0, 50)|raw}}</p>
+										Age de l'animal:
+										{{img.idAnimal.ageAnimal}}
+										ans
+										<div class="d-flex justify-content-between align-items-center">
+											<div class="btn-group">
+												<a type="button" class="btn btn-sm btn-outline-secondary" href="article/{{img.idAnimal.idAnimal}}">
+													En savoir plus...</a>
 											</div>
+											<small class="text-muted">{{img.idAnimal.prixAnimal}}
+												euros</small>
 										</div>
-										<div
-											class="card-footer">{# {% for categorie in animal.idCategorie %}
-																																		Catégorie:
-																																		{{ categorie.nomCategorie}}
-																																	{% endfor %} #}
-										</div>
+									</div>
+									<div
+										class="card-footer">{# {% for categorie in animal.idCategorie %}
+																																													Catégorie:
+																																													{{ categorie.nomCategorie}}
+																																												{% endfor %} #}
 									</div>
 								</div>
 							</div>
-						{% endfor %}
-							
+						</div>
+
 					{% endfor %}
 				</div>
 			</div>
@@ -73,13 +72,5 @@
 		{%include 'commun/footer.html.twig'%}
 
 
+{% endblock %}
 
-
-	{% endblock %}
-
-	{% block javascripts %}
-		<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
-		<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
-		<script src="{{asset('js/dashboard.js')}}"></script>
-
-	{% endblock %}

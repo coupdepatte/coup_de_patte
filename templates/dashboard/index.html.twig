@@ -5,8 +5,16 @@
 	<link href="{{asset('css/dashboard.css')}}" rel="stylesheet">
 {% endblock %}
 {% block body %}
-{% include 'commun/nav.html.twig' %}
-
+	{% include 'commun/nav.html.twig' %}
+{% if utilisateur and utilisateur.isVerified == false %}
+	<div class="alert alert-warning alert-dismissible" role="alert">
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		<div class="alert-message">
+			<strong>Votre compte n'est pas activé</strong>, <a href="{{ path('resend_verif') }}">renvoyer le lien d'activation</a>
+		</div>
+	</div>
+{% endif %}
+{% include "_partials/_flash.html.twig" %}
 	<div class="container-fluid">
 		<div class="row">
 			<main class="col-md  px-md-4">
@@ -34,8 +42,11 @@
 					<div class="card-header text-center">
 						{{ img.idAnimal.nomAnimal }}<br>
 					</div>
-					<img src="/uploads/{{img.image}}" class=" card-img-top" max-width="100%" height="225">
-
+					{% if 'http' in img.image %}
+						<img src="{{img.image}}" class=" card-img-top" max-width="100%" height="225">
+					{% else %}
+						<img src="uploads/{{img.image}}" class=" card-img-top" max-width="100%" height="225">
+					{% endif %}
 					<div class="card-body">
 						<p class="card-text">
 							{{img.idAnimal.texteAnimal | slice(0, 50) |raw}}...</p>
@@ -51,7 +62,7 @@
 		{% endfor %}
 
 	</div>
-{% include 'commun/footer.html.twig' %}
+	{% include 'commun/footer.html.twig' %}
 
 {% endblock %}
 {% block javascripts %}
