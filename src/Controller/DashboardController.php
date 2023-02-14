@@ -9,6 +9,7 @@ use App\Form\AnnonceType;
 use App\Repository\ImageRepository;
 use App\Repository\AnimalRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\UtilisateurRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,16 +20,17 @@ class DashboardController extends AbstractController
  {
     #[ Route( '/dashboard', name: 'app_dashboard' ) ]
 
-    public function index(ImageRepository $imageRepo, AnimalRepository $repoAnimal, UserInterface $utilisateurCo ): Response
+    public function index(ImageRepository $imageRepo, AnimalRepository $repoAnimal, UtilisateurRepository $repoUtilisateur,  UserInterface $utilisateurCo ): Response
  {
         $animals = $repoAnimal->findByIdUtilisateur( $utilisateurCo );
         //dd($animals);
         $images = $imageRepo->findByIdAnimal($animals);
         //dd($images);
+        $utilisateur = $repoUtilisateur->findOneByIdUtilisateur($utilisateurCo);
         return $this->render( 'dashboard/index.html.twig', [
             'animals' => $animals,
             'images' => $images,
-
+            'utilisateur' => $utilisateur, 
         ] );
 
     }
@@ -87,4 +89,5 @@ public function ajouterAnnoce( Request $request, UserInterface $utilisateurCo, E
             ] );
 
         }
+    
     }

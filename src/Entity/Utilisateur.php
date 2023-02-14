@@ -17,8 +17,8 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
  */
 
 #[UniqueEntity(
-    fields: ['login_utilisateur'],
-    errorPath: 'login_utilisateur',
+    fields: ['loginUtilisateur'],
+    errorPath: 'loginUtilisateur',
     message: 'Cet email semble déjà être utilisé, veuillez en choisir une autre.'
     )]
 
@@ -58,6 +58,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface, 
      * @var string
      *
      * @ORM\Column(name="login_utilisateur", type="string", length=100, nullable=false)
+     * @Assert\Email()
      */
     private $loginUtilisateur;
 
@@ -96,6 +97,13 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface, 
     private $latitudeAdresse;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="is_verified", type="boolean", nullable=false)
+     */
+    private $is_verified = false;
+
+    /**
      * @var \Role
      *
      * @ORM\ManyToOne(targetEntity="Role")
@@ -114,6 +122,8 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface, 
      * })
      */
     private $idLieu;
+
+
 
     public function getIdUtilisateur(): ?int
     {
@@ -215,6 +225,19 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface, 
 
         return $this;
     }
+
+    public function getIsVerified(): ?bool
+    {
+        return $this->is_verified;
+    }
+
+    public function setIsVerified(bool $is_verified): self
+    {
+        $this->is_verified = $is_verified;
+
+        return $this;
+    }
+
 
     public function getIdRole(): ?Role
     {
