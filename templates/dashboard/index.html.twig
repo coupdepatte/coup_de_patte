@@ -27,28 +27,36 @@
 	</div>
 
 	<div class="row mx-1">
-		{% for img in images %}
+		{% for animal in animals %}
 
-			<div class="col-lg-4">
-				<div class="card shadow-sm">
+			<div class="col-lg-4 mb-2" max-height:"450" min-height="450" width="100%">
+				<div class="card shadow-sm ">
 					<div class="card-header text-center">
-						{{ img.idAnimal.nomAnimal }}<br>
+						{{ animal[0].nomAnimal }}<br>
 					</div>
-					{% if 'http' in img.image %}
-						<img src="{{img.image}}" class=" card-img-top" max-width="100%" height="225">
-					{% else %}
-						<img src="uploads/{{img.image}}" class=" card-img-top" max-width="100%" height="225">
-					{% endif %}
+
+						{% if 'http' in animal.image %}
+							<img src="{{animal.image}}" class=" card-img-top" max-width="100%" max-height:"225" min-height="225">
+						{% else %}
+							<img src="uploads/{{animal.image}}" class=" card-img-top" max-width="100%" max-height:"225" min-height="225">
+						{% endif %}
+
+
 					<div class="card-body">
 						<p class="card-text">
-							{{img.idAnimal.texteAnimal | slice(0, 50) |raw}}...</p>
+							{{animal[0].texteAnimal | slice(0, 50) | raw }}...</p>
+						Age de l'animal:
+						{{animal[0].ageAnimal}}
+						ans
 						<div class="d-flex justify-content-between align-items-center">
 							<div class="btn-group">
-								<a type="button" class="btn btn-sm btn-outline-secondary">View</a>
+								<a type="button" class="btn btn-sm btn-outline-secondary">En savoir plus...</a>
+								<a href="dashboard/delete/{{animal[0].IdAnimal}}" type="button" class="btn btn-danger">Supprimer</a>
 							</div>
+							<small class="text-muted">{{animal[0].prixAnimal}}
+								euros</small>
 						</div>
 					</div>
-					<div class="card-footer text-muted"></div>
 				</div>
 			</div>
 		{% endfor %}

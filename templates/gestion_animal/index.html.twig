@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Animal index{% endblock %}
+
+{% block body %}
+    <h1>Animal index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdAnimal</th>
+                <th>NomAnimal</th>
+                <th>PoidAnimal</th>
+                <th>AgeAnimal</th>
+                <th>TexteAnimal</th>
+                <th>PrixAnimal</th>
+                <th>LofAnimal</th>
+                <th>IsFeminin</th>
+                <th>IsVaccine</th>
+                <th>IsIdentifie</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for animal in animals %}
+            <tr>
+                <td>{{ animal.idAnimal }}</td>
+                <td>{{ animal.nomAnimal }}</td>
+                <td>{{ animal.poidAnimal }}</td>
+                <td>{{ animal.ageAnimal }}</td>
+                <td>{{ animal.texteAnimal }}</td>
+                <td>{{ animal.prixAnimal }}</td>
+                <td>{{ animal.lofAnimal }}</td>
+                <td>{{ animal.isFeminin }}</td>
+                <td>{{ animal.isVaccine }}</td>
+                <td>{{ animal.isIdentifie }}</td>
+                <td>
+                    <a href="{{ path('app_gestion_animal_show', {'idAnimal': animal.idAnimal}) }}">show</a>
+                    <a href="{{ path('app_gestion_animal_edit', {'idAnimal': animal.idAnimal}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_gestion_animal_new') }}">Create new</a>
+{% endblock %}
