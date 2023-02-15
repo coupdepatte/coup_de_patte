@@ -18,12 +18,12 @@ class ContactType extends AbstractType
     {
         $builder
             ->add('nom', TextType::class, ['attr'=>['class'=>'form-control mt-2','placeholder' => 'Insérez votre Nom'],'label'=> false, 'mapped'=>false])
-            ->add('prenom', TextType::class, ['attr'=>['class'=>'form-control mt-2','placeholder' => 'Insérez votre Nom'],'label'=> false, 'mapped'=>false])
-            ->add('pseudo', TextType::class, ['attr'=>['class'=>'form-control mt-2','placeholder' => 'Insérez votre Nom'],'label'=> false, 'mapped'=>false])
-            ->add('email', EmailType::class, ['attr'=>['class'=>'form-control mt-2','placeholder' => 'Insérez votre Nom'],'label'=> false, 'mapped'=>false])
+            ->add('prenom', TextType::class, ['attr'=>['class'=>'form-control mt-2','placeholder' => 'Insérez votre Prénom'],'label'=> false, 'mapped'=>false])
+            ->add('pseudo', TextType::class, ['attr'=>['class'=>'form-control mt-2','placeholder' => 'Insérez votre Pseudo'],'label'=> false, 'mapped'=>false])
+            ->add('email', EmailType::class, ['attr'=>['class'=>'form-control mt-2','placeholder' => 'Insérez votre Email'],'label'=> false, 'mapped'=>false])
             ->add('adresse', TextType::class, ['attr'=>['class'=>'form-control mt-2','placeholder' => 'Insérez votre Adresse'],'label'=> false, 'mapped'=>false])
-            ->add('codepostal', TextType::class, ['attr'=>['class'=>'form-control mt-2','placeholder' => 'Insérez votre Adresse'],'label'=> false, 'mapped'=>false])
-            ->add('ville', TextType::class, ['attr'=>['class'=>'form-control mt-2','placeholder' => 'Insérez votre Adresse'],'label'=> false, 'mapped'=>false])
+            ->add('codepostal', TextType::class, ['attr'=>['class'=>'form-control mt-2','placeholder' => 'Insérez votre Code Postal'],'label'=> false, 'mapped'=>false])
+            ->add('ville', TextType::class, ['attr'=>['class'=>'form-control mt-2','placeholder' => 'Insérez votre Ville'],'label'=> false, 'mapped'=>false])
             ->add('departement', EntityType::class,[
                 'class' => Departement::class,
                 'choice_label' => 'nomDepartement',
