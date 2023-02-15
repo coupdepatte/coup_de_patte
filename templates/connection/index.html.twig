@@ -4,6 +4,10 @@
 
 {% block body %}
 {% include 'commun/nav.html.twig' %}
+{%include 'commun/nav.html.twig'%}
+
+
+
 <main class="container text-center">
     <h2 class="my-3">Espace de connexion</h2>
     <div class="col my-5 d-flex">
@@ -33,8 +37,7 @@
         </div>
     </div>
 </main>
-{% include 'commun/footer.html.twig' %}
-
+{%include 'commun/footer.html.twig'%}
 {% endblock %}
 
 {% block javascripts %}

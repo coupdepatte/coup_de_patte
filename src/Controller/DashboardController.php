@@ -10,6 +10,7 @@ use Doctrine\ORM\EntityManager;
 use App\Repository\ImageRepository;
 use App\Repository\AnimalRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\UtilisateurRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
