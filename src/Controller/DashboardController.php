@@ -21,14 +21,17 @@ class DashboardController extends AbstractController
  {
     #[ Route( '/dashboard', name: 'app_dashboard' ) ]
 
-    public function index( ImageRepository $imageRepo, AnimalRepository $repoAnimal, UserInterface $utilisateurCo ): Response
+    public function index( ImageRepository $imageRepo, AnimalRepository $repoAnimal, UserInterface $utilisateurCo, UtilisateurRepository $repoUtilisateur ): Response
  {
 
         $animals = $repoAnimal->articleParSonIdUtilisateur( $utilisateurCo );
 
         //dd( $animals );
+        $utilisateur = $repoUtilisateur ->findOneByIdUtilisateur ($utilisateurCo);
         return $this->render( 'dashboard/index.html.twig', [
             'animals' => $animals,
+            'utilisateur' => $utilisateur,
+
 
         ] );
 
