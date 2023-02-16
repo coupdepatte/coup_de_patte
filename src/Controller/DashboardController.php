@@ -21,13 +21,16 @@ class DashboardController extends AbstractController
  {
     #[ Route( '/dashboard', name: 'app_dashboard' ) ]
 
-    public function index(UtilisateurRepository $repoUtilisateur, ImageRepository $imageRepo, AnimalRepository $repoAnimal, UserInterface $utilisateurCo ): Response
+    public function index(EntityManagerInterface $manager, UtilisateurRepository $repoUtilisateur, ImageRepository $imageRepo, AnimalRepository $repoAnimal, UserInterface $utilisateurCo ): Response
  {
 
-        $animals = $repoAnimal->articleParSonIdUtilisateur( $utilisateurCo );
+        $animals = $repoAnimal->articleParSonIdUtilisateur($utilisateurCo);
 
         //dd( $animals );
-        $utilisateur = $repoUtilisateur->findOneByIdUtilisateur( $utilisateurCo );
+        $utilisateur = $repoUtilisateur->findOneByIdUtilisateur($utilisateurCo);
+
+        $manager->persist($utilisateur);
+
         return $this->render( 'dashboard/index.html.twig', [
             'animals' => $animals,
             'utilisateur'=>$utilisateur,
@@ -45,6 +48,7 @@ class DashboardController extends AbstractController
             $em->flush();
         }
 
+        $animals = $animalRepository->findOneByIdAnimal($id);
 
         $em->remove($animals);
         $em->flush();

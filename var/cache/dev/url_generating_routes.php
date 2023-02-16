@@ -17,7 +17,7 @@ return [
     '_profiler_exception' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::body'], [], [['text', '/exception'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], [], []],
     '_profiler_exception_css' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::stylesheet'], [], [['text', '/exception.css'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], [], []],
     'app_accueil' => [[], ['_controller' => 'App\\Controller\\AccueilController::index'], [], [['text', '/']], [], [], []],
-    'app_annonce' => [[], ['_controller' => 'App\\Controller\\AnnonceController::index'], [], [['text', '/annonce']], [], [], []],
+    'app_annonce' => [['id'], ['_controller' => 'App\\Controller\\AnnonceController::index'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/annonce']], [], [], []],
     'app_commun' => [[], ['_controller' => 'App\\Controller\\CommunController::index'], [], [['text', '/commun']], [], [], []],
     'app_connection' => [[], ['_controller' => 'App\\Controller\\ConnectionController::index'], [], [['text', '/connection']], [], [], []],
     'app_deconnexion' => [[], ['_controller' => 'App\\Controller\\ConnectionController::logout'], [], [['text', '/deconnexion']], [], [], []],
@@ -31,5 +31,7 @@ return [
     'app_gestion_animal_edit' => [['idAnimal'], ['_controller' => 'App\\Controller\\GestionAnimalController::edit'], [], [['text', '/edit'], ['variable', '/', '[^/]++', 'idAnimal', true], ['text', '/gestion/animal']], [], [], []],
     'app_gestion_animal_delete' => [['idAnimal'], ['_controller' => 'App\\Controller\\GestionAnimalController::delete'], [], [['variable', '/', '[^/]++', 'idAnimal', true], ['text', '/gestion/animaldashboard/delete']], [], [], []],
     'app_inscription' => [[], ['_controller' => 'App\\Controller\\InscriptionController::index'], [], [['text', '/inscription']], [], [], []],
+    'verify_user' => [['token'], ['_controller' => 'App\\Controller\\InscriptionController::verifyUser'], [], [['variable', '/', '[^/]++', 'token', true], ['text', '/verif']], [], [], []],
+    'resend_verif' => [[], ['_controller' => 'App\\Controller\\InscriptionController::resendVerif'], [], [['text', '/renvoiverif']], [], [], []],
     'app_recherche' => [[], ['_controller' => 'App\\Controller\\RechercheController::index'], [], [['text', '/recherche']], [], [], []],
 ];

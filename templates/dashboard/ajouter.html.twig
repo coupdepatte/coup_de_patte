@@ -1,6 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %}Hello DashboardController!
-{% endblock %}
+
 {% block stylesheets %}
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -26,7 +25,7 @@
 							</h1>
 							<a class="nav-link " href="{{path('app_dashboard_ajouter')}}">
 								<span data-feather="file" class="align-text-bottom"></span>
-								Ajouter un article
+								Ajouter une annonce
 							</a>
 							<a class="nav-link active mx-2" aria-current="page" href="{{path('app_dashboard')}}">
 								<span data-feather="home" class="align-text-bottom"></span>
