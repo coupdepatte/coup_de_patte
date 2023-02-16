@@ -15,7 +15,13 @@
     <div class="p-5 mb-4 bg-light rounded-3">
       <div class="container-fluid py-5">
         <h1 class="display-5 fw-bold">{{animal.ageAnimal}}</h1>
-        <img src="{{URLImage}}" class=" card-img-top" >
+        {% for image in URLImage %}
+          {% if 'http' in image %}
+						<img src="{{image}}" class=" card-img-top" max-width="100%" height="225">
+					{% else %}
+						<img src="/uploads/{{image}}" class=" card-img-top" max-width="100%" height="225">
+					{% endif %}
+        {% endfor %}
         <p class="col-md-8 fs-4">{{animal.texteAnimal}}</p>
         <a  href="{{ path('app_accueil')}} " type="button" class="btn btn-sm btn-outline-secondary">Retour vers l'acceuil</a>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Contacter le propriétaire de l'animal.</button>
