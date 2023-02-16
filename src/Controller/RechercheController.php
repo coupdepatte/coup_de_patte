@@ -21,9 +21,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class RechercheController extends AbstractController
 {
     #[Route('/recherche', name: 'app_recherche')]
-    public function index(RaceRepository $repoRace, TypeanimalRepository $repoTypeAnimal, TailleRepository $repoTaille, CouleurRepository $repoCouleur, TypepoilsRepository $repoPoils, StatutRepository $repoStatut): Response
+    public function index( RaceRepository $repoRace, TypeanimalRepository $repoTypeAnimal, TailleRepository $repoTaille, CouleurRepository $repoCouleur, TypepoilsRepository $repoPoils, StatutRepository $repoStatut): Response
     {
-
         $races = new Race();
         $races = $repoRace->findAll();
 

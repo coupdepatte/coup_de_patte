@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Dashboard - Coup de Patte
+{% endblock %}
 {% block stylesheets %}
     <link href="{{asset('css/dashboard.css')}}" rel="stylesheet">
     {{ encore_entry_link_tags('app') }}
@@ -11,15 +12,16 @@
 
 
 	{% include 'commun/nav.html.twig' %}
-{% if utilisateur and utilisateur.isVerified == false %}
-	<div class="alert alert-warning alert-dismissible" role="alert">
-		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-		<div class="alert-message">
-			<strong>Votre compte n'est pas activé</strong>, <a href="{{ path('resend_verif') }}">renvoyer le lien d'activation</a>
+	{% if utilisateur and utilisateur.isVerified == false %}
+		<div class="alert alert-warning alert-dismissible" role="alert">
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			<div class="alert-message">
+				<strong>Votre compte n'est pas activé</strong>,
+				<a href="{{ path('resend_verif') }}">renvoyer le lien d'activation</a>
+			</div>
 		</div>
-	</div>
-{% endif %}
-{% include "_partials/_flash.html.twig" %}
+	{% endif %}
+	{% include "_partials/_flash.html.twig" %}
 	<div class="container-fluid">
 		<div class="row">
 			<main class="col-md  px-md-4">
@@ -74,6 +76,14 @@
 			</div>
 		{% endfor %}
 
+		<div class="container ">
+			<div class="row mx-auto">
+				<div class="col-lg-2 mx-auto">
+				<div class="col-lg-4 mx-auto">
+					<a type="submit" class="btn btn-dark" href='/deconnexion'>Déconnexion</a>
+				</div>
+			</div>
+		</div>
 	</div>
 	{% include 'commun/footer.html.twig' %}
 
