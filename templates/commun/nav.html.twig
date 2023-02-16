@@ -16,7 +16,7 @@
 						</a>
 					</li>
 					<li>
-						<a class="nav-link text-white"{{active_dashboard|default("")}}'  href="{{path('app_dashboard')}}" '>
+						<a class="nav-link text-white"{{active_dashboard|default("")}}  href="{{path('app_dashboard')}}" >
 							<svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#speedometer2"/></svg>
 							Mon compte
 						</a>
@@ -29,7 +29,7 @@
 						</a>
 					</li>
 					<li>
-						<a class="nav-link text-white"{{active_contact|default("")}}'  href="{{path('app_contact')}}" '>
+						<a class="nav-link text-white"{{active_contact|default("")}}  href="{{path('app_contact')}}" >
 							<svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"/></svg>
 							Nous Contacter
 						</a>
@@ -45,8 +45,8 @@
 			</form>
 
 			<div class="text-end">
-				<a type="button" class="btn btn-success" {{active_connection|default("")}}' aria-current="page" href="{{path('app_connection')}}" '>S'identifier</a>
-				<a type="button" class="btn btn-danger"  {{active_inscription|default("")}}' aria-current="page" href="{{path('app_inscription')}}" '>Inscription</a>
+				<a type="button" class="btn btn-success" {{active_connection|default("")}} aria-current="page" href="{{path('app_connection')}}" >S'identifier</a>
+				<a type="button" class="btn btn-danger"  {{active_inscription|default("")}} aria-current="page" href="{{path('app_inscription')}}" >Inscription</a>
 			</div>
 		</div>
 	</div>
