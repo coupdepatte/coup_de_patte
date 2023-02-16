@@ -7,22 +7,38 @@
 
 <main>
   <div class="container py-4">
-    <header class="pb-3 mb-4 border-bottom">
+    <header class="pb-3 mb-4 border-bottom text-center">
         <img class="d-block mx-auto mb-4" src="{{asset('images/png-clipart-paw-dog-printing-paws-animals-monochrome.png')}}" alt="" width="72" height="57">
-        <span class="fs-1 text-center">{{animal.nomAnimal}}</span>
+        <span class="fs-1">{{animal.nomAnimal}}</span>
+        <p class="fs-3" >{{animal.idRace.nomRace}}</p>
     </header>
 
     <div class="p-5 mb-4 bg-light rounded-3">
-      <div class="container-fluid py-5">
-        <h1 class="display-5 fw-bold">{{animal.ageAnimal}}</h1>
+      <div class="container-fluid rounded-3">
         {% for image in URLImage %}
           {% if 'http' in image %}
-						<img src="{{image}}" class=" card-img-top" max-width="100%" height="225">
+						<img src="{{image}}" class="rounded-3 card-img-top" max-width="100%">
 					{% else %}
-						<img src="/uploads/{{image}}" class=" card-img-top" max-width="100%" height="225">
+						<img src="/uploads/{{image}}" class=" card-img-top" max-width="100%">
 					{% endif %}
         {% endfor %}
-        <p class="col-md-8 fs-4">{{animal.texteAnimal}}</p>
+        <p class="col-md-8 fs-4 mb-4 text-center mx-auto">{{animal.texteAnimal}}</p>
+        <div class="row">
+        <p class="col-md-4 text-center fs-4">{{animal.ageAnimal}} ans</p>
+        <p class="col-md-4 text-center fs-4">{{animal.poidAnimal}} Kg</p>
+        <p class="col-md-4 text-center fs-4">{{animal.prixAnimal}} €</p>
+        </div>
+        <div class="row">
+        <p class="col-md-4 text-center fs-4"> LOF : {{animal.lofAnimal}}</p>
+        <p class="col-md-4 text-center fs-4">Female : {{animal.isFeminin}}</p>
+        <p class="col-md-4 text-center fs-4">Identifié : {{animal.isIdentifie}}</p>
+        </div>
+        </div>
+        <div class="row">
+        <p class="col-md-4 text-center fs-4">Taille : {{animal.idTaille.nomTaille}}</p>
+        <p class="col-md-4 text-center fs-4">Couleur : {{animal.idCouleur.nomCouleur}}</p>
+        <p class="col-md-4 text-center fs-4">Poils : {{animal.idTypepoils.nomTypepoils}}</p>
+        </div>
         <a  href="{{ path('app_accueil')}} " type="button" class="btn btn-sm btn-outline-secondary">Retour vers l'acceuil</a>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Contacter le propriétaire de l'animal.</button>
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
