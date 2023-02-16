@@ -21,15 +21,16 @@ class DashboardController extends AbstractController
  {
     #[ Route( '/dashboard', name: 'app_dashboard' ) ]
 
-    public function index( ImageRepository $imageRepo, AnimalRepository $repoAnimal, UserInterface $utilisateurCo ): Response
+    public function index(UtilisateurRepository $repoUtilisateur, ImageRepository $imageRepo, AnimalRepository $repoAnimal, UserInterface $utilisateurCo ): Response
  {
 
         $animals = $repoAnimal->articleParSonIdUtilisateur( $utilisateurCo );
 
         //dd( $animals );
+        $utilisateur = $repoUtilisateur->findOneByIdUtilisateur( $utilisateurCo );
         return $this->render( 'dashboard/index.html.twig', [
             'animals' => $animals,
-
+            'utilisateur'=>$utilisateur,
         ] );
 
     }
@@ -38,16 +39,18 @@ class DashboardController extends AbstractController
 
     public function delete( $id,  AnimalRepository $animalRepository,  ImageRepository $imageRepository, EntityManagerInterface $em ): Response
  {
+        $images = $imageRepository->findByIdAnimal($id);
+        foreach ($images as $image) {
+            $em->remove($image);
+            $em->flush();
+        }
 
 
-        $animals = $animalRepository ->findOneByIdAnimal( $id );
-        $em->remove( $animals );
+        $em->remove($animals);
         $em->flush();
 
-        return $this->render( 'dashboard/index.html.twig', [
-            'animals'=>$animals,
+        return $this->redirectToRoute('app_dashboard');
 
-        ] );
     }
 
     #[ Route( '/dashboard/ajouter-article', name: 'app_dashboard_ajouter' ) ]
@@ -58,7 +61,7 @@ class DashboardController extends AbstractController
         $form_animal = $this->createForm( AnnonceType::class, $animal );
         $form_animal->handleRequest( $request );
         if ( $form_animal->isSubmitted() && $form_animal->isValid() ) {
-            $animal ->setIdUtilisateur( $utilisateurCo );
+            $animal->setIdUtilisateur( $utilisateurCo );
 
             $manager->persist( $animal );
             $manager->flush();

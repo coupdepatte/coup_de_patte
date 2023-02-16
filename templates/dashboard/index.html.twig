@@ -1,10 +1,15 @@
 {% extends 'base.html.twig' %}
-{% block title %}Hello DashboardController!
-{% endblock %}
+
 {% block stylesheets %}
-	<link href="{{asset('css/dashboard.css')}}" rel="stylesheet">
+    <link href="{{asset('css/dashboard.css')}}" rel="stylesheet">
+    {{ encore_entry_link_tags('app') }}
 {% endblock %}
+
+{% block title %}Coup de patte - Mon compte {% endblock %}
+
 {% block body %}
+
+
 	{% include 'commun/nav.html.twig' %}
 {% if utilisateur and utilisateur.isVerified == false %}
 	<div class="alert alert-warning alert-dismissible" role="alert">
@@ -23,7 +28,7 @@
 					</h1>
 					<a class="nav-link " href="{{path('app_dashboard_ajouter')}}">
 						<span data-feather="file" class="align-text-bottom"></span>
-						Ajouter un article
+						Ajouter une annonce
 					</a>
 					<a class="nav-link active mx-2" aria-current="page" href="{{path('app_dashboard')}}">
 						<span data-feather="home" class="align-text-bottom"></span>
@@ -37,16 +42,16 @@
 	<div class="row mx-1">
 		{% for animal in animals %}
 
-			<div class="col-lg-4 mb-2" max-height:"450" min-height="450" width="100%">
-				<div class="card shadow-sm ">
+			<div class="col-lg-4 mb-2" >
+				<div class="card shadow-sm " >
 					<div class="card-header text-center">
 						{{ animal[0].nomAnimal }}<br>
 					</div>
 
 						{% if 'http' in animal.image %}
-							<img src="{{animal.image}}" class=" card-img-top" max-width="100%" max-height:"225" min-height="225">
+							<img src="{{animal.image}}" class=" card-img-top" >
 						{% else %}
-							<img src="uploads/{{animal.image}}" class=" card-img-top" max-width="100%" max-height:"225" min-height="225">
+							<img src="uploads/{{animal.image}}" class=" card-img-top"  >
 						{% endif %}
 
 
@@ -74,7 +79,4 @@
 
 {% endblock %}
 {% block javascripts %}
-	<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
-	<script src="{{asset('js/dashboard.js')}}"></script>
 {% endblock %}
