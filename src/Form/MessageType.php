@@ -25,6 +25,7 @@ class MessageType extends AbstractType
     {
         $resolver->setDefaults([
             // Configure your form options here
+            // test
         ]);
     }
 }

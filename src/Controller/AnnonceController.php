@@ -32,7 +32,7 @@ class AnnonceController extends AbstractController
             $URLImage[] = $image->getImage();
         };
         //dd($URLImage);
-        $vendeur = $repoUtilisateur->findOneByIdUtilisateur($animal);
+        $vendeur = $repoUtilisateur->findOneByIdUtilisateur($animal->getIdUtilisateur());
         //dd($vendeur);
         if($form_message->isSubmitted() && $form_message->isValid()){
             $email = (new Email())
