@@ -27,7 +27,7 @@ class DashboardController extends AbstractController
         $animals = $repoAnimal->articleParSonIdUtilisateur( $utilisateurCo );
 
         //dd( $animals );
-        $utilisateur = $repoUtilisateur ->findOneByIdUtilisateur ($utilisateurCo);
+        $utilisateur = $repoUtilisateur->findOneByIdUtilisateur($utilisateurCo);
         return $this->render( 'dashboard/index.html.twig', [
             'animals' => $animals,
             'utilisateur' => $utilisateur,
