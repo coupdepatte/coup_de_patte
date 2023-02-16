@@ -6,6 +6,7 @@ use DateTime;
 use App\Entity\Image;
 use App\Entity\Animal;
 use App\Form\AnnonceType;
+use Doctrine\ORM\EntityManager;
 use App\Repository\ImageRepository;
 use App\Repository\AnimalRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -20,74 +21,84 @@ class DashboardController extends AbstractController
  {
     #[ Route( '/dashboard', name: 'app_dashboard' ) ]
 
-    public function index(ImageRepository $imageRepo, AnimalRepository $repoAnimal, UtilisateurRepository $repoUtilisateur,  UserInterface $utilisateurCo ): Response
+    public function index( ImageRepository $imageRepo, AnimalRepository $repoAnimal, UserInterface $utilisateurCo, UtilisateurRepository $repoUtilisateur ): Response
  {
-        $animals = $repoAnimal->findByIdUtilisateur( $utilisateurCo );
-        //dd($animals);
-        $images = $imageRepo->findByIdAnimal($animals);
-        //dd($images);
-        $utilisateur = $repoUtilisateur->findOneByIdUtilisateur($utilisateurCo);
+
+        $animals = $repoAnimal->articleParSonIdUtilisateur( $utilisateurCo );
+
+        //dd( $animals );
+        $utilisateur = $repoUtilisateur ->findOneByIdUtilisateur ($utilisateurCo);
         return $this->render( 'dashboard/index.html.twig', [
             'animals' => $animals,
-            'images' => $images,
-            'utilisateur' => $utilisateur, 
+            'utilisateur' => $utilisateur,
+
+
         ] );
 
     }
 
-#[ Route( '/dashboard/ajouter-article', name: 'app_dashboard_ajouter' ) ]
+    #[ Route( 'dashboard/delete/{id}', methods: [ 'GET' ], name:'delete_annonce' ) ]
 
-public function ajouterAnnoce( Request $request, UserInterface $utilisateurCo, EntityManagerInterface $manager ): Response{
+    public function delete( $id,  AnimalRepository $animalRepository,  ImageRepository $imageRepository, EntityManagerInterface $em ): Response
+ {
+
+
+        $animals = $animalRepository ->findOneByIdAnimal( $id );
+        $em->remove( $animals );
+        $em->flush();
+
+        return $this->render( 'dashboard/index.html.twig', [
+            'animals'=>$animals,
+
+        ] );
+    }
+
+    #[ Route( '/dashboard/ajouter-article', name: 'app_dashboard_ajouter' ) ]
+
+    public function ajouterAnnoce( Request $request, UserInterface $utilisateurCo, EntityManagerInterface $manager, AnimalRepository $repoAnimal ): Response {
 
         $animal = new Animal();
         $form_animal = $this->createForm( AnnonceType::class, $animal );
-
         $form_animal->handleRequest( $request );
+        if ( $form_animal->isSubmitted() && $form_animal->isValid() ) {
+            $animal ->setIdUtilisateur( $utilisateurCo );
 
-        if( $form_animal->isSubmitted() && $form_animal->isValid() ) {
-            $animal->setIdUtilisateur( $utilisateurCo );
+            $manager->persist( $animal );
+            $manager->flush();
 
-
-            $images = $form_animal->get( 'images' )->getData();
-
+            $images =  $form_animal->get( 'images' )->getData();
+            //dd( $images );
             foreach ( $images as $image ) {
-                // On génère un nouveau nom de fichier
                 $fichier = md5( uniqid() ).'.'.$image->guessExtension();
-
-                // On copie le fichier dans le dossier uploads
                 $image->move(
                     $this->getParameter( 'images_directory' ),
                     $fichier
                 );
-
-                // On crée l'image dans la base de données
                 $img = new Image();
-                $img->setImage($fichier);
-                $img->setIdAnimal($animal);
+                $img->setImage( $fichier );
+                $img->setIdAnimal( $animal );
+
                 $manager->persist( $img );
+                //dd( $images );
+
             }
-        
-            $manager->persist( $animal );
+
+            //dd( $images );
             $manager->flush();
-            $this->addFlash('success',"
-                            <script>Swal.fire({
-                            position: 'center' ,
-                            icon: 'success' ,
-                            title: 'Annonce ajouté' ,
-                            showConfirmButotn: false,
-                            timer:1500})</script>");
-            
+
+            $this->addFlash( 'success', "<script>Swal.fire({
+                position: 'center',
+                icon:'success', 
+                title:'Votre annonce a bien ete ajouté !', 
+                showCinfirmation:false,
+                timer: 1500
+            })</script>" );
             return $this->redirectToRoute( 'app_dashboard_ajouter' );
-
-            //dd( $article );
         }
-        
+
         return $this->render( 'dashboard/ajouter.html.twig', [
-
+            'controller_name' => 'AjouterArticleController',
             'form_animal' => $form_animal->createView(),
-            
-            ] );
-
-        }
-    
+        ] );
     }
+}

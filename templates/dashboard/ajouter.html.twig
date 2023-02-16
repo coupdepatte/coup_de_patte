@@ -76,24 +76,32 @@
 	<div class="container-fluid">
 		<div class="row">
 			{% include 'commun/nav.html.twig' %}
-	<div class="container-fluid">
-		<div class="row">
-			<main class="col-md  px-md-4">
-				<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-					<h1 class="h2">Créez une annonce
-					</h1>
-					<a class="nav-link " href="{{path('app_dashboard_ajouter')}}">
-						<span data-feather="file" class="align-text-bottom"></span>
-						Ajouter un article
-					</a>
-					<a class="nav-link active mx-2" aria-current="page" href="{{path('app_dashboard')}}">
-						<span data-feather="home" class="align-text-bottom"></span>
-						Mes annonces
-					</a>
+			<div class="container-fluid">
+				<div class="row">
+					<main class="col-md  px-md-4">
+						<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+							<h1 class="h2">Créez une annonce
+							</h1>
+							<a class="nav-link " href="{{path('app_dashboard_ajouter')}}">
+								<span data-feather="file" class="align-text-bottom"></span>
+								Ajouter un article
+							</a>
+							<a class="nav-link active mx-2" aria-current="page" href="{{path('app_dashboard')}}">
+								<span data-feather="home" class="align-text-bottom"></span>
+								Mes annonces
+							</a>
+						</div>
+					</main>
 				</div>
-			</main>
-		</div>
-	</div>
+			</div>
+
+			<div class='row'>
+				{% for message in app.flashes('success') %}
+					<div class="flash-notice">
+						{{ message | raw }}
+					</div>
+				{% endfor %}
+			</div>
 			<div class="container-fluid">
 				<div class="row mx-auto">
 					<div class=" col-lg-6 align-self-center mx-auto">
@@ -245,7 +253,7 @@
 	let compteur = 0;
 
 $(".imgAdd").click(function () {
-$(this).closest(".row").find('.imgAdd').before('<div class="col-sm-4 imgUp"><div class="imagePreview"></div><label class="btn btn-primary">Upload<input type="file" name="article[images][]" class="uploadFile img" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;"></label><i class="fa fa-times del"></i></div>');
+$(this).closest(".row").find('.imgAdd').before('<div class="col-sm-4 imgUp"><div class="imagePreview"></div><label class="btn btn-primary">Upload<input type="file" name="annonce[images][]" class="uploadFile img" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;"></label><i class="fa fa-times del"></i></div>');
 
 compteur++;
 console.log(compteur);

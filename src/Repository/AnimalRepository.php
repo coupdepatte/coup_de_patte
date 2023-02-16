@@ -2,9 +2,10 @@
 
 namespace App\Repository;
 
+use App\Entity\Image;
 use App\Entity\Animal;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Animal>
@@ -63,4 +64,18 @@ class AnimalRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+public function articleParSonIdUtilisateur($value): array
+{
+    return $this->createQueryBuilder('a')
+        ->andWhere('a.idUtilisateur = :val')
+        ->setParameter('val', $value)
+        ->Join(Image::class, 'i', 'WITH', 'a.idAnimal = i.idAnimal')
+        ->addSelect('i.image')
+        ->orderBy('i.idImage', 'DESC')
+        ->setMaxResults(10)
+        ->getQuery()
+        ->getResult()
+    ;
+}
 }

@@ -23,7 +23,13 @@ return [
     'app_deconnexion' => [[], ['_controller' => 'App\\Controller\\ConnectionController::logout'], [], [['text', '/deconnexion']], [], [], []],
     'app_contact' => [[], ['_controller' => 'App\\Controller\\ContactController::index'], [], [['text', '/contact']], [], [], []],
     'app_dashboard' => [[], ['_controller' => 'App\\Controller\\DashboardController::index'], [], [['text', '/dashboard']], [], [], []],
+    'delete_annonce' => [['id'], ['_controller' => 'App\\Controller\\DashboardController::delete'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/dashboard/delete']], [], [], []],
     'app_dashboard_ajouter' => [[], ['_controller' => 'App\\Controller\\DashboardController::ajouterAnnoce'], [], [['text', '/dashboard/ajouter-article']], [], [], []],
+    'app_gestion_animal_index' => [[], ['_controller' => 'App\\Controller\\GestionAnimalController::index'], [], [['text', '/gestion/animal/gestion_animal']], [], [], []],
+    'app_gestion_animal_new' => [[], ['_controller' => 'App\\Controller\\GestionAnimalController::new'], [], [['text', '/gestion/animal/new']], [], [], []],
+    'app_gestion_animal_show' => [['idAnimal'], ['_controller' => 'App\\Controller\\GestionAnimalController::show'], [], [['variable', '/', '[^/]++', 'idAnimal', true], ['text', '/gestion/animal']], [], [], []],
+    'app_gestion_animal_edit' => [['idAnimal'], ['_controller' => 'App\\Controller\\GestionAnimalController::edit'], [], [['text', '/edit'], ['variable', '/', '[^/]++', 'idAnimal', true], ['text', '/gestion/animal']], [], [], []],
+    'app_gestion_animal_delete' => [['idAnimal'], ['_controller' => 'App\\Controller\\GestionAnimalController::delete'], [], [['variable', '/', '[^/]++', 'idAnimal', true], ['text', '/gestion/animaldashboard/delete']], [], [], []],
     'app_inscription' => [[], ['_controller' => 'App\\Controller\\InscriptionController::index'], [], [['text', '/inscription']], [], [], []],
     'app_recherche' => [[], ['_controller' => 'App\\Controller\\RechercheController::index'], [], [['text', '/recherche']], [], [], []],
 ];
