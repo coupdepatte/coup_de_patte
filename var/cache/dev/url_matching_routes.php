@@ -15,7 +15,6 @@ return [
         '/_profiler/xdebug' => [[['_route' => '_profiler_xdebug', '_controller' => 'web_profiler.controller.profiler::xdebugAction'], null, null, null, false, false, null]],
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
         '/' => [[['_route' => 'app_accueil', '_controller' => 'App\\Controller\\AccueilController::index'], null, null, null, false, false, null]],
-        '/annonce' => [[['_route' => 'app_annonce', '_controller' => 'App\\Controller\\AnnonceController::index'], null, null, null, false, false, null]],
         '/commun' => [[['_route' => 'app_commun', '_controller' => 'App\\Controller\\CommunController::index'], null, null, null, false, false, null]],
         '/connection' => [[['_route' => 'app_connection', '_controller' => 'App\\Controller\\ConnectionController::index'], null, null, null, false, false, null]],
         '/deconnexion' => [[['_route' => 'app_deconnexion', '_controller' => 'App\\Controller\\ConnectionController::logout'], null, null, null, false, false, null]],
@@ -25,6 +24,7 @@ return [
         '/gestion/animal/gestion_animal' => [[['_route' => 'app_gestion_animal_index', '_controller' => 'App\\Controller\\GestionAnimalController::index'], null, ['GET' => 0], null, false, false, null]],
         '/gestion/animal/new' => [[['_route' => 'app_gestion_animal_new', '_controller' => 'App\\Controller\\GestionAnimalController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/inscription' => [[['_route' => 'app_inscription', '_controller' => 'App\\Controller\\InscriptionController::index'], null, null, null, false, false, null]],
+        '/renvoiverif' => [[['_route' => 'resend_verif', '_controller' => 'App\\Controller\\InscriptionController::resendVerif'], null, null, null, false, false, null]],
         '/recherche' => [[['_route' => 'app_recherche', '_controller' => 'App\\Controller\\RechercheController::index'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
@@ -44,14 +44,16 @@ return [
                         .'|(*:159)'
                     .')'
                 .')'
-                .'|/dashboard/delete/([^/]++)(*:195)'
+                .'|/annonce/([^/]++)(*:186)'
+                .'|/dashboard/delete/([^/]++)(*:220)'
                 .'|/gestion/animal(?'
                     .'|/([^/]++)(?'
-                        .'|(*:233)'
-                        .'|/edit(*:246)'
+                        .'|(*:258)'
+                        .'|/edit(*:271)'
                     .')'
-                    .'|dashboard/delete/([^/]++)(*:280)'
+                    .'|dashboard/delete/([^/]++)(*:305)'
                 .')'
+                .'|/verif/([^/]++)(*:329)'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -62,11 +64,13 @@ return [
         136 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
         149 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
         159 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
-        195 => [[['_route' => 'delete_annonce', '_controller' => 'App\\Controller\\DashboardController::delete'], ['id'], ['GET' => 0], null, false, true, null]],
-        233 => [[['_route' => 'app_gestion_animal_show', '_controller' => 'App\\Controller\\GestionAnimalController::show'], ['idAnimal'], ['GET' => 0], null, false, true, null]],
-        246 => [[['_route' => 'app_gestion_animal_edit', '_controller' => 'App\\Controller\\GestionAnimalController::edit'], ['idAnimal'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        280 => [
-            [['_route' => 'app_gestion_animal_delete', '_controller' => 'App\\Controller\\GestionAnimalController::delete'], ['idAnimal'], ['POST' => 0], null, false, true, null],
+        186 => [[['_route' => 'app_annonce', '_controller' => 'App\\Controller\\AnnonceController::index'], ['id'], null, null, false, true, null]],
+        220 => [[['_route' => 'delete_annonce', '_controller' => 'App\\Controller\\DashboardController::delete'], ['id'], ['GET' => 0], null, false, true, null]],
+        258 => [[['_route' => 'app_gestion_animal_show', '_controller' => 'App\\Controller\\GestionAnimalController::show'], ['idAnimal'], ['GET' => 0], null, false, true, null]],
+        271 => [[['_route' => 'app_gestion_animal_edit', '_controller' => 'App\\Controller\\GestionAnimalController::edit'], ['idAnimal'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        305 => [[['_route' => 'app_gestion_animal_delete', '_controller' => 'App\\Controller\\GestionAnimalController::delete'], ['idAnimal'], ['POST' => 0], null, false, true, null]],
+        329 => [
+            [['_route' => 'verify_user', '_controller' => 'App\\Controller\\InscriptionController::verifyUser'], ['token'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
     ],
