@@ -26,11 +26,14 @@ class AnnonceController extends AbstractController
         $form_message = $this->createForm(MessageType::class);
         $form_message->handleRequest($request);
         $animal = $repoAnimal->findOneByIdAnimal($id);
+        //dd($animal);
         $images = $repoImage->findByIdAnimal($id);
         foreach($images as $image){
-            $URLImage = $image->getImage();
+            $URLImage[] = $image->getImage();
         };
+        //dd($URLImage);
         $vendeur = $repoUtilisateur->findOneByIdUtilisateur($animal);
+        //dd($vendeur);
         if($form_message->isSubmitted() && $form_message->isValid()){
             $email = (new Email())
             ->from($utilisateurCo->getLoginUtilisateur())
