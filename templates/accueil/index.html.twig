@@ -37,13 +37,12 @@
 								{% endif %}
 								</div>
 								<div class="card-header">
-									{{animal.nomAnimal}}
 								<div class="card-header text-center">
 								{{ animal.nomAnimal }}<br>
 								</div>
 								<hr>
 									<div class="card-body">
-										<p class="card-text">{{ animal.texteAnimal|slice(0, 50)|raw}}
+										<p class="card-text">{{ animal.texteAnimal|slice(0, 50)|raw}}</br>
 										Age de l'animal: {{animal.ageAnimal}} ans</p>
 										<div class="d-flex justify-content-between align-items-center">
 											<div class="btn-group">
@@ -57,9 +56,7 @@
 						</div>
 					{% endfor %}
 					</div>
-					<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-				
-				</div>
+					
 			</div>
 		</main>
 
