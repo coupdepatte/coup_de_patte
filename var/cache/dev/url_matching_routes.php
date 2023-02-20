@@ -21,6 +21,7 @@ return [
         '/contact' => [[['_route' => 'app_contact', '_controller' => 'App\\Controller\\ContactController::index'], null, null, null, false, false, null]],
         '/dashboard' => [[['_route' => 'app_dashboard', '_controller' => 'App\\Controller\\DashboardController::index'], null, null, null, false, false, null]],
         '/dashboard/ajouter-article' => [[['_route' => 'app_dashboard_ajouter', '_controller' => 'App\\Controller\\DashboardController::ajouterAnnoce'], null, null, null, false, false, null]],
+        '/faq' => [[['_route' => 'app_faq', '_controller' => 'App\\Controller\\FaqController::index'], null, null, null, false, false, null]],
         '/gestion/animal/gestion_animal' => [[['_route' => 'app_gestion_animal_index', '_controller' => 'App\\Controller\\GestionAnimalController::index'], null, ['GET' => 0], null, false, false, null]],
         '/gestion/animal/new' => [[['_route' => 'app_gestion_animal_new', '_controller' => 'App\\Controller\\GestionAnimalController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/inscription' => [[['_route' => 'app_inscription', '_controller' => 'App\\Controller\\InscriptionController::index'], null, null, null, false, false, null]],

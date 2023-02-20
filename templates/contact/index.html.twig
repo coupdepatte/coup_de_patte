@@ -106,56 +106,58 @@
 $("#contact_adresse").autocomplete({
 source: function (request, response) {
 $.ajax({
-            url: "https://api-adresse.data.gouv.fr/search/?q="+$("input[name='contact[codepostal]']").val(),
-            data: { q: request.term },
-            dataType: "json",
-            success: function (data) {
-                var cities = [];
-                var postcodes = [];
-                var citycodes = [];
-                response($.map(data.features, function (item) {
-                    return { label: item.properties.name + " - " + item.properties.postcode + " - " + item.properties.city,
-                        city: item.properties.city,
-                        postcode: item.properties.postcode,
-                        value: item.properties.name,
-                        };
-                    
-                }));
-            }
-        });
-    },
-     // On remplit aussi le CP et ville
-     select: function(event, ui) {
+url: "https://api-adresse.data.gouv.fr/search/?q=" + $("input[name='contact[codepostal]']").val(),
+data: {
+q: request.term
+},
+dataType: "json",
+success: function (data) {
+var cities = [];
+var postcodes = [];
+var citycodes = [];
+response($.map(data.features, function (item) {
+return {
+label: item.properties.name + " - " + item.properties.postcode + " - " + item.properties.city,
+city: item.properties.city,
+postcode: item.properties.postcode,
+value: item.properties.name
+};
 
-        $('#contact_ville').val(ui.item.city);
-        $('#contact_codepostal').val(ui.item.postcode);
-        
-    },
+}));
+}
+});
+},
+// On remplit aussi le CP et ville
+select: function (event, ui) {
+
+$('#contact_ville').val(ui.item.city);
+$('#contact_codepostal').val(ui.item.postcode);
+
+}
 });
 
-            $("#contact_nomLieu").autocomplete({
-    source: function (request, response) {
-        $.ajax({
-            url: "https://api-adresse.data.gouv.fr/search/?q="+$("input[name='contact[codepostal]']").val(),
-            data: { q: request.term },
-            dataType: "json",
-            success: function (data) {
-                var postcodes = [];
-                response($.map(data.features, function (item) {
-                    // Ici on est obligé d'ajouter les CP dans un array pour ne pas avoir plusieurs fois le même
-                    if ($.inArray(item.properties.postcode, postcodes) == -1) {
-                        postcodes.push(item.properties.postcode);
-                        return { label: item.properties.postcode + " - " + item.properties.city, 
-                                city: item.properties.city,
-                                value: item.properties.postcode,
-                        };
-                    }
-                }));
-            }
+$("#contact_nomLieu").autocomplete({
+source: function (request, response) {
+$.ajax({
+url: "https://api-adresse.data.gouv.fr/search/?q=" + $("input[name='contact[codepostal]']").val(),
+data: {
+q: request.term
+},
+dataType: "json",
+success: function (data) {
+var postcodes = [];
+response($.map(data.features, function (item) { // Ici on est obligé d'ajouter les CP dans un array pour ne pas avoir plusieurs fois le même
+if ($.inArray(item.properties.postcode, postcodes) == -1) {
+postcodes.push(item.properties.postcode);
+return {
+label: item.properties.postcode + " - " + item.properties.city,
+city: item.properties.city,
+value: item.properties.postcode
+};
+}
+}));
+}
 });
-    },
-    
-});
-</script>
+}
 
 });</script>{% endblock %}
