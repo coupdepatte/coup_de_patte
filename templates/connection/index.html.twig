@@ -30,7 +30,9 @@
             </div>
         </form>
         <div>
-            <img src="https://fourleggedguru.com/wp-content/uploads/2015/02/3752857682_680bcb97a3_o.jpg" class="float-right m-auto h-75" style="box-shadow: 10px 10px 20px 10px #bcbcbc;"></img>
+            <img src="https://fourleggedguru.com/wp-content/uploads/2015/02/3752857682_680bcb97a3_o.jpg" data-aos="flip-left"
+     data-aos-easing="ease-out-cubic"
+     data-aos-duration="2000"class="float-right m-auto h-75" style="box-shadow: 10px 10px 20px 10px #bcbcbc;"></img>
         </div>
     </div>
 </main>
@@ -38,5 +40,10 @@
 {% endblock %}
 
 {% block javascripts %}
+
+
+<script>
+        AOS.init();
+    </script>
 
 {% endblock %}

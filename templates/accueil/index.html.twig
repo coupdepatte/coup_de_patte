@@ -27,44 +27,38 @@
 		<div class="album py-5 bg-light">
 			<div class="container">
 				<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-
-					{% for img in images %}
+					{% for animal in animaux %}
 						<div class="col">
 							<div class="card shadow-sm">
-								{% if 'http' in img.image %}
-									<img src="{{img.image}}" class=" card-img-top" max-width="100%" height="225">
+								{% if 'http' in tabIdAnimauxPhoto[animal.idAnimal] %}
+									<img src="{{tabIdAnimauxPhoto[animal.idAnimal]}}" class=" card-img-top" max-width="100%" height="225">
 								{% else %}
-									<img src="uploads/{{img.image}}" class=" card-img-top" max-width="100%" height="225">
+									<img src="uploads/{{tabIdAnimauxPhoto[animal.idAnimal]}}" class=" card-img-top" max-width="100%" height="225">
 								{% endif %}
+								</div>
 								<div class="card-header">
-									{{img.idAnimal.nomAnimal}}
-
-									<hr>
+									{{animal.nomAnimal}}
+								<div class="card-header text-center">
+								{{ animal.nomAnimal }}<br>
+								</div>
+								<hr>
 									<div class="card-body">
-										<p class="card-text">{{ img.idAnimal.texteAnimal|slice(0, 50)|raw}}</p>
-										Age de l'animal:
-										{{img.idAnimal.ageAnimal}}
-										ans
+										<p class="card-text">{{ animal.texteAnimal|slice(0, 50)|raw}}
+										Age de l'animal: {{animal.ageAnimal}} ans</p>
 										<div class="d-flex justify-content-between align-items-center">
 											<div class="btn-group">
-												<a type="button" class="btn btn-sm btn-outline-secondary" href="annonce/{{img.idAnimal.idAnimal}}">
+												<a type="button" class="btn btn-sm btn-outline-secondary" href="annonce/{{animal.idAnimal}}">
 													En savoir plus...</a>
 											</div>
-											<small class="text-muted">{{img.idAnimal.prixAnimal}}
-												euros</small>
+											<small class="text-muted">{{animal.prixAnimal}} euros</small>
 										</div>
 									</div>
-									<div
-										class="card-footer">{# {% for categorie in animal.idCategorie %}
-																																													Catégorie:
-																																													{{ categorie.nomCategorie}}
-																																												{% endfor %} #}
-									</div>
-								</div>
 							</div>
 						</div>
-
 					{% endfor %}
+					</div>
+					<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+				
 				</div>
 			</div>
 		</main>
