@@ -2,8 +2,13 @@
 
 namespace App\Repository;
 
+use App\Entity\Race;
 use App\Entity\Image;
 use App\Entity\Animal;
+use App\Entity\Recherche;
+use App\Entity\Typeanimal;
+use App\Repository\RaceRepository;
+use App\Repository\TypeanimalRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
@@ -65,18 +70,44 @@ class AnimalRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-public function articleParSonIdUtilisateur($value): array
-{
-    return $this->createQueryBuilder('a')
-        ->andWhere('a.idUtilisateur = :val')
-        ->setParameter('val', $value)
-        ->Join(Image::class, 'i', 'WITH', 'a.idAnimal = i.idAnimal')
-        ->addSelect('i.image')
-        ->orderBy('i.idImage', 'DESC')
-        ->setMaxResults(10)
-        ->getQuery()
-        ->getResult()
-    ;
-}
+    public function articleParSonIdUtilisateur($value): array
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.idUtilisateur = :val')
+            ->setParameter('val', $value)
+            ->Join(Image::class, 'i', 'WITH', 'a.idAnimal = i.idAnimal')
+            ->addSelect('i.image')
+            ->orderBy('i.idImage', 'DESC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findByTypeanimal($criteria): array
+    {
+        return $this->createQueryBuilder('a')
+            ->Join(Race::class, 'i', 'WITH', 'a.idRace = i.idRace')
+            // ->Join(Typeanimal::class, 'j', 'WITH', 'i.idTypeanimal = j.idTypeanimal')
+            ->addSelect('i.idRace')
+            ->where('i.idTypeanimal = :typeanimal')
+            ->setParameter('typeanimal', $criteria[0])
+            ->andWhere('a.isFeminin = :sexe')
+            ->setParameter('sexe', $criteria['isFeminin'])
+            ->andWhere('a.lofAnimal = :lof')
+            ->setParameter('lof', $criteria['lofAnimal'])
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+        // public function filtrerType(): array
+        // {
+            
+        //     $result = "SELECT * FROM animal as a INNER JOIN race as r ON a.id_race = r.id_race INNER JOIN typeanimal as t ON r.id_typeanimal = t.id_typeanimal WHERE t.id_typeanimal = 2";
+        //     // $action = $this->getEntityManager()->getConnection()->prepare($req);
+        //     // $action->execute();
+        //     return $result;
+        // }
 
 }
