@@ -2,7 +2,8 @@
 	<div class="px-3 py-2 bg-info text-white">
 		<div class="container">
 			<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-				<img class="mb-3" src="{{asset('images/logo-cp.png')}}" alt="logo3.jpg" width="120">
+				<img class="mb-3" src="{{asset('images/logo-cp.png')}}" data-aos="flip-right"
+                    data-aos-duration="2000" alt="logo3.jpg" width="120">
 				<a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
 					<svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
 				</a>
@@ -15,7 +16,7 @@
 						</a>
 					</li>
 					<li>
-						<a class="nav-link text-white"{{active_dashboard|default("")}}'  href="{{path('app_dashboard')}}" '>
+						<a class="nav-link text-white"{{active_dashboard|default("")}}  href="{{path('app_dashboard')}}" >
 							<svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#speedometer2"/></svg>
 							Mon compte
 						</a>
@@ -28,7 +29,7 @@
 						</a>
 					</li>
 					<li>
-						<a class="nav-link text-white"{{active_contact|default("")}}'  href="{{path('app_contact')}}" '>
+						<a class="nav-link text-white"{{active_contact|default("")}}  href="{{path('app_contact')}}" >
 							<svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"/></svg>
 							Nous Contacter
 						</a>
@@ -44,9 +45,18 @@
 			</form>
 
 			<div class="text-end">
-				<a type="button" class="btn btn-success" {{active_connection|default("")}}' aria-current="page" href="{{path('app_connection')}}" '>S'identifier</a>
-				<a type="button" class="btn btn-danger"  {{active_inscription|default("")}}' aria-current="page" href="{{path('app_inscription')}}" '>Inscription</a>
+				<a type="button" class="btn btn-success" {{active_connection|default("")}} aria-current="page" href="{{path('app_connection')}}" >S'identifier</a>
+				<a type="button" class="btn btn-danger"  {{active_inscription|default("")}} aria-current="page" href="{{path('app_inscription')}}" >Inscription</a>
 			</div>
 		</div>
 	</div>
 </header>
+ 
+ {% block javascripts %}
+ <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+        AOS.init();
+    </script>
+
+{% endblock %}
+ 
