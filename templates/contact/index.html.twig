@@ -1,117 +1,111 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Contact - Coup De Patte{% endblock %}
+{% block title %}Contact - Coup De Patte
+{% endblock %}
 
 {% block stylesheets %}
-    {{ encore_entry_link_tags('app') }}
-<link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/checkout/">
+	{{ encore_entry_link_tags('app') }}
+	<link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/checkout/">
 
 {% endblock %}
 
 {% block body %}
 
-{% include 'commun/nav.html.twig' %}
+	{% include 'commun/nav.html.twig' %}
 
-<div class="container bg-light">
-    <main>
-        <div class="py-5 text-center">
-            <img class="d-block mx-auto mb-4" src="{{asset('images/png-clipart-paw-dog-printing-paws-animals-monochrome.png')}}" alt="" width="72" height="57">
-            <h2>Nous Contacter</h2>
-            <p class="lead">Pour toute demande concernant le site, nos annonces, où les eleveurs présents sur le site vous pouvez nous contacter via le formulaire suivant:</p>
-        </div>
-        <div class="row g-5">
-            <div class="col-md-7 col-lg-8 mx-auto">
-                
-                    <div class="row g-3">
-                    {{form_start(form_contact)}}
-                        <div class="col-sm-6">
-                        <label for="firstName" class="form-label">Nom</label>
-                        {{form_row(form_contact.nom)}}
-                            <div class="invalid-feedback">
-                            Un nom valide est demandé
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                        <label for="lastName" class="form-label">Prénom</label>
-                        {{form_row(form_contact.prenom)}}
-                            <div class="invalid-feedback">
-                            Un prénom valide est demandé
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <label for="username" class="form-label">Pseudo</label>
-                                
-                                {{form_row(form_contact.pseudo)}}
-                                    <div class="invalid-feedback">
-                                    Un pseudo valide est demandé
-                                    </div>
-                                
-                        </div>
-                        <div class="col-12">
-                        <label for="email" class="form-label">Email </label>
-                        {{form_row(form_contact.email)}}
-                            <div class="invalid-feedback">
-                            Une addresse email valide est demandée
-                            </div>
-                        </div>
-                        <div class="col-12">
-                        <label for="address" class="form-label">Addresse<span class="text-muted">(Optional)</span></label>
-                        {{form_row(form_contact.adresse)}}
-                            <div class="invalid-feedback">
-                            Une addresse valide est demandée
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                        <label for="country" class="form-label">Code Postal</label>
-                        {{form_row(form_contact.codepostal)}}
-                            <div class="invalid-feedback">
-                            Selectionnez un code postal valide.
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                        <label for="state" class="form-label">Ville</label>
-                        {{form_row(form_contact.ville)}}
-                            <div class="invalid-feedback">
-                            choisisez une ville valide.
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                        <label for="zip" class="form-label">Departement</label>
-                        {{form_row(form_contact.departement)}}
-                        </select>
-                            <div class="invalid-feedback">
-                            choisisez un département.
-                            </div>
-                        </div>
-                    </div>
-                    <hr class="my-4">
-                    <h4 class="mb-3">Commentaire</h4>
-                    <div class="col-12">
-                        {{form_row(form_contact.commentaire)}}
-                    </div>
-            <hr class="my-4">
-            {{form_row(form_contact.save)}}
-        {{form_end(form_contact)}}
-      </div>
-    </div>
-  </main>
-</div>
-{% include 'commun/footer.html.twig' %}
+	<div class="container bg-light">
+		<main>
+			<div class="py-5 text-center">
+				<img class="d-block mx-auto mb-4" src="{{asset('images/png-clipart-paw-dog-printing-paws-animals-monochrome.png')}}" alt="" width="72" height="57">
+				<h2>Nous Contacter</h2>
+				<p class="lead">Pour toute demande concernant le site, nos annonces, où les eleveurs présents sur le site vous pouvez nous contacter via le formulaire suivant:</p>
+			</div>
+			<div class="row g-5">
+				<div class="col-md-7 col-lg-8 mx-auto">
 
-{% block javascripts %}
-    {{ encore_entry_script_tags('app') }}
-{% endblock %}
-<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js" integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.0/dist/sweetalert2.all.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
-<script>
+					<div class="row g-3">
+						<div class="col">
+						{{form_start(form_contact)}}
+						<div class="col-sm-8">
+							<label for="firstName" class="form-label">Nom</label>
+							{{form_row(form_contact.nom)}}
+							<div class="invalid-feedback">
+								Un nom valide est demandé
+							</div>
+						</div>
+						<div class="col-sm-8">
+							<label for="lastName" class="form-label">Prénom</label>
+							{{form_row(form_contact.prenom)}}
+							<div class="invalid-feedback">
+								Un prénom valide est demandé
+							</div>
+						</div>
+						<div class="col-sm-8">
+							<label for="username" class="form-label">Pseudo</label>
+
+							{{form_row(form_contact.pseudo)}}
+							<div class="invalid-feedback">
+								Un pseudo valide est demandé
+							</div>
+
+						</div>
+						<div class="col-8">
+							<label for="email" class="form-label">Email
+							</label>
+							{{form_row(form_contact.email)}}
+							<div class="invalid-feedback">
+								Une addresse email valide est demandée
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="col-8">
+							<label for="address" class="form-label">Addresse<span class="text-muted">(Optional)</span>
+							</label>
+							{{form_row(form_contact.adresse)}}
+							<div class="invalid-feedback">
+								Une addresse valide est demandée
+							</div>
+						</div>
+						<div class="col-sm-8">
+							<label for="country" class="form-label">Code Postal</label>
+							{{form_row(form_contact.codepostal)}}
+							<div class="invalid-feedback">
+								Selectionnez un code postal valide.
+							</div>
+						</div>
+						<div class="col-sm-8">
+							<label for="state" class="form-label">Ville</label>
+							{{form_row(form_contact.ville)}}
+							<div class="invalid-feedback">
+								choisisez une ville valide.
+							</div>
+						</div>
+						<div class="col-sm-8">
+							<label for="zip" class="form-label">Departement</label>
+							{{form_row(form_contact.departement)}}
+						</select>
+						<div class="invalid-feedback">
+							choisisez un département.
+						</div>
+					</div>
+				</div>
+			</div>
+			<hr class="my-4">
+			<h4 class="mb-3">Commentaire</h4>
+			<div class="col-12">
+				{{form_row(form_contact.commentaire)}}
+			</div>
+			<hr class="my-4">
+			{{form_row(form_contact.save)}}
+			{{form_end(form_contact)}}
+		</div>
+	</div>
+</main></div>{% include 'commun/footer.html.twig' %}{% block javascripts %}
+{{ encore_entry_script_tags('app') }}{% endblock %}<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script><script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js" integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.0/dist/sweetalert2.all.min.js"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script>
 $("#contact_adresse").autocomplete({
-    source: function (request, response) {
-        $.ajax({
+source: function (request, response) {
+$.ajax({
             url: "https://api-adresse.data.gouv.fr/search/?q="+$("input[name='contact[codepostal]']").val(),
             data: { q: request.term },
             dataType: "json",
@@ -158,10 +152,10 @@ $("#contact_adresse").autocomplete({
                     }
                 }));
             }
-        });
+});
     },
     
 });
 </script>
 
-{% endblock %}
+});</script>{% endblock %}
