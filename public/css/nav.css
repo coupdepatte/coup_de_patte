@@ -1,0 +1,35 @@
+*{
+
+ 
+    font-family: 'Lobster', cursive;
+   
+}
+.h1,h1{
+
+
+    font-size: 3em;
+
+}
+
+
+
+.btn-success{
+
+    --bs-btn-bg: ;
+    --bs-btn-hover-bg: ;
+
+}
+.btn-danger{
+
+    --bs-btn-bg: ;
+    --bs-btn-hover-bg: ;
+
+}
+.nav-link{
+
+  font-size: 1.5em;
+  /* color:black !important; */
+
+
+
+ }
