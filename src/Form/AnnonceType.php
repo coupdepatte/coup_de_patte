@@ -19,6 +19,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class AnnonceType extends AbstractType {
     public function buildForm( FormBuilderInterface $builder, array $options ): void {
@@ -26,7 +27,7 @@ class AnnonceType extends AbstractType {
         ->add( 'nomAnimal', TextType::class, [ 'attr'=>[ 'class'=>'form-control ', 'placeholder' => 'Insérez le nom de l\'animal'], 'label' => false])
             ->add('poidAnimal', TextType::class, ['attr'=>['class'=>'form-control ', 'placeholder' => 'Insérez le poid de l\'animal' ], 'label' => false ] )
         ->add( 'ageAnimal', TextType::class, [ 'attr'=>[ 'class'=>'form-control ', 'placeholder' => 'Insérez l\'age de l\'animal' ], 'label' => false ] )
-        ->add( 'texteAnimal', CKEditorType::class, [ 'attr'=>[ 'class'=>'form-control  mt-4', 'placeholder' => 'Insérez une description' ], 'label' => false ] )
+        ->add( 'texteAnimal', TextareaType::class, [ 'attr'=>[ 'class'=>'form-control  mt-4', 'placeholder' => 'Insérez une description' ], 'label' => false ] )
         ->add( 'prixAnimal', NumberType::class, [ 'attr'=>[ 'class'=>'form-control ', 'placeholder' => 'Insérez votre prix' ], 'empty_data' => '0', 'label' => false ] )
         ->add( 'lofAnimal', ChoiceType::class, [
             'choices'  => [
