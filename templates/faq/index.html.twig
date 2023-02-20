@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+	<link href="{{asset('css/.css')}}" rel="stylesheet">
+	{{ encore_entry_link_tags('app') }}
+{% endblock %}
+
+{% block title %}Foire aux questions - Coup de Patte
+{% endblock %}
+
+
+{% block body %}
+	{% include '/commun/nav.html.twig' %}
+	<div class="container mx-auto">
+		<div class="col-10 mx-auto mt-3 mb-5">
+			<h2>
+				Comment créer son compte ?<br></h2>
+			<p><br>
+				Pour créer votre compte il vous suffit de cliquer sur le bouton "Inscription" en haut a droite de votre écran.
+			</p>
+		</div>
+		<div class="col-10 mx-auto mt-3 mb-5">
+			<h2>
+				Comment créer une annonce ?<br></h2>
+			<p><br>
+				Pour créer une annonce il vous faut créer un compte puis allez dans l'onglet "mon compte" et ensuite cliquer sur le bouton "ajouter une annonce".
+			</p>
+		</div>
+		<div class="col-10 mx-auto mt-3 mb-5">
+			<h2>
+				Comment nous contacter ?<br></h2>
+			<p><br>
+				Pour nous contacter vous pouvez cliquer sur le lien "Nous Contacter" et remplir le formulaire. nous nous efforcerons de vous répondre sous les plus bref délai.
+			</p>
+		</div>
+	</div>
+
+	{% include 'commun/footer.html.twig' %}
+{% endblock %}

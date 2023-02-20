@@ -23,7 +23,7 @@ class DashboardController extends AbstractController
 
     public function index(EntityManagerInterface $manager, UtilisateurRepository $repoUtilisateur, ImageRepository $imageRepo, AnimalRepository $repoAnimal, UserInterface $utilisateurCo ): Response
  {
-
+        
         $animals = $repoAnimal->articleParSonIdUtilisateur($utilisateurCo);
 
         //dd( $animals );
