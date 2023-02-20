@@ -2,7 +2,8 @@
 
 namespace App\Controller;
 
-
+use App\Entity\Image;
+use App\Entity\Animal;
 use App\Repository\ImageRepository;
 use App\Repository\AnimalRepository;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,14 +18,28 @@ class AccueilController extends AbstractController
     
         $animaux = $repoAnimal->findAll();
         $images = $repoImage->findAll();
-        // dd($animaux);
-        // $nomAnimal=$repoAnimal->findOneByIdRace();
-        // dd($nomAnimal);
-
-
+        $idAnimaux = $repoAnimal->findByIdAnimal($animaux);
+        
+        $tabAnimaux = [];
+        foreach($animaux as $animal){
+        $n = $animal->getIdAnimal();
+        array_splice($tabAnimaux, $n, 1, $n);
+        }
+        
+        $tabPhotos = [];
+        foreach($animaux as $animal){
+            $n = $animal->getIdAnimal();
+            $images = $repoImage->findByIdAnimal($animal);
+            $image = $images[0];
+            array_splice($tabPhotos, $n, 1 ,$image->getImage($repoAnimal->findOneByIdAnimal($animal->getIdAnimal())));
+        }
+        $tabIdAnimauxPhoto = array_combine($tabAnimaux, $tabPhotos);
         return $this->render('accueil/index.html.twig', [
             'animaux'=> $animaux,
-            'images'=>$images
+            'images'=>$images,
+            'tabPhotos' => $tabPhotos,
+            'tabAnimaux' => $tabAnimaux, 
+            'tabIdAnimauxPhoto' => $tabIdAnimauxPhoto ,
         ]);
     }
     
