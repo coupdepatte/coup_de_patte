@@ -15,11 +15,11 @@ class AccueilController extends AbstractController
     #[Route('/', name: 'app_accueil')]
     public function index( AnimalRepository $repoAnimal, ImageRepository $repoImage): Response
     {
-    
+
         $animaux = $repoAnimal->findAll();
         $images = $repoImage->findAll();
         $idAnimaux = $repoAnimal->findByIdAnimal($animaux);
-        
+
         $tabAnimaux = [];
         foreach($animaux as $animal){
         $n = $animal->getIdAnimal();
@@ -31,6 +31,7 @@ class AccueilController extends AbstractController
             $n = $animal->getIdAnimal();
             $images = $repoImage->findByIdAnimal($animal);
             $image = $images[0];
+
             array_splice($tabPhotos, $n, 1 ,$image->getImage($repoAnimal->findOneByIdAnimal($animal->getIdAnimal())));
         }
         $tabIdAnimauxPhoto = array_combine($tabAnimaux, $tabPhotos);
