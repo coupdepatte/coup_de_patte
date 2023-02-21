@@ -8,6 +8,7 @@
 {% block body %}
 
 	{%include 'commun/nav.html.twig'%}
+	{%include 'commun/nav.html.twig'%}
 
 
 	<main>
@@ -15,6 +16,8 @@
 		<section class="py-5 text-center container">
 			<div class="row py-lg-5">
 				<div class="col-lg-6 col-md-8 mx-auto">
+					<h1 class="fw-light">Coup de P@tte le site qui vous trouvera un ami pour la vie!</h1>
+					<p class="lead text-muted">Avec Coup de p@tte, adopter un animal aupres de particulier ou acheter un amimal chez de nos eleveurs referencés .</p>
 					<h1 class="fw-light">Coup de P@tte le site qui vous trouvera un ami pour la vie!</h1>
 					<p class="lead text-muted">Avec Coup de p@tte, adopter un animal aupres de particulier ou acheter un amimal chez de nos eleveurs referencés .</p>
 					<p>
@@ -37,9 +40,10 @@
 								{% endif %}
 							</div>
 							<div>
+							</div>
+							<div>
 								<div class="card-header text-center">
 									<h2>{{ animal.nomAnimal }}</h2>
-									<hr>
 								</div>
 								<hr>
 									<div class="card-body">
@@ -64,4 +68,5 @@
 		{%include 'commun/footer.html.twig'%}
 
 
+	{% endblock %}
 	{% endblock %}
