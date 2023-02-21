@@ -59,12 +59,12 @@
 	</div>
 	<div class="px-3 py-2 border-bottom mb-3">
 		<div class="container d-flex flex-wrap justify-content-center">
-			<form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto">
-				<input type="search" class="form-control" placeholder="Recherche..." aria-label="Search">
-			</form>
+			<div class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto">
+				<a type="button" class="btn btn-outline-secondary" href="{{path('app_recherche')}}">Rechercher</a>
+			</div>
 
 			<div class="text-end">
-				<a type="button" class="btn btn-secondary" {{active_connection|default("")}} aria-current="page" href="{{path('app_connection')}}" >S'identifier</a>
+				<a type="button" class="btn btn-secondary" {{active_connection|default("")}} aria-current="page" href="{{path('app_connection')}}" >S'identifier
 				<a type="button" class="btn btn-warning"  {{active_inscription|default("")}} aria-current="page" href="{{path('app_inscription')}}" >Inscription</a>
 			</div>
 		</div>
