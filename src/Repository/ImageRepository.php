@@ -64,16 +64,5 @@ class ImageRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
-public function imagesParSonIdAnimal($value): array
-{
-    return $this->createQueryBuilder('a')
-        ->andWhere('a.idanimal = :val')
-        ->setParameter('val', $value)
-        ->Join(Animal::class, 'i', 'WITH', 'a.idanimal = i.idanimal')
-        ->addSelect('i.idanimal')
-        ->orderBy('i.idanimal')
-        ->getQuery()
-        ->getResult()
-    ;
-}
+
 }
