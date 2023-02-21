@@ -30,11 +30,22 @@ class AnnonceController extends AbstractController
         $form_message->handleRequest($request);
         $animal = $repoAnimal->findOneByIdAnimal($id);
         //dd($animal);
-        $race = $repoRace->findOneByidTypeanimal($animal->getIdRace());
+        $race = $repoRace->findOneByIdRace($animal->getIdRace());
+        //dd($race);
         $idTypeRace = $race->getIdTypeanimal();
         //dd($idTypeRace);
         $articles = $repoArticle->findByidTypeanimal($idTypeRace);
         //dd($articles);
+        foreach($articles as $article){
+            $idarticle = $article->getIdArticle();
+            if((fmod($idarticle, 2))==0){
+                $tabArticlesPair[] = $article;
+            } else {
+                $tabArticlesImpair[] = $article;
+            }
+        }
+        
+        //dd($tabArticlesImpair);
         $images = $repoImage->findByIdAnimal($id);
         foreach($images as $image){
             $URLImage[] = $image->getImage();
@@ -73,6 +84,8 @@ class AnnonceController extends AbstractController
             'vendeur' => $vendeur,
             'utilisateurCo' => $utilisateurCo,
             'articles' => $articles,
+            'tabArticlesPair' => $tabArticlesPair,
+            'tabArticlesImpair' => $tabArticlesImpair,
         ]);
     }
 }
