@@ -12,18 +12,14 @@
 				<img class="d-block mx-auto mb-4" src="{{asset('images/png-clipart-paw-dog-printing-paws-animals-monochrome.png')}}" alt="" width="72" height="57">
 				<span class="fs-1 text-center">{{animal.nomAnimal}}</span><br>
 				<span class="fs-1 text-center">{{animal.idRace.nomRace}}</span>
-
 			</header>
-
 			<div class="p-5 mb-4 bg-light rounded-3">
 				<div class="container-fluid py-5">
-
 					<div class="d-flex justify-content-center">
 						<div id="carouselExampleRide" class="carousel slide col-7 " data-bs-ride="true">
 							<div class="carousel-inner">
 								{% for image in URLImage %}
 									{% if 'http' in image %}
-
 										<div class="carousel-item {% if loop.first %}active{% endif %}">
 											<img data-photoswipe-loop="{{ loop.index0 }}" src="{{image}}" class="img-responsive d-block w-100">
 										</div>
@@ -121,6 +117,29 @@
 						{{animal.idTypepoils.nomTypepoils}}</p>
 				</div>
 			</div>
+		</div>
+		<span class="fs-1 text-center">Nos Articles Utiles !</span><br>
+	<div class="container py-4 text-center">
+		<div class=" p-5 mb-4 bg-light rounded-3">
+		{% for article in articles %}
+		<div class="row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+			<div class="col">
+				<div class="card shadow-sm">
+					<img src="{{article.photoArticle}}" class=" card-img-top" max-width="100%" height="225">
+					<div class="card-header text-center">
+						<h2>{{ article.nomArticle }}</h2>
+					</div>
+					<div class="card-body">
+						<p>Prix de l'article: {{article.prixArticle}} €</p>
+					</div>
+					<div class="btn-group">
+						<a type="button" class="btn btn-sm btn-outline-secondary" href="{{article.urlPartenaire}}">Découvrir sur notre site partenaire</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+		</div>
 		</div>
 	</div>
 </main>

@@ -25,7 +25,6 @@ return [
     'app_dashboard' => [[], ['_controller' => 'App\\Controller\\DashboardController::index'], [], [['text', '/dashboard']], [], [], []],
     'delete_annonce' => [['id'], ['_controller' => 'App\\Controller\\DashboardController::delete'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/dashboard/delete']], [], [], []],
     'app_dashboard_ajouter' => [[], ['_controller' => 'App\\Controller\\DashboardController::ajouterAnnoce'], [], [['text', '/dashboard/ajouter-article']], [], [], []],
-    'app_faq' => [[], ['_controller' => 'App\\Controller\\FaqController::index'], [], [['text', '/faq']], [], [], []],
     'app_gestion_animal_index' => [[], ['_controller' => 'App\\Controller\\GestionAnimalController::index'], [], [['text', '/gestion/animal/gestion_animal']], [], [], []],
     'app_gestion_animal_new' => [[], ['_controller' => 'App\\Controller\\GestionAnimalController::new'], [], [['text', '/gestion/animal/new']], [], [], []],
     'app_gestion_animal_show' => [['idAnimal'], ['_controller' => 'App\\Controller\\GestionAnimalController::show'], [], [['variable', '/', '[^/]++', 'idAnimal', true], ['text', '/gestion/animal']], [], [], []],
@@ -34,9 +33,5 @@ return [
     'app_inscription' => [[], ['_controller' => 'App\\Controller\\InscriptionController::index'], [], [['text', '/inscription']], [], [], []],
     'verify_user' => [['token'], ['_controller' => 'App\\Controller\\InscriptionController::verifyUser'], [], [['variable', '/', '[^/]++', 'token', true], ['text', '/verif']], [], [], []],
     'resend_verif' => [[], ['_controller' => 'App\\Controller\\InscriptionController::resendVerif'], [], [['text', '/renvoiverif']], [], [], []],
-<<<<<<< Updated upstream
     'app_recherche' => [[], ['_controller' => 'App\\Controller\\RechercheController::index'], [], [['text', '/recherche']], [], [], []],
-=======
-    'app_recherche' => [[], ['_controller' => 'App\\Controller\\RechercheController::search'], [], [['text', '/recherche']], [], [], []],
->>>>>>> Stashed changes
 ];

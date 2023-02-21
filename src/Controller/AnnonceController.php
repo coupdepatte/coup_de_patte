@@ -6,8 +6,10 @@ use App\Entity\Image;
 use App\Form\MessageType;
 use App\Service\SendMailService;
 use Symfony\Component\Mime\Email;
+use App\Repository\RaceRepository;
 use App\Repository\ImageRepository;
 use App\Repository\AnimalRepository;
+use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\UtilisateurRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,12 +23,18 @@ use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 class AnnonceController extends AbstractController
 {
     #[Route('/annonce/{id}', name: 'app_annonce')]
-    public function index($id, Request $request, MailerInterface $mailer, UserInterface $utilisateurCo, AnimalRepository $repoAnimal, UtilisateurRepository $repoUtilisateur, ImageRepository $repoImage, EntityManagerInterface $manager): Response
+    public function index($id, Request $request, RaceRepository $repoRace, ArticleRepository $repoArticle, MailerInterface $mailer, UserInterface $utilisateurCo, AnimalRepository $repoAnimal, UtilisateurRepository $repoUtilisateur, ImageRepository $repoImage, EntityManagerInterface $manager): Response
     {
+        
         $form_message = $this->createForm(MessageType::class);
         $form_message->handleRequest($request);
         $animal = $repoAnimal->findOneByIdAnimal($id);
         //dd($animal);
+        $race = $repoRace->findOneByidTypeanimal($animal->getIdRace());
+        $idTypeRace = $race->getIdTypeanimal();
+        //dd($idTypeRace);
+        $articles = $repoArticle->findByidTypeanimal($idTypeRace);
+        //dd($articles);
         $images = $repoImage->findByIdAnimal($id);
         foreach($images as $image){
             $URLImage[] = $image->getImage();
@@ -34,6 +42,7 @@ class AnnonceController extends AbstractController
         //dd($URLImage);
         $vendeur = $repoUtilisateur->findOneByIdUtilisateur($animal->getIdUtilisateur());
         //dd($vendeur);
+
         if($form_message->isSubmitted() && $form_message->isValid()){
             $email = (new Email())
             ->from($utilisateurCo->getLoginUtilisateur())
@@ -63,6 +72,7 @@ class AnnonceController extends AbstractController
             'form_message' => $form_message->createView(),
             'vendeur' => $vendeur,
             'utilisateurCo' => $utilisateurCo,
+            'articles' => $articles,
         ]);
     }
 }
