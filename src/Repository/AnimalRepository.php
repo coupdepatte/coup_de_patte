@@ -78,18 +78,5 @@ public function articleParSonIdUtilisateur($value): array
         ->getResult()
     ;
 }
-public function imagesParSonIdAnimal($value): array
-{
-    return $this->createQueryBuilder('a')
-        ->andWhere('a.idAnimal = :val')
-        ->setParameter('val', $value)
-        ->Join(Image::class, 'i', 'WITH', 'a.idAnimal = i.idAnimal')
-        ->addSelect('i.image')
-        ->orderBy('i.idAnimal')
-        ->setMaxResults(1)
-        ->getQuery()
-        ->getResult()
-    ;
-}
 
 }
