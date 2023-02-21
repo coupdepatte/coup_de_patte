@@ -65,24 +65,4 @@ class TypeanimalRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
-    public function filtrerPourLaRecherche($criteria): array{
-        return $this->createQueryBuilder('a')
-            ->Join(Race::class, 'i', 'WITH' , 'a.idTypeanimal = i.idTypeanimal')
-            ->Join(Animal::class, 'j', 'WITH' , 'i.idRace = j.idRace')
-            ->where('a.idTypeanimal = :typeanimal')
-            ->setParameter('typeanimal' , $criteria[0])
-            // ->where('j.isFeminin = :isFeminin')
-            // ->setParameter('isFeminin' , $criteria['isFeminin'])
-            // ->where('j.lofAnimal = :lofAnimal')
-            // ->setParameter('lofAnimal' , $criteria['lofAnimal'])
-            // ->where('j.idTaille = :idTaille')
-            // ->setParameter('idTaille' , $criteria['idTaille'])
-            // ->where('j.idTypepoils = :idTypepoils')
-            // ->setParameter('idTypepoils' , $criteria['idTypepoils'])
-            // ->where('j.idStatut = :idStatut')
-            // ->setParameter('idStatut' , $criteria['idStatut']);
-            ->getQuery()
-            ->getResult()
-            ;
-        }
 }

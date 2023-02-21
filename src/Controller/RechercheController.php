@@ -26,63 +26,62 @@ class RechercheController extends AbstractController
     #[Route('/recherche', name: 'app_recherche')]
     public function search(Request $request, EntityManagerInterface $manager, ImageRepository $repoImage, AnimalRepository $animalRepository, RaceRepository $repoRace, TypeanimalRepository $typeanimalRepo): Response
     {
-
         $form_recherche = $this->createFormBuilder()
             ->add('typesAnimal', EntityType::class, [
                 'class' => Typeanimal::class,
                 'choice_label' => 'nomType',
-                'multiple' => false,
-                'expanded' => true,
                 'mapped' => false,
                 'label' => false,
-                'attr' => ['class' => 'form-check-input']
+                'attr' => ['class' => 'form-select'],
+                'required' => true,
             ])
             ->add('isFeminin', ChoiceType::class, [
                 'choices' => [
-                    'femelle' => 'oui',
-                    'male' => 'oui',
-                    'Tous' => null,
+                    'femelle' => 'OUI',
+                    'male' => 'NON',
                 ],
                 'label' => false,
-                'expanded' => true,
+                'required' => true,
             ])
             ->add('lofAnimal', ChoiceType::class, [
                 'choices' => [
-                    'lof' => 'oui',
-                    'non lof' => 'non',
-                    'Tous' => null,
+                    'lof' => 'OUI',
+                    'non lof' => 'NON',
                 ],
                 'label' => false,
-                'expanded' => true,
+                'required' => true,
             ])
             ->add('idTaille', EntityType::class, [
                 'class' => Taille::class,
                 'choice_label' => 'nomTaille',
                 'label' => false,
                 'mapped' => true,
+                'required' => true,
                 'expanded' => true,
-                'multiple' => true,
+                'multiple' => false,
             ])
             ->add('idTypepoils', EntityType::class, [
                 'class' => Typepoils::class,
                 'choice_label' => 'nomTypepoils',
                 'label' => false,
                 'mapped' => true,
+                'multiple' => false,
+                'required' => true,
                 'expanded' => true,
-                'multiple' => true,
             ])
             ->add('idStatut', EntityType::class,  [
                 'class' => Statut::class,
                 'choice_label' => 'nomStatut',
                 'label' => false,
                 'mapped' => true,
+                'multiple' => false,
+                'required' => true,
                 'expanded' => true,
-                'multiple' => true,
             ])
             ->add('save', SubmitType::class, [
                 'label' => 'soumettre',
                 'attr' => [
-                'class' => 'btn btn-secondary my-5'
+                'class' => 'btn btn-secondary'
                     ]
             ])
             ->getForm();
@@ -103,32 +102,28 @@ class RechercheController extends AbstractController
                 $image = $images[0];
                 array_splice($tabPhotos, $n, 1, $image->getImage($animalRepository->findOneByIdAnimal($animal->getIdAnimal())));
             }
-            $tabIdAnimauxPhoto = array_combine($tabAnimaux, $tabPhotos);
 
-            $form_recherche->handleRequest($request);
             $recherche = [];
+            $tabIdAnimauxPhoto = array_combine($tabAnimaux, $tabPhotos);
+            $form_recherche->handleRequest($request);
 
             if($form_recherche->isSubmitted() && $form_recherche->isValid()) {
-
                 $criteria = $form_recherche->getData();
                 $idTypes = $form_recherche->get('typesAnimal')->getData();
                 $idType = $idTypes->getIdTypeAnimal();
+
                 array_unshift($criteria, $idType);
-                
+                // dd($criteria['idStatut'][0]->getIdStatut());
+
                 $recherche = $animalRepository->findByTypeanimal($criteria);
-
-                $idAnimaux = $animalRepository->findByIdAnimal($recherche);
+                
             }
-        
             
-
         return $this->render('recherche/index.html.twig', [
             'controller_name' => 'RechercheController',
             'form_recherche' => $form_recherche,
             'recherche' => $recherche,
             'tabIdAnimauxPhoto' => $tabIdAnimauxPhoto,
         ]);
-
     }
-
 }
