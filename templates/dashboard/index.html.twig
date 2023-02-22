@@ -11,6 +11,11 @@
 
 
 	{% include 'commun/nav.html.twig' %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2">
+
+</div>
 	{% if utilisateur and utilisateur.isVerified == false %}
 		<div class="alert alert-warning alert-dismissible" role="alert">
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -65,7 +70,7 @@
 						<div class="d-flex justify-content-between align-items-center">
 							<div class="btn-group">
 								<a href="annonce/{{animal[0].IdAnimal}}" type="button" class="btn btn-sm btn-outline-secondary">En savoir plus...</a>
-								<a href="dashboard/delete/{{animal[0].IdAnimal}}" type="button" class="btn btn-danger">Supprimer</a>
+								<a href="dashboard/delete/{{animal[0].IdAnimal}}" type="button" class="btn btn-warning">Supprimer</a>
 							</div>
 							<small class="text-muted">{{animal[0].prixAnimal}}
 								euros</small>
