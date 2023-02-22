@@ -26,6 +26,7 @@ class RechercheController extends AbstractController
     #[Route('/recherche', name: 'app_recherche')]
     public function search(Request $request, EntityManagerInterface $manager, ImageRepository $repoImage, AnimalRepository $animalRepository, RaceRepository $repoRace, TypeanimalRepository $typeanimalRepo): Response
     {
+        //Création du formulaire de recherche
         $form_recherche = $this->createFormBuilder()
             ->add('typesAnimal', EntityType::class, [
                 'class' => Typeanimal::class,
@@ -85,16 +86,13 @@ class RechercheController extends AbstractController
                     ]
             ])
             ->getForm();
-
             $animaux = $animalRepository->findAll();
             $images = $repoImage->findAll();
-
             $tabAnimaux = [];
             foreach($animaux as $animal){
                 $n = $animal->getIdAnimal();
                 array_splice($tabAnimaux, $n, 1, $n);
             }
-
             $tabPhotos = [];
             foreach($animaux as $animal){
                 $n = $animal->getIdAnimal();
@@ -102,21 +100,15 @@ class RechercheController extends AbstractController
                 $image = $images[0];
                 array_splice($tabPhotos, $n, 1, $image->getImage($animalRepository->findOneByIdAnimal($animal->getIdAnimal())));
             }
-
             $recherche = [];
             $tabIdAnimauxPhoto = array_combine($tabAnimaux, $tabPhotos);
             $form_recherche->handleRequest($request);
-
             if($form_recherche->isSubmitted() && $form_recherche->isValid()) {
                 $criteria = $form_recherche->getData();
                 $idTypes = $form_recherche->get('typesAnimal')->getData();
                 $idType = $idTypes->getIdTypeAnimal();
-
                 array_unshift($criteria, $idType);
-                // dd($criteria['idStatut'][0]->getIdStatut());
-
                 $recherche = $animalRepository->findByTypeanimal($criteria);
-                
             }
             
         return $this->render('recherche/index.html.twig', [

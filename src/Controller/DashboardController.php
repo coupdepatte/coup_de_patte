@@ -25,17 +25,12 @@ class DashboardController extends AbstractController
  {
         
         $animals = $repoAnimal->articleParSonIdUtilisateur($utilisateurCo);
-
-        //dd( $animals );
         $utilisateur = $repoUtilisateur->findOneByIdUtilisateur($utilisateurCo);
-
         $manager->persist($utilisateur);
-
         return $this->render( 'dashboard/index.html.twig', [
             'animals' => $animals,
             'utilisateur'=>$utilisateur,
         ] );
-
     }
 
     #[ Route( 'dashboard/delete/{id}', methods: [ 'GET' ], name:'delete_annonce' ) ]
@@ -47,14 +42,11 @@ class DashboardController extends AbstractController
             $em->remove($image);
             $em->flush();
         }
-
         $animals = $animalRepository->findOneByIdAnimal($id);
-
         $em->remove($animals);
         $em->flush();
 
         return $this->redirectToRoute('app_dashboard');
-
     }
 
     #[ Route( '/dashboard/ajouter-article', name: 'app_dashboard_ajouter' ) ]
@@ -66,12 +58,9 @@ class DashboardController extends AbstractController
         $form_animal->handleRequest( $request );
         if ( $form_animal->isSubmitted() && $form_animal->isValid() ) {
             $animal->setIdUtilisateur( $utilisateurCo );
-
             $manager->persist( $animal );
             $manager->flush();
-
             $images =  $form_animal->get( 'images' )->getData();
-            //dd( $images );
             foreach ( $images as $image ) {
                 $fichier = md5( uniqid() ).'.'.$image->guessExtension();
                 $image->move(
@@ -81,15 +70,9 @@ class DashboardController extends AbstractController
                 $img = new Image();
                 $img->setImage( $fichier );
                 $img->setIdAnimal( $animal );
-
                 $manager->persist( $img );
-                //dd( $images );
-
             }
-
-            //dd( $images );
             $manager->flush();
-
             $this->addFlash( 'success', "<script>Swal.fire({
                 position: 'center',
                 icon:'success', 
@@ -99,7 +82,6 @@ class DashboardController extends AbstractController
             })</script>" );
             return $this->redirectToRoute( 'app_dashboard_ajouter' );
         }
-
         return $this->render( 'dashboard/ajouter.html.twig', [
             'controller_name' => 'AjouterArticleController',
             'form_animal' => $form_animal->createView(),

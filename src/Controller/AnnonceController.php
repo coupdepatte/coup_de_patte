@@ -28,14 +28,13 @@ class AnnonceController extends AbstractController
         
         $form_message = $this->createForm(MessageType::class);
         $form_message->handleRequest($request);
+        //recuperation de l'id du type danimal de l'annonce selectionnée.
         $animal = $repoAnimal->findOneByIdAnimal($id);
-        //dd($animal);
         $race = $repoRace->findOneByIdRace($animal->getIdRace());
-        //dd($race);
         $idTypeRace = $race->getIdTypeanimal();
-        //dd($idTypeRace);
+        // recupération des articles qui corespondent au type de l'annimal
         $articles = $repoArticle->findByidTypeanimal($idTypeRace);
-        //dd($articles);
+        // séparation des articles en deux tableaux (pair et impair) pour les afficher de chaque coté de l'annonce.
         foreach($articles as $article){
             $idarticle = $article->getIdArticle();
             if((fmod($idarticle, 2))==0){
@@ -44,28 +43,26 @@ class AnnonceController extends AbstractController
                 $tabArticlesImpair[] = $article;
             }
         }
-        
-        //dd($tabArticlesImpair);
+        //recupration de toutes les images de l'animal de l'annonce.
         $images = $repoImage->findByIdAnimal($id);
+        // recuperation des URL de chaque images dans un tableau.
         foreach($images as $image){
             $URLImage[] = $image->getImage();
         };
-        //dd($URLImage);
+        //récuperation  des information du vendeur de l'animal.
         $vendeur = $repoUtilisateur->findOneByIdUtilisateur($animal->getIdUtilisateur());
-        //dd($vendeur);
-
+        //création du mail de contact entre vendeur et aquéreur par formulaire.
         if($form_message->isSubmitted() && $form_message->isValid()){
             $email = (new Email())
             ->from($utilisateurCo->getLoginUtilisateur())
             ->to($vendeur->getLoginUtilisateur())
             ->subject('Voter annonce coup de patte à trouvé preneur')
             ->html($form_message->get('message')->getData());
-        try {    
+            try {    
             $mailer->send($email);
             }catch (TransportExceptionInterface $e) {
-                // some error prevented the email sending; display an
-                // error message or try to resend the message
             }
+        
         $this->addFlash('success', "<script>Swal.fire({
             position: 'center',
             icon:'success', 
@@ -74,7 +71,7 @@ class AnnonceController extends AbstractController
             timer: 1500
         })</script>");
         return $this->redirectToRoute('app_dashboard');
-    }
+        }
         
         return $this->render('annonce/index.html.twig', [
             'controller_name' => 'AnnonceController',
