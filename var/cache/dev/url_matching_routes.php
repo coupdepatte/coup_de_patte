@@ -26,11 +26,7 @@ return [
         '/gestion/animal/new' => [[['_route' => 'app_gestion_animal_new', '_controller' => 'App\\Controller\\GestionAnimalController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/inscription' => [[['_route' => 'app_inscription', '_controller' => 'App\\Controller\\InscriptionController::index'], null, null, null, false, false, null]],
         '/renvoiverif' => [[['_route' => 'resend_verif', '_controller' => 'App\\Controller\\InscriptionController::resendVerif'], null, null, null, false, false, null]],
-<<<<<<< Updated upstream
-        '/recherche' => [[['_route' => 'app_recherche', '_controller' => 'App\\Controller\\RechercheController::index'], null, null, null, false, false, null]],
-=======
         '/recherche' => [[['_route' => 'app_recherche', '_controller' => 'App\\Controller\\RechercheController::search'], null, null, null, false, false, null]],
->>>>>>> Stashed changes
     ],
     [ // $regexpList
         0 => '{^(?'

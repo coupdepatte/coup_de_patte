@@ -34,9 +34,5 @@ return [
     'app_inscription' => [[], ['_controller' => 'App\\Controller\\InscriptionController::index'], [], [['text', '/inscription']], [], [], []],
     'verify_user' => [['token'], ['_controller' => 'App\\Controller\\InscriptionController::verifyUser'], [], [['variable', '/', '[^/]++', 'token', true], ['text', '/verif']], [], [], []],
     'resend_verif' => [[], ['_controller' => 'App\\Controller\\InscriptionController::resendVerif'], [], [['text', '/renvoiverif']], [], [], []],
-<<<<<<< Updated upstream
-    'app_recherche' => [[], ['_controller' => 'App\\Controller\\RechercheController::index'], [], [['text', '/recherche']], [], [], []],
-=======
     'app_recherche' => [[], ['_controller' => 'App\\Controller\\RechercheController::search'], [], [['text', '/recherche']], [], [], []],
->>>>>>> Stashed changes
 ];
