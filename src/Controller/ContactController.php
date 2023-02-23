@@ -23,10 +23,6 @@ class ContactController extends AbstractController
         $email = (new Email())
             ->from($form_contact->get('email')->getData())
             ->to('61882842dd8a8f@sandbox.smtp.mailtrap.io')
-            //->cc('cc@example.com')
-            //->bcc('bcc@example.com')
-            //->replyTo('fabien@example.com')
-            //->priority(Email::PRIORITY_HIGH)
             ->subject('Time for Symfony Mailer!')
             ->html("nom: " . $form_contact->get('nom')->getData() .
             " prenom:  " . $form_contact->get('prenom')->getData() .
@@ -36,12 +32,10 @@ class ContactController extends AbstractController
             " codepostal:  " . $form_contact->get('codepostal')->getData() .
             " ville:  " . $form_contact->get('ville')->getData() .
             " commentaire:  " . $form_contact->get('commentaire')->getData());
-            //->text($form_contact->get('commentaire')->getData());
         try {    
         $mailer->send($email);
         }catch (TransportExceptionInterface $e) {
-            // some error prevented the email sending; display an
-            // error message or try to resend the message
+            
         }
         return $this->redirectToRoute('app_accueil');
     }

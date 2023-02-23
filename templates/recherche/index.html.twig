@@ -2,6 +2,7 @@
 
 {% block stylesheets %}
     {{ encore_entry_link_tags('app') }}
+    {% form_theme form_recherche 'bootstrap_5_layout.html.twig' %}
 {% endblock %}
 
 
@@ -10,70 +11,79 @@
 
 {% block body %}
 {% include '/commun/nav.html.twig' %}
-<main class="d-flex flex-nowrap">
-    <div class="d-flex flex-column p-3">
-        {{form_start(form_recherche)}}
-        <div id="general">
-            <h3 class="text-center fst-italic text-uppercase my-5">Général</h3>
-                <h5>Choisir le type d'animal</h5>
-                {{form_row(form_recherche.typesAnimal)}}
-                <h5>Choisir le sexe</h5>
-                {{form_row(form_recherche.isFeminin)}}
-                <h5>Vous souhaitez un animal LOF :</h5>
-                {{form_row(form_recherche.lofAnimal)}}
+<main>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2">
         </div>
-        <hr>
-        <div id="gabarit">
-            <h3 class="text-center fst-italic text-uppercase my-5">Gabarit</h3>
-                <h5>Choisir l'intervalle de taille (au garrot)</h5>
-                {{form_row(form_recherche.idTaille)}}
+    
+    <div class="d-flex flex-nowrap">
+        <div class="d-flex flex-column p-3 border-end">
+            {{form_start(form_recherche)}}
+                    <h5>Type d'animal</h5>
+                    <div class="">
+                    {{form_row(form_recherche.typesAnimal, { 'value': ''})}}
+                </div>
+                    <h5 class="mt-3">Sexe</h5>
+                    {{form_row(form_recherche.isFeminin, { 'value': ''})}}
+                    <h5 class="mt-3">Animal LOF</h5>
+                    {{form_row(form_recherche.lofAnimal, { 'value': ''})}}
+            <hr>
+                    <h5>Intervalle de taille</h5>
+                    {{form_row(form_recherche.idTaille)}}
+            <hr>
+                <h5>Type de poils</h5>
+                {{form_row(form_recherche.idTypepoils)}}
+            <hr>
+                <h5>Type d'échange</h5>
+                {{form_row(form_recherche.idStatut)}}
+                <div class="text-end">
+                {{form_row(form_recherche.save)}}
+                </div>
+            {{form_end(form_recherche)}}
         </div>
-        <hr>
-        <div id="robe">
-            <h3 class="text-center fst-italic text-uppercase my-5">Robe</h3>
-            <h5>Choisir le type de poils</h5>
-            {{form_row(form_recherche.idTypepoils)}}
-        </div>
-        <hr>
-        <div id="compensation">
-            <h3 class="text-center fst-italic text-uppercase my-5">Compensation</h3>
-            <h5>Souhaitez-vous un animal à donner ou à vendre ?</h5>
-            {{form_row(form_recherche.idStatut)}}
-        </div>
-        {{form_end(form_recherche)}}
-    </div>
-    <div class="album py-5">
-    <h1>Formulaire de recherche</h1>
-        <p>Veuillez remplir le formulaire de recherche pour que nous puissons vous diriger vers des annonces pertinentes.</p>
-        <div class="container">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            {% for animal in recherche %}
-                <div class="col">
-                    <div class="card shadow-sm" style="width: 25rem; height: 30rem;">
-                    {% if 'http' in tabIdAnimauxPhoto[animal[0].idAnimal] %}
-                            <img src="{{tabIdAnimauxPhoto[animal[0].idAnimal]}}" class=" card-img-top" width="100%" height="100%">
+        <div class="album ms-4">
+        <h1>Formulaire de recherche</h1>
+            <p>Veuillez remplir le formulaire de recherche pour que nous puissons vous diriger vers des annonces pertinentes.</p>
+            
+            <div class="container">
+            {% if recherche |length > 0 %}
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                {% for animal in recherche %}
+                    <div class="col">
+                        <div class="card shadow-sm">
+                        {% if 'http' in tabIdAnimauxPhoto[animal[0].idAnimal] %}
+                            <img src="{{tabIdAnimauxPhoto[animal[0].idAnimal]}}" class=" card-img-top" width="100%" height="225">
                         {% else %}
-                            <img src="uploads/{{tabIdAnimauxPhoto[animal[0].idAnimal]}}" class=" card-img-top" width="100%" height="100%">
+                            <img src="uploads/{{tabIdAnimauxPhoto[animal[0].idAnimal]}}" class=" card-img-top" width="100%" height="225">
                         {% endif %}
-                        <div class="card-header text-center">
-                        {{animal[0].nomAnimal}}
-                        </div>
-                        <div class="card-body">
-                        <p class="card-text">{{ animal[0].texteAnimal|slice(0, 50)|raw}}</br>Age: {{animal[0].ageAnimal}} ans</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                            <a type="button" class="btn btn-sm btn-outline-secondary" href="annonce/{{animal[0].idAnimal}}">En savoir plus...</a>
+                            <div class="card-header text-center">
+                            {{animal[0].nomAnimal}}
                             </div>
-                            <small class="text-muted">{{animal[0].prixAnimal}} euros</small>
-                        </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ animal[0].texteAnimal|slice(0, 50)|raw}}</br>Age: {{animal[0].ageAnimal}} ans</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <a type="button" class="btn btn-sm btn-outline-secondary" href="annonce/{{animal[0].idAnimal}}">En savoir plus...</a>
+                                    </div>
+                                    <small class="text-muted">{{animal[0].prixAnimal}} euros</small>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
+            {% else %}
+            <div class="text-center">
+                <p class="alert alert-secondary">Aucun résultat pour cette recherche.</p>
+            </div>
+            {% endif %}
             </div>
         </div>
-    </div>
+    
+</div>
 </main>
+    {% include 'commun/footer.html.twig' %}
 {% endblock %}
 {% block javascripts %}
     {{ encore_entry_script_tags('app') }}

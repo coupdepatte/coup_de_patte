@@ -21,12 +21,15 @@ return [
         '/contact' => [[['_route' => 'app_contact', '_controller' => 'App\\Controller\\ContactController::index'], null, null, null, false, false, null]],
         '/dashboard' => [[['_route' => 'app_dashboard', '_controller' => 'App\\Controller\\DashboardController::index'], null, null, null, false, false, null]],
         '/dashboard/ajouter-article' => [[['_route' => 'app_dashboard_ajouter', '_controller' => 'App\\Controller\\DashboardController::ajouterAnnoce'], null, null, null, false, false, null]],
-        '/faq' => [[['_route' => 'app_faq', '_controller' => 'App\\Controller\\FaqController::index'], null, null, null, false, false, null]],
         '/gestion/animal/gestion_animal' => [[['_route' => 'app_gestion_animal_index', '_controller' => 'App\\Controller\\GestionAnimalController::index'], null, ['GET' => 0], null, false, false, null]],
         '/gestion/animal/new' => [[['_route' => 'app_gestion_animal_new', '_controller' => 'App\\Controller\\GestionAnimalController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/inscription' => [[['_route' => 'app_inscription', '_controller' => 'App\\Controller\\InscriptionController::index'], null, null, null, false, false, null]],
         '/renvoiverif' => [[['_route' => 'resend_verif', '_controller' => 'App\\Controller\\InscriptionController::resendVerif'], null, null, null, false, false, null]],
+<<<<<<< HEAD
         '/recherche' => [[['_route' => 'app_recherche', '_controller' => 'App\\Controller\\RechercheController::search'], null, null, null, false, false, null]],
+=======
+        '/recherche' => [[['_route' => 'app_recherche', '_controller' => 'App\\Controller\\RechercheController::index'], null, null, null, false, false, null]],
+>>>>>>> 96fa71004f6c056166fc847a5ac5a4aca583326c
     ],
     [ // $regexpList
         0 => '{^(?'

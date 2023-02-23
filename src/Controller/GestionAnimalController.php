@@ -53,13 +53,10 @@ class GestionAnimalController extends AbstractController
     {
         $form = $this->createForm(AnimalType::class, $animal);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $animalRepository->save($animal, true);
-
             return $this->redirectToRoute('app_gestion_animal_index', [], Response::HTTP_SEE_OTHER);
         }
-
         return $this->renderForm('gestion_animal/edit.html.twig', [
             'animal' => $animal,
             'form' => $form,
@@ -72,7 +69,6 @@ class GestionAnimalController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$animal->getIdAnimal(), $request->request->get('_token'))) {
             $animalRepository->remove($animal, true);
         }
-
         return $this->redirectToRoute('app_gestion_animal_index', [], Response::HTTP_SEE_OTHER);
     }
 }

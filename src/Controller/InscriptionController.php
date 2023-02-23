@@ -43,22 +43,18 @@ class InscriptionController extends AbstractController
             $utilisateur->setIdLieu($idVilles);
             $manager->persist($utilisateur);
             $manager->flush();
-
- // On génère le JWT de l'utilisateur
+            // On génère le JWT de l'utilisateur
             // On crée le Header
             $header = [
                 'typ' => 'JWT',
                 'alg' => 'HS256'
             ];
-
             // On crée le Payload
             $payload = [
                 'user_id' => $utilisateur->getIdUtilisateur()
             ];
-
             // On génère le token
             $token = $jwt->generate($header, $payload, $this->getParameter('app.jwtsecret'));
-
             // On envoie un mail
             $mail->send(
                 'no-reply@coupdepatte.com',
@@ -91,10 +87,8 @@ class InscriptionController extends AbstractController
         if($jwt->isValid($token) && !$jwt->isExpired($token) && $jwt->check($token, $this->getParameter('app.jwtsecret'))){
             // On récupère le payload
             $payload = $jwt->getPayload($token);
-
             // On récupère le user du token
             $utilisateur = $repoUtilisateur->find($payload['user_id']);
-
             //On vérifie que l'utilisateur existe et n'a pas encore activé son compte
             if($utilisateur  && !$utilisateur->getIsVerified()){
                 $utilisateur  ->setIsVerified(true);
@@ -112,7 +106,6 @@ class InscriptionController extends AbstractController
     public function resendVerif( JWTService $jwt, UtilisateurRepository $repoUtilisateur, SendMailService $mail): Response
     {
         $utilisateur = $this->getUser();
-
         if(!$utilisateur){
             $this->addFlash('danger', 'Vous devez être connecté pour accéder à cette page');
             return $this->redirectToRoute('app_connection');
@@ -127,15 +120,12 @@ class InscriptionController extends AbstractController
                 'typ' => 'JWT',
                 'alg' => 'HS256'
             ];
-
             // On crée le Payload
             $payload = [
                 'user_id' => $utilisateur->getIdUtilisateur()
             ];
-
             // On génère le token
             $token = $jwt->generate($header, $payload, $this->getParameter('app.jwtsecret'));
-
             // On envoie un mail
             $mail->send(
                 'no-reply@coupdepatte.com',

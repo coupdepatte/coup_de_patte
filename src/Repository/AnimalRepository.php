@@ -96,18 +96,15 @@ class AnimalRepository extends ServiceEntityRepository
             ->setParameter('sexe', $criteria['isFeminin'])
             ->andWhere('a.lofAnimal = :lof')
             ->setParameter('lof', $criteria['lofAnimal'])
+            ->andWhere('a.idTaille = :taille')
+            ->setParameter('taille', $criteria[['idTaille'][0]]->getIdTaille())
+            ->andWhere('a.idTypepoils = :poils')
+            ->setParameter('poils', $criteria[[['idTypepoils'][0]][0]]->getIdTypepoils())
+            ->andWhere('a.idStatut = :statut')
+            ->setParameter('statut', $criteria[['idStatut'][0]]->getIdStatut())
             ->getQuery()
             ->getResult()
         ;
     }
-
-        // public function filtrerType(): array
-        // {
-            
-        //     $result = "SELECT * FROM animal as a INNER JOIN race as r ON a.id_race = r.id_race INNER JOIN typeanimal as t ON r.id_typeanimal = t.id_typeanimal WHERE t.id_typeanimal = 2";
-        //     // $action = $this->getEntityManager()->getConnection()->prepare($req);
-        //     // $action->execute();
-        //     return $result;
-        // }
 
 }

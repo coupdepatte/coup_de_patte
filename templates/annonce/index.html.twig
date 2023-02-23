@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+
+
 {% block title %}Nos Annonces - Coup de Patte
 {% endblock %}
 
@@ -7,123 +9,174 @@
 	{% include 'commun/nav.html.twig' %}
 
 	<main>
-		<div class="container py-4 text-center">
-			<header class="pb-3 mb-4 border-bottom">
-				<img class="d-block mx-auto mb-4" src="{{asset('images/png-clipart-paw-dog-printing-paws-animals-monochrome.png')}}" alt="" width="72" height="57">
-				<span class="fs-1 text-center">{{animal.nomAnimal}}</span><br>
-				<span class="fs-1 text-center">{{animal.idRace.nomRace}}</span>
-
-			</header>
-
-			<div class="p-5 mb-4 bg-light rounded-3">
-				<div class="container-fluid py-5">
-
-					<div class="d-flex justify-content-center">
-						<div id="carouselExampleRide" class="carousel slide col-7 " data-bs-ride="true">
-							<div class="carousel-inner">
-								{% for image in URLImage %}
-									{% if 'http' in image %}
-
-										<div class="carousel-item {% if loop.first %}active{% endif %}">
-											<img data-photoswipe-loop="{{ loop.index0 }}" src="{{image}}" class="img-responsive d-block w-100">
-										</div>
-									{% else %}
-										<div class="carousel-item  {% if loop.first %}active{% endif %}">
-											<img data-photoswipe-loop="{{ loop.index0 }}" src="/uploads/{{image}}" class="img-responsive d-block w-100">
-										</div>
-									{% endif %}
-								{% endfor %}
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-2">
+					<h2 class="fs-5 text-center">Nos Articles Utiles !</h2>
+					{% for article in tabArticlesPair %}
+						<div class="card shadow-sm">
+							<img src="{{article.photoArticle}}" class=" card-img-top" max-width="100%" height="225">
+							<div class="card-header text-center">
+								<h5>{{ article.nomArticle }}</h5>
 							</div>
-							<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="prev">
-								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-								<span class="visually-hidden">Previous</span>
-							</button>
-							<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="next">
-								<span class="carousel-control-next-icon" aria-hidden="true"></span>
-								<span class="visually-hidden">Next</span>
-							</button>
-						</div>
-					</div>
-
-					<p class="text-center fs-4 border-bottom mb-3 mt-3">{{animal.texteAnimal}}</p>
-					<a href="{{ path('app_accueil')}} " type="button" class="btn btn-sm btn-outline-secondary">Retour vers l'acceuil</a>
-					<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Contacter le propriétaire de l'animal.</button>
-					<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-
-									<h1 class="modal-title fs-5" id="exampleModalLabel">Envoyer un message</h1>
-									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-								</div>
-								<div class="modal-body">
-									{% for message in app.flashes('success') %}
-										{{ message|raw}}
-									{% endfor %}
-									{{form_start(form_message)}}
-									<div class="mb-3">
-										<label for="recipient-name" class="col-form-label">Email du vendeur:
-										</label>
-										{{vendeur.loginUtilisateur}}
-									</div>
-									<div class="mb-3">
-										<label for="recipient-name" class="col-form-label">Votre Email:
-										</label>
-										{{utilisateurCo.loginUtilisateur}}
-									</div>
-									<div class="mb-3">
-										<label for="message-text" class="col-form-label">Message:
-										</label>
-										{{form_row(form_message.message)}}
-									</div>
-
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-									{{form_row(form_message.save)}}
-								</div>
+							<div class="card-body">
+								<p>Prix de l'article:
+									{{article.prixArticle}}
+									€</p>
 							</div>
-							{{form_end(form_message)}}
+							<div class="btn-group">
+								<a type="button" class="btn btn-sm btn-outline-secondary" href="{{article.urlPartenaire}}">Découvrir sur notre site partenaire</a>
+							</div>
 						</div>
-					</div>
-					<p class="text-center fs-4 border-bottom mb-3 mt-5">Description détaillé.</p>
-					<div class="row">
-						<p class="col-md-4 text-center fs-4">{{animal.ageAnimal}}
-							ans</p>
-						<p class="col-md-4 text-center fs-4">{{animal.poidAnimal}}
-							Kg</p>
-						<p class="col-md-4 text-center fs-4">{{animal.prixAnimal}}
-							€</p>
-					</div>
-					<div class="row">
-						<p class="col-md-4 text-center fs-4">
-							LOF :
-							{{animal.lofAnimal}}</p>
-							{% if 'OUI' in animal.isFeminin %}
-								<p class="col-md-4 text-center fs-4">
-									Sexe : Féminin
-								</p>
-							{% else %}
-								<p class="col-md-4 text-center fs-4">
-									Sexe : Masculin</p>
-							{% endif %}
-						
-						<p class="col-md-4 text-center fs-4">Identifié :
-							{{animal.isIdentifie}}</p>
-					</div>
-				
-				<div class="row">
-					<p class="col-md-4 text-center fs-4">Taille :
-						{{animal.idTaille.nomTaille}}</p>
-					<p class="col-md-4 text-center fs-4">Couleur :
-						{{animal.idCouleur.nomCouleur}}</p>
-					<p class="col-md-4 text-center fs-4">Poils :
-						{{animal.idTypepoils.nomTypepoils}}</p>
+					{% endfor %}
 				</div>
-			</div>
-		</div>
-	</div>
-</main>
+
+				<div class="col-lg-8">
+					<div class="container py-4 text-center">
+						<header class="pb-3 mb-4 border-bottom">
+							<img class="d-block mx-auto mb-4" src="{{asset('images/png-clipart-paw-dog-printing-paws-animals-monochrome.png')}}" alt="" width="72" height="57" data-aos="flip-up"
+                    data-aos-duration="2000">
+							<h1 class="fs-1 text-center animate__animated animate__bounce" >{{animal.nomAnimal}}</h1><br>
+							<span class="fs-1 text-center">{{animal.idRace.nomRace}}</span>
+						</header>
+						<div class="p-5 mb-4 bg-light rounded-3">
+							<div class="container-fluid py-5">
+								<div class="d-flex justify-content-center">
+									<div id="carouselExampleRide" class="carousel slide col-7 " data-bs-ride="true">
+										<div class="carousel-inner">
+											{% for image in URLImage %}
+												{% if 'http' in image %}
+													<div class="carousel-item {% if loop.first %}active{% endif %}">
+														<img data-photoswipe-loop="{{ loop.index0 }}" src="{{image}}" class="img-responsive d-block w-100">
+													</div>
+												{% else %}
+													<div class="carousel-item  {% if loop.first %}active{% endif %}">
+														<img data-photoswipe-loop="{{ loop.index0 }}" src="/uploads/{{image}}" class="img-responsive d-block w-100">
+													</div>
+												{% endif %}
+											{% endfor %}
+										</div>
+										<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="prev">
+											<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+											<span class="visually-hidden">Previous</span>
+										</button>
+										<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="next">
+											<span class="carousel-control-next-icon" aria-hidden="true"></span>
+											<span class="visually-hidden">Next</span>
+										</button>
+									</div>
+								</div>
+
+								<p class="text-center fs-4 border-bottom mb-3 mt-3">{{animal.texteAnimal}}</p>
+								<a href="{{ path('app_accueil')}} " type="button" class="btn btn-sm btn-outline-secondary">Retour vers l'acceuil</a>
+								<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Contacter le propriétaire de l'animal.</button>
+								<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+
+												<h1 class="modal-title fs-5" id="exampleModalLabel">Envoyer un message</h1>
+												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+											</div>
+											<div class="modal-body">
+												{% for message in app.flashes('success') %}
+													{{ message|raw}}
+												{% endfor %}
+												{{form_start(form_message)}}
+												<div class="mb-3">
+													<label for="recipient-name" class="col-form-label">Email du vendeur:
+													</label>
+													{{vendeur.loginUtilisateur}}
+												</div>
+												<div class="mb-3">
+													<label for="recipient-name" class="col-form-label">Votre Email:
+													</label>
+													{{utilisateurCo.loginUtilisateur}}
+												</div>
+												<div class="mb-3">
+													<label for="message-text" class="col-form-label">Message:
+													</label>
+													{{form_row(form_message.message)}}
+												</div>
+
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+												{{form_row(form_message.save)}}
+											</div>
+										</div>
+										{{form_end(form_message)}}
+									</div>
+								</div>
+								<p class="text-center fs-4 border-bottom mb-3 mt-5">Description détaillé.</p>
+								<div class="row">
+									<p class="col-md-4 text-center fs-4">{{animal.ageAnimal}}
+										ans</p>
+									<p class="col-md-4 text-center fs-4">{{animal.poidAnimal}}
+										Kg</p>
+									<p class="col-md-4 text-center fs-4">{{animal.prixAnimal}}
+										€</p>
+								</div>
+								<div class="row">
+									<p class="col-md-4 text-center fs-4">
+										LOF :
+										{{animal.lofAnimal}}</p>
+									{% if 'OUI' in animal.isFeminin %}
+										<p class="col-md-4 text-center fs-4">
+											Sexe : Féminin
+										</p>
+									{% else %}
+										<p class="col-md-4 text-center fs-4">
+											Sexe : Masculin</p>
+									{% endif %}
+
+									<p class="col-md-4 text-center fs-4">Identifié :
+										{{animal.isIdentifie}}</p>
+								</div>
+
+								<div class="row">
+									<p class="col-md-4 text-center fs-4">Taille :
+										{{animal.idTaille.nomTaille}}</p>
+									<p class="col-md-4 text-center fs-4">Couleur :
+										{{animal.idCouleur.nomCouleur}}</p>
+									<p class="col-md-4 text-center fs-4">Poils :
+										{{animal.idTypepoils.nomTypepoils}}</p>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+				<div class="col-lg-2">
+					<h2 class="fs-5 text-center">Nos Articles Utiles !</h2>
+					{% for article in tabArticlesImpair %}
+						<div class="card shadow-sm">
+							<img src="{{article.photoArticle}}" class=" card-img-top" max-width="100%" height="225">
+							<div class="card-header text-center">
+								<h5>{{ article.nomArticle }}</h5>
+							</div>
+							<div class="card-body">
+								<p>Prix de l'article:
+									{{article.prixArticle}}
+									€</p>
+							</div>
+							<div class="btn-group">
+								<a type="button" class="btn btn-sm btn-outline-secondary" href="{{article.urlPartenaire}}">Découvrir sur notre site partenaire</a>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
 
 
-{% include 'commun/footer.html.twig' %}{% endblock %}
+			</main>
+			{% include 'commun/footer.html.twig' %}
+		{% endblock %}
+
+		 {% block javascripts %}
+ <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+        AOS.init();
+    </script>
+
+{% endblock %}

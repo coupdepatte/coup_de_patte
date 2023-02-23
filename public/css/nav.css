@@ -1,13 +1,42 @@
 *{
 
  
-    font-family: 'Lobster', cursive;
+    
    
 }
 .h1,h1{
 
+    font-family: 'Lobster', cursive;
 
     font-size: 3em;
+
+}
+.h2,h2{
+
+    font-family: 'Lobster', cursive;
+
+    font-size: 2.5em;
+
+}
+.h3,h3{
+
+    font-family: 'Lobster', cursive;
+
+    font-size: 2em;
+
+}
+.h4,h4{
+
+    font-family: 'Lobster', cursive;
+
+    font-size: 1.5em;
+
+}
+.h5,h5{
+
+    font-family: 'Lobster', cursive;
+
+    font-size: 1em;
 
 }
 
@@ -26,7 +55,7 @@
 
 }
 .nav-link{
-
+    font-family: 'Lobster', cursive;
   font-size: 1.5em;
   /* color:black !important; */
 
